@@ -1,4 +1,4 @@
-package com.example.falletterbackend.falletter.facade
+package com.example.falletterbackend.falletter.facade.user
 
 import com.example.falletterbackend.falletter.entity.user.User
 import com.example.falletterbackend.falletter.entity.user.repository.UserRepository

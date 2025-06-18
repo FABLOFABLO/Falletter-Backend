@@ -21,6 +21,6 @@ class Answer(
     val targetUserId: User,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "writer_id", columnDefinition = "BIGINT", nullable = false)
+    @JoinColumn(name = "writer_id", nullable = false)
     val writerId: User
 ) : EntityBase()

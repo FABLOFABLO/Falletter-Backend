@@ -22,6 +22,6 @@ class Brick(
     val user: User,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "question_id", columnDefinition = "BIGINT", nullable = false)
+    @JoinColumn(name = "question_id", nullable = false)
     val question: Question
 ) : EntityBase()

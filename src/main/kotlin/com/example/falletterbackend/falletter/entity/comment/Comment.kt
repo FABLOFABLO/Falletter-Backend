@@ -11,6 +11,6 @@ class Comment(
     val comment: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", columnDefinition = "BIGINT", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     val user: User
 ) : EntityBase()

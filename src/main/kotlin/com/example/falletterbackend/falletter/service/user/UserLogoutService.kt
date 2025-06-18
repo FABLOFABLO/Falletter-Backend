@@ -1,7 +1,7 @@
 package com.example.falletterbackend.falletter.service.user
 
 import com.example.falletterbackend.falletter.entity.auth.repository.RefreshTokenRepository
-import com.example.falletterbackend.falletter.facade.UserFacade
+import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 
 @Service

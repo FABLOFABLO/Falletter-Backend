@@ -23,6 +23,6 @@ class Letter(
     val reception: User,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sender_id", columnDefinition = "BIGINT", nullable = false)
+    @JoinColumn(name = "sender_id", nullable = false)
     val sender: User
 ) : EntityBase()

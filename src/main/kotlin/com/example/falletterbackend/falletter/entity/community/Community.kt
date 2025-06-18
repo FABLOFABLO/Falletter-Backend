@@ -10,11 +10,10 @@ class Community(
     @Column(name = "title", columnDefinition = "VARCHAR(128)", nullable = false)
     val title: String,
 
-    @Column(name = "content", columnDefinition = "VARCAHR(512)", nullable = false)
+    @Column(name = "content", columnDefinition = "VARCHAR(512)", nullable = false)
     val content: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id", columnDefinition = "BIGINT", nullable = false)
+    @JoinColumn(name = "author_id", nullable = false)
     val author : User
-) : EntityBase() {
-}
+) : EntityBase()
