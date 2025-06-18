@@ -1,6 +1,6 @@
 package com.example.falletterbackend.common.security
 
-import com.example.falletterbackend.falletter.facade.UserFacade
+import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Service

@@ -40,6 +40,9 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.DELETE, "/user/logout").authenticated()
                     .requestMatchers(HttpMethod.GET, "/user/users").authenticated()
 
+                    // commmunity
+                    .requestMatchers(HttpMethod.POST, "/community/posts").authenticated()
+
                     .anyRequest().denyAll()
             }
 
