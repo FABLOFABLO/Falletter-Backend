@@ -57,7 +57,7 @@ dependencies {
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
 	// mail
-	implementation ("org.springframework.boot', name: 'spring-boot-starter-mail', version: '3.0.5")
+	implementation("org.springframework.boot:spring-boot-starter-mail:3.1.2")
 }
 
 kotlin {
