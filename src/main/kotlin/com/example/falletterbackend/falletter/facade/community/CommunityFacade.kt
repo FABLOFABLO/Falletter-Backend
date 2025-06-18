@@ -2,6 +2,7 @@ package com.example.falletterbackend.falletter.facade.community
 
 import com.example.falletterbackend.falletter.entity.community.Community
 import com.example.falletterbackend.falletter.entity.community.repository.CommunityRepository
+import com.example.falletterbackend.falletter.exception.community.PostNotFoundException
 import org.springframework.stereotype.Component
 import java.util.Optional
 
@@ -9,7 +10,7 @@ import java.util.Optional
 class CommunityFacade(
     private val communityRepository: CommunityRepository
 ) {
-    fun getCurrentFeed(id: Long): Optional<Community> {
-        return communityRepository.findById(id)
+    fun getCurrentCommunity(id: Long): Community {
+        return communityRepository.findById(id).orElseThrow { PostNotFoundException }
     }
 }

@@ -14,6 +14,7 @@ enum class ErrorCode(
 
     UNMATCHED_VERIFY_CODE(403, "Unmatched Verify Code"),
     UNEXIST_VERIFY_CODE(403, "Unexist Verify Code"),
+    UNMISMATCH_USER(403, "UnMismatch User"),
 
     USER_NOT_FOUND(404, "User Not Found"),
     POST_NOT_FOUND(404, "Post Not Found"),

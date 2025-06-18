@@ -8,12 +8,17 @@ import jakarta.persistence.*
 @Table(name = "tbl_community")
 class Community(
     @Column(name = "title", columnDefinition = "VARCHAR(128)", nullable = false)
-    val title: String,
+    var title: String,
 
     @Column(name = "content", columnDefinition = "VARCHAR(512)", nullable = false)
-    val content: String,
+    var content: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id", nullable = false)
     val author : User
-) : EntityBase()
+) : EntityBase() {
+    fun update(title: String, content: String){
+        this.title = title
+        this.content = content
+    }
+}
