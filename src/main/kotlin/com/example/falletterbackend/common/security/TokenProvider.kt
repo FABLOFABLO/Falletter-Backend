@@ -92,4 +92,6 @@ class TokenProvider(
             false
         }
     }
+
+    fun getSecretKey(): String = tokenProperties.secretKey
 }

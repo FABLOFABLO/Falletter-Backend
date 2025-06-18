@@ -6,4 +6,5 @@ object RestApiSpec {
 
     const val USER_SIGN_UP = "/signup"
     const val USER_SIGN_IN = "/signin"
+    const val USER_LOG_OUT = "/logout"
 }

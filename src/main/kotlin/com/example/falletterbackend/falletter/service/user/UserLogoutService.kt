@@ -1,0 +1,17 @@
+package com.example.falletterbackend.falletter.service.user
+
+import com.example.falletterbackend.falletter.entity.auth.repository.RefreshTokenRepository
+import com.example.falletterbackend.falletter.facade.UserFacade
+import org.springframework.stereotype.Service
+
+@Service
+class UserLogoutService(
+    private val refreshTokenRepository: RefreshTokenRepository,
+    private val userFacade: UserFacade
+) {
+    fun execute() {
+        // TODO : 409 처리
+        val currentUser = userFacade.getCurrentUser()
+        refreshTokenRepository.deleteById(currentUser.toString())
+    }
+}
