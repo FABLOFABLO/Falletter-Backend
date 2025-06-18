@@ -14,4 +14,6 @@ object RestApiSpec {
     const val COMMUNITY_READ_POST = "/posts/{post-id}"
     const val COMMUNITY_UPDATE_POST = "/posts/{post-id}"
     const val COMMUNITY_DELETE_POST = "/posts/{post-id}"
+
+    const val QUESTION_ALL = "/all"
 }
