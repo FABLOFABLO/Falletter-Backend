@@ -51,6 +51,13 @@ spring:
             enable: true
     auth-code-expiration-millis: ${SPRING_MAIL_AUTH_CODE_EXPIRATION_MILLIS}
 
+jwt:
+  secret_key: ${JWT_SECRET_KEY}
+  access_exp: ${JWT_ACCESS_EXP}
+  refresh_exp: ${JWT_REFRESH_EXP}
+  header: ${JWT_HEADER}
+  prefix: ${JWT_PREFIX}
+
 logging:
   level:
     com:
