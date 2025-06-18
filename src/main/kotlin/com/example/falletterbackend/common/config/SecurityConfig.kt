@@ -47,6 +47,10 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.PATCH, "/community/posts/{post-id}").authenticated()
                     .requestMatchers(HttpMethod.DELETE, "/community/posts/{post-id}").authenticated()
 
+                    // comment
+                    .requestMatchers(HttpMethod.POST, "/comment/{post-id}").authenticated()
+                    .requestMatchers(HttpMethod.DELETE, "/comment/{comment-id}").authenticated()
+
                     // question
                     .requestMatchers(HttpMethod.GET, "/question/all").authenticated()
 
