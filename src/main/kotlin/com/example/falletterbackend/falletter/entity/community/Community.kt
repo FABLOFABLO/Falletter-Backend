@@ -1,6 +1,7 @@
 package com.example.falletterbackend.falletter.entity.community
 
 import com.example.falletterbackend.common.entity.EntityBase
+import com.example.falletterbackend.falletter.entity.comment.Comment
 import com.example.falletterbackend.falletter.entity.user.User
 import jakarta.persistence.*
 
@@ -12,6 +13,9 @@ class Community(
 
     @Column(name = "content", columnDefinition = "VARCHAR(512)", nullable = false)
     var content: String,
+
+    @OneToMany(mappedBy = "community", cascade = [CascadeType.ALL], orphanRemoval = true)
+    val comments : MutableList<Comment> = mutableListOf(),
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id", nullable = false)

@@ -1,6 +1,7 @@
 package com.example.falletterbackend.falletter.presentation.community
 
 import com.example.falletterbackend.falletter.dto.community.request.CommunityPostsRequest
+import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsListResponse
 import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsResponse
 import com.example.falletterbackend.falletter.entity.community.Community
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
@@ -34,7 +35,7 @@ class CommunityController(
 
     @GetMapping(RestApiSpec.COMMUNITY_LIST_READ_POST)
     @ResponseStatus(HttpStatus.OK)
-    fun getListPost(): List<CommunityPostsResponse> { return communityGetAllPostService.execute() }
+    fun getListPost(): List<CommunityPostsListResponse> { return communityGetAllPostService.execute() }
 
     @GetMapping(RestApiSpec.COMMUNITY_READ_POST)
     @ResponseStatus(HttpStatus.OK)

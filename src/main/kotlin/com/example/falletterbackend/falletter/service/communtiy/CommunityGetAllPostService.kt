@@ -1,6 +1,8 @@
 package com.example.falletterbackend.falletter.service.communtiy
 
+import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsListResponse
 import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsResponse
+import com.example.falletterbackend.falletter.dto.community.response.PostListCommentResponse
 import com.example.falletterbackend.falletter.dto.community.response.PostListUserResponse
 import com.example.falletterbackend.falletter.entity.community.repository.CommunityRepository
 import org.springframework.stereotype.Service
@@ -11,11 +13,11 @@ class CommunityGetAllPostService(
     private val communityRepository: CommunityRepository
 ) {
     @Transactional(readOnly = true)
-    fun execute(): List<CommunityPostsResponse>{
-        val feeds = communityRepository.findAll()
+    fun execute(): List<CommunityPostsListResponse>{
+        val community = communityRepository.findAll()
 
-        return feeds.map {
-            CommunityPostsResponse(
+        return community.map {
+            CommunityPostsListResponse(
                 id = it.id,
                 title = it.title,
                 content = it.content,
