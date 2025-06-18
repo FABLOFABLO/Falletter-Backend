@@ -34,6 +34,10 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.POST, "auth/email/verify").permitAll()
                     .requestMatchers(HttpMethod.POST, "auth/email/match").permitAll()
 
+                    //user
+                    .requestMatchers(HttpMethod.POST, "/user/signup").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/user/signin").permitAll()
+
                     .anyRequest().denyAll()
             }
 
@@ -41,7 +45,6 @@ class SecurityConfig(
 
         return http.build()
     }
-
 
     @Bean
     fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder()

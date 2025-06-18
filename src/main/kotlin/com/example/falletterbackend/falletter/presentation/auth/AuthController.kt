@@ -15,19 +15,19 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 
 @RequestMapping("/auth")
-class AuthMailVerifyController(
+class AuthController(
     private val authMailVerifyService: AuthMailVerifyService,
     private val authMailMatchService: AuthMailMatchService
 ) {
     @PostMapping(RestApiSpec.MAIL_VERIFY)
     @ResponseStatus(HttpStatus.OK)
-    fun authMailVerify(@RequestBody authMailVerifyRequest: AuthMailVerifyRequest){
-        authMailVerifyService.execute(authMailVerifyRequest)
+    fun authMailVerify(@RequestBody request: AuthMailVerifyRequest){
+        authMailVerifyService.execute(request)
     }
 
     @PostMapping(RestApiSpec.MAIL_MATCH)
     @ResponseStatus(HttpStatus.OK)
-    fun authMailMatch(@RequestBody authMailMatchRequest: AuthMailMatchRequest){
-        authMailMatchService.execute(authMailMatchRequest)
+    fun authMailMatch(@RequestBody request: AuthMailMatchRequest){
+        authMailMatchService.execute(request)
     }
 }

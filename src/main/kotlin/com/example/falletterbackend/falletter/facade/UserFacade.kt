@@ -11,8 +11,8 @@ class UserFacade(
     private val userRepository: UserRepository
 ) {
     fun getCurrentUser(): User {
-        val accountId: String = SecurityContextHolder.getContext().authentication.name
-        return getByAccountId(accountId)
+        val email: String = SecurityContextHolder.getContext().authentication.name
+        return getByAccountId(email)
     }
 
     fun checkAccountIdExist(email: String): Boolean {
