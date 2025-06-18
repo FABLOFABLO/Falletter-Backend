@@ -6,6 +6,7 @@ import com.example.falletterbackend.falletter.service.comment.CommentDeleteServi
 import com.example.falletterbackend.falletter.service.comment.CommentWriterService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -26,5 +27,11 @@ class CommentController(
         @RequestBody @Valid request: CommentRequest
     ) {
         commentWriterService.execute(id, request)
+    }
+
+    @DeleteMapping(RestApiSpec.COMMENT_DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun commentDelete(@PathVariable("comment-id") id: Long) {
+        commentDeleteService.execute(id)
     }
 }
