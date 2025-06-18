@@ -38,6 +38,7 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.POST, "/user/signup").permitAll()
                     .requestMatchers(HttpMethod.POST, "/user/signin").permitAll()
                     .requestMatchers(HttpMethod.DELETE, "/user/logout").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/user/users").authenticated()
 
                     .anyRequest().denyAll()
             }

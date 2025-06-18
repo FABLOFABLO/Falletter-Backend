@@ -1,4 +1,11 @@
 package com.example.falletterbackend.falletter.dto.user.response
 
-class UserInfoResponse {
-}
+import com.example.falletterbackend.falletter.entity.user.Gender
+
+data class UserInfoResponse(
+    val email: String,
+    val schoolNumber: String,
+    val name: String,
+    val gender: Gender,
+    val profileImage: String
+)

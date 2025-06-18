@@ -3,13 +3,16 @@ package com.example.falletterbackend.falletter.presentation.user
 import com.example.falletterbackend.falletter.dto.auth.response.AuthTokenResponse
 import com.example.falletterbackend.falletter.dto.user.request.UserSignInRequest
 import com.example.falletterbackend.falletter.dto.user.request.UserSignUpRequest
+import com.example.falletterbackend.falletter.dto.user.response.UserInfoResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
+import com.example.falletterbackend.falletter.service.user.UserInfoService
 import com.example.falletterbackend.falletter.service.user.UserLogoutService
 import com.example.falletterbackend.falletter.service.user.UserSignInService
 import com.example.falletterbackend.falletter.service.user.UserSignUpService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -21,7 +24,8 @@ import org.springframework.web.bind.annotation.RestController
 class UserController(
     private val userSignUpService: UserSignUpService,
     private val userSignInService: UserSignInService,
-    private val userLogoutService: UserLogoutService
+    private val userLogoutService: UserLogoutService,
+    private val userInfoService: UserInfoService
 ) {
     @PostMapping(RestApiSpec.USER_SIGN_UP)
     @ResponseStatus(HttpStatus.CREATED)
@@ -39,4 +43,7 @@ class UserController(
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun logout() { userLogoutService.execute() }
 
+    @GetMapping(RestApiSpec.USER_USERS)
+    @ResponseStatus(HttpStatus.OK)
+    fun userInfo(): UserInfoResponse{ return userInfoService.execute() }
 }
