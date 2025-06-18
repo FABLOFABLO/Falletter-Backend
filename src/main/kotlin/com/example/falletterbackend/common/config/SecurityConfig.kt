@@ -40,8 +40,12 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.DELETE, "/user/logout").authenticated()
                     .requestMatchers(HttpMethod.GET, "/user/users").authenticated()
 
-                    // commmunity
+                    // community
                     .requestMatchers(HttpMethod.POST, "/community/posts").authenticated()
+                    .requestMatchers(HttpMethod.GET, "community/posts").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/community/posts/{post-id}").authenticated()
+                    .requestMatchers(HttpMethod.PATCH, "/community/posts/{post-id}").authenticated()
+                    .requestMatchers(HttpMethod.DELETE, "/community/posts/{post-id}").authenticated()
 
                     .anyRequest().denyAll()
             }

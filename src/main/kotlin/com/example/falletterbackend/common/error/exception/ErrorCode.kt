@@ -16,7 +16,7 @@ enum class ErrorCode(
     UNEXIST_VERIFY_CODE(403, "Unexist Verify Code"),
 
     USER_NOT_FOUND(404, "User Not Found"),
-    FEED_NOT_FOUND(404, "Feed Not Found"),
+    POST_NOT_FOUND(404, "Post Not Found"),
 
     ALREADY_ACCOUNT_ID(409, "Already Account Id"),
     ALREADY_EXIST_LIKE(409, "Already Exist Like"),

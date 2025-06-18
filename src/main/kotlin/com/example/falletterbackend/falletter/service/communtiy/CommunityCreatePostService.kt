@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.service.communtiy
 
-import com.example.falletterbackend.falletter.dto.community.request.CommunityCreatePostRequest
+import com.example.falletterbackend.falletter.dto.community.request.CommunityPostsRequest
 import com.example.falletterbackend.falletter.entity.community.Community
 import com.example.falletterbackend.falletter.entity.community.repository.CommunityRepository
 import com.example.falletterbackend.falletter.facade.user.UserFacade
@@ -13,7 +13,7 @@ class CommunityCreatePostService(
     private val communityRepository: CommunityRepository,
 ) {
     @Transactional
-    fun execute(request: CommunityCreatePostRequest) {
+    fun execute(request: CommunityPostsRequest) {
         val user = userFacade.getCurrentUser()
 
         communityRepository.save(
