@@ -1,8 +1,8 @@
 package com.example.falletterbackend.falletter.service.user
 
 import com.example.falletterbackend.common.security.TokenProvider
-import com.example.falletterbackend.falletter.dto.auth.response.TokenResponse
-import com.example.falletterbackend.falletter.dto.user.request.SignInRequest
+import com.example.falletterbackend.falletter.dto.auth.response.AuthTokenResponse
+import com.example.falletterbackend.falletter.dto.user.request.UserSignInRequest
 import com.example.falletterbackend.falletter.exception.user.IncorrectPasswordException
 import com.example.falletterbackend.falletter.facade.UserFacade
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -16,7 +16,7 @@ class UserSignInService(
     private val tokenProvider: TokenProvider
 ) {
     @Transactional
-    fun execute(request: SignInRequest): TokenResponse {
+    fun execute(request: UserSignInRequest): AuthTokenResponse {
         val user = userFacade.getByAccountId(request.email)
         if (!passwordEncoder.matches(request.password, user.password)) {
             throw IncorrectPasswordException

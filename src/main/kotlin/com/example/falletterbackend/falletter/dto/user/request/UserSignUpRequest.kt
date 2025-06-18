@@ -2,7 +2,7 @@ package com.example.falletterbackend.falletter.dto.user.request
 
 import com.example.falletterbackend.falletter.entity.user.Gender
 
-data class SignUpRequest(
+data class UserSignUpRequest(
     val email: String,
     val password: String,
     val schoolNumber: String,

@@ -2,7 +2,7 @@ package com.example.falletterbackend.common.security
 
 import com.example.falletterbackend.common.exception.TokenExpiredException
 import com.example.falletterbackend.common.exception.TokenInvalidException
-import com.example.falletterbackend.falletter.dto.auth.response.TokenResponse
+import com.example.falletterbackend.falletter.dto.auth.response.AuthTokenResponse
 import com.example.falletterbackend.falletter.entity.auth.RefreshToken
 import com.example.falletterbackend.falletter.entity.auth.repository.RefreshTokenRepository
 import io.jsonwebtoken.Claims
@@ -22,10 +22,10 @@ class TokenProvider(
     private val authDetailsService: AuthDetailsService,
     private val refreshTokenRepository: RefreshTokenRepository,
 ) {
-    fun generateToken(email: String): TokenResponse {
+    fun generateToken(email: String): AuthTokenResponse {
         val accessToken: String = generateAccessToken(email)
         val refreshToken: String = generateRefreshToken(email)
-        return TokenResponse(accessToken, refreshToken)
+        return AuthTokenResponse(accessToken, refreshToken)
     }
 
     fun generateAccessToken(email: String): String {

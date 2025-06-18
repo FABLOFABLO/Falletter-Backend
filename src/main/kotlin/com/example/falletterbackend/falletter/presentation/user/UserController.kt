@@ -1,8 +1,8 @@
 package com.example.falletterbackend.falletter.presentation.user
 
-import com.example.falletterbackend.falletter.dto.auth.response.TokenResponse
-import com.example.falletterbackend.falletter.dto.user.request.SignInRequest
-import com.example.falletterbackend.falletter.dto.user.request.SignUpRequest
+import com.example.falletterbackend.falletter.dto.auth.response.AuthTokenResponse
+import com.example.falletterbackend.falletter.dto.user.request.UserSignInRequest
+import com.example.falletterbackend.falletter.dto.user.request.UserSignUpRequest
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
 import com.example.falletterbackend.falletter.service.user.UserLogoutService
 import com.example.falletterbackend.falletter.service.user.UserSignInService
@@ -25,13 +25,13 @@ class UserController(
 ) {
     @PostMapping(RestApiSpec.USER_SIGN_UP)
     @ResponseStatus(HttpStatus.CREATED)
-    fun signUp(@RequestBody @Valid request: SignUpRequest) {
+    fun signUp(@RequestBody @Valid request: UserSignUpRequest) {
         userSignUpService.execute(request)
     }
 
     @PostMapping(RestApiSpec.USER_SIGN_IN)
     @ResponseStatus(HttpStatus.OK)
-    fun signIn(@RequestBody @Valid request: SignInRequest): TokenResponse {
+    fun signIn(@RequestBody @Valid request: UserSignInRequest): AuthTokenResponse {
         return userSignInService.execute(request)
     }
 

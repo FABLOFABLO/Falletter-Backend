@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.service.user
 
-import com.example.falletterbackend.falletter.dto.user.request.SignUpRequest
+import com.example.falletterbackend.falletter.dto.user.request.UserSignUpRequest
 import com.example.falletterbackend.falletter.entity.user.User
 import com.example.falletterbackend.falletter.entity.user.repository.UserRepository
 import org.springframework.beans.factory.annotation.Value
@@ -21,7 +21,7 @@ class UserSignUpService(
     private lateinit var defaultImageAddress: String
 
     @Transactional
-    fun execute(request: SignUpRequest) {
+    fun execute(request: UserSignUpRequest) {
         if (userRepository.existsBySchoolNumber(request.schoolNumber)) {
             throw ResponseStatusException(HttpStatus.CONFLICT, "이미 존재하는 ${request.schoolNumber} 학번 입니다.")
         }
