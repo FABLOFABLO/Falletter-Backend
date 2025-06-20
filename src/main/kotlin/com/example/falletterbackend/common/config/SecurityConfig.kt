@@ -51,6 +51,9 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.POST, "/comment/{post-id}").authenticated()
                     .requestMatchers(HttpMethod.DELETE, "/comment/{comment-id}").authenticated()
 
+                    //brick
+                    .requestMatchers(HttpMethod.GET, "/brick/count").authenticated()
+
                     // question
                     .requestMatchers(HttpMethod.GET, "/question/all").authenticated()
 
