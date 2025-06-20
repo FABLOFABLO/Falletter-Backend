@@ -1,6 +1,8 @@
 package com.example.falletterbackend.falletter.entity.user
 
 import com.example.falletterbackend.common.entity.EntityBase
+import com.example.falletterbackend.falletter.entity.brick.Brick
+import com.example.falletterbackend.falletter.entity.letter.Letter
 import jakarta.persistence.*
 
 @Entity
@@ -23,7 +25,13 @@ class User(
     val gender: Gender,
 
     @Column(name = "profile_image", columnDefinition = "VARCHAR(255)")
-    val profileImage: String
+    val profileImage: String,
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    val bricks: List<Brick> = mutableListOf(),
+
+    @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)
+    val letters: List<Letter> = mutableListOf()
 ) : EntityBase() {
 
 }

@@ -1,6 +1,8 @@
 package com.example.falletterbackend.falletter.service.user
 
 import com.example.falletterbackend.falletter.dto.user.request.UserSignUpRequest
+import com.example.falletterbackend.falletter.entity.brick.Brick
+import com.example.falletterbackend.falletter.entity.brick.repository.BrickRepository
 import com.example.falletterbackend.falletter.entity.user.User
 import com.example.falletterbackend.falletter.entity.user.repository.UserRepository
 import org.springframework.beans.factory.annotation.Value
@@ -13,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException
 @Service
 class UserSignUpService(
     private val userRepository: UserRepository,
+    private val brickRepository: BrickRepository,
     private val passwordEncoder: PasswordEncoder
 ) {
 
@@ -40,6 +43,15 @@ class UserSignUpService(
             gender = request.gender,
             profileImage = imageUrl
         )
+
         userRepository.save(newUser)
+
+        val userReference = userRepository.getReferenceById(newUser.id)
+
+        val brick = Brick(
+            brickCount = 5,
+            user = userReference
+        )
+        brickRepository.save(brick)
     }
 }

@@ -9,11 +9,7 @@ import jakarta.persistence.*
 @Table(name = "tbl_letter")
 class Letter(
     @Column(name = "letter_count", columnDefinition = "BIGINT", nullable = false)
-    val letterCount: Long,
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "reward_type", columnDefinition = "VARCHAR(10)", nullable = false)
-    val rewardType: RewardType,
+    var letterCount: Long,
 
     @Column(name = "content", columnDefinition = "VARCHAR(512)", nullable = false)
     val content: String,
