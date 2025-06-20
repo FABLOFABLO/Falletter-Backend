@@ -1,4 +1,4 @@
-package com.example.falletterbackend.falletter.entity.letter
+package com.example.falletterbackend.falletter.entity.letterBox
 
 import com.example.falletterbackend.common.entity.EntityBase
 import com.example.falletterbackend.falletter.entity.user.User

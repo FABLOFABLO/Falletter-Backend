@@ -1,4 +1,4 @@
-package com.example.falletterbackend.falletter.dto.letter.request
+package com.example.falletterbackend.falletter.dto.letterBox.request
 
 import com.example.falletterbackend.falletter.entity.user.User
 

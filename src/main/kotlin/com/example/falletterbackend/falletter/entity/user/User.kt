@@ -2,7 +2,7 @@ package com.example.falletterbackend.falletter.entity.user
 
 import com.example.falletterbackend.common.entity.EntityBase
 import com.example.falletterbackend.falletter.entity.brick.Brick
-import com.example.falletterbackend.falletter.entity.letter.LetterBox
+import com.example.falletterbackend.falletter.entity.letterBox.LetterBox
 import jakarta.persistence.*
 
 @Entity

@@ -1,9 +1,8 @@
-package com.example.falletterbackend.falletter.service.letter
+package com.example.falletterbackend.falletter.service.letterBox
 
-import com.example.falletterbackend.falletter.dto.letter.request.LetterSentRequest
-import com.example.falletterbackend.falletter.entity.letter.Letter
-import com.example.falletterbackend.falletter.entity.letter.LetterBox
-import com.example.falletterbackend.falletter.entity.letter.repository.LetterBoxRepository
+import com.example.falletterbackend.falletter.dto.letterBox.request.LetterSentRequest
+import com.example.falletterbackend.falletter.entity.letterBox.LetterBox
+import com.example.falletterbackend.falletter.entity.letterBox.repository.LetterBoxRepository
 import com.example.falletterbackend.falletter.entity.letter.repository.LetterRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
