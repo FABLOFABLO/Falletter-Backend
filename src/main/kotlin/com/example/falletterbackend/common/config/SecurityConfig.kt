@@ -39,6 +39,7 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.POST, "/user/signin").permitAll()
                     .requestMatchers(HttpMethod.DELETE, "/user/logout").authenticated()
                     .requestMatchers(HttpMethod.GET, "/user/users").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/user/student").authenticated()
 
                     // community
                     .requestMatchers(HttpMethod.POST, "/community/posts").authenticated()

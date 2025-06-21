@@ -8,6 +8,7 @@ object RestApiSpec {
     const val USER_SIGN_IN = "/signin"
     const val USER_LOG_OUT = "/logout"
     const val USER_USERS = "/users"
+    const val USER_ALL_STUDENT = "/student"
 
     const val COMMUNITY_CREATE_POST = "/posts"
     const val COMMUNITY_LIST_READ_POST = "/posts"

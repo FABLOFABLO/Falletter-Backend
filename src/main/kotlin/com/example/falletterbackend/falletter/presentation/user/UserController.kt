@@ -3,12 +3,10 @@ package com.example.falletterbackend.falletter.presentation.user
 import com.example.falletterbackend.falletter.dto.auth.response.AuthTokenResponse
 import com.example.falletterbackend.falletter.dto.user.request.UserSignInRequest
 import com.example.falletterbackend.falletter.dto.user.request.UserSignUpRequest
+import com.example.falletterbackend.falletter.dto.user.response.UserGetAllStudentResponse
 import com.example.falletterbackend.falletter.dto.user.response.UserInfoResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.user.UserInfoService
-import com.example.falletterbackend.falletter.service.user.UserLogoutService
-import com.example.falletterbackend.falletter.service.user.UserSignInService
-import com.example.falletterbackend.falletter.service.user.UserSignUpService
+import com.example.falletterbackend.falletter.service.user.*
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -25,7 +23,8 @@ class UserController(
     private val userSignUpService: UserSignUpService,
     private val userSignInService: UserSignInService,
     private val userLogoutService: UserLogoutService,
-    private val userInfoService: UserInfoService
+    private val userInfoService: UserInfoService,
+    private val userGetAllStudentService: UserGetAllStudentService
 ) {
     @PostMapping(RestApiSpec.USER_SIGN_UP)
     @ResponseStatus(HttpStatus.CREATED)
@@ -46,4 +45,10 @@ class UserController(
     @GetMapping(RestApiSpec.USER_USERS)
     @ResponseStatus(HttpStatus.OK)
     fun userInfo(): UserInfoResponse{ return userInfoService.execute() }
+
+    @GetMapping(RestApiSpec.USER_ALL_STUDENT)
+    @ResponseStatus(HttpStatus.OK)
+    fun getAllStudent(): List<UserGetAllStudentResponse>{
+        return userGetAllStudentService.execute()
+    }
 }
