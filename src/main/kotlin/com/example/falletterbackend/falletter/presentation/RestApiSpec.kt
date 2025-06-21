@@ -27,6 +27,7 @@ object RestApiSpec {
     const val LETTER_PATCH_COUNT = "/update"
 
     const val BRICK_GET_COUNT = "/count"
+    const val BRICK_PATCH_COUNT = "/update"
 
     const val QUESTION_ALL = "/all"
 }

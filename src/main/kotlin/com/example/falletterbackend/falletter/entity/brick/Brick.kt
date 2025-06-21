@@ -10,10 +10,15 @@ import jakarta.persistence.*
 @Table(name = "tbl_brick")
 class Brick(
     @Column(name = "brick_count", columnDefinition = "BIGINT", nullable = false)
-    val brickCount: Long,
+    var brickCount: Long,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", columnDefinition = "BIGINT", nullable = false)
     val user: User,
 
-) : EntityBase()
+) : EntityBase(){
+    fun increaseBrickCount(amount: Long) {
+        require(amount > 0) { "추가할 letter 수는 0보다 커야 합니다." }
+        this.brickCount += amount
+    }
+}

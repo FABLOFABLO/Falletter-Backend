@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface BrickRepository : JpaRepository<Brick, Long> {
     fun findByUser(user: User): BrickGetCountResponse
+
+    fun findEntityByUser(user: User): Brick
 }
