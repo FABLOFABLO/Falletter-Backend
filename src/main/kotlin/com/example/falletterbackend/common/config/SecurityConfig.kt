@@ -59,6 +59,9 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.GET, "/letter/count").authenticated()
                     .requestMatchers(HttpMethod.PATCH, "/letter/update").authenticated()
 
+                    // letter_box
+                    .requestMatchers(HttpMethod.POST, "/letterBox/sent").authenticated()
+
                     // question
                     .requestMatchers(HttpMethod.GET, "/question/all").authenticated()
 

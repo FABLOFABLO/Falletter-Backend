@@ -3,6 +3,7 @@ package com.example.falletterbackend.falletter.facade.user
 import com.example.falletterbackend.falletter.entity.user.User
 import com.example.falletterbackend.falletter.entity.user.repository.UserRepository
 import com.example.falletterbackend.falletter.exception.user.UserNotFoundException
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 
@@ -17,6 +18,10 @@ class UserFacade(
 
     fun checkAccountIdExist(email: String): Boolean {
         return userRepository.existsByEmail(email)
+    }
+
+    fun getUserById(userId: Long): User? {
+        return userRepository.findByIdOrNull(userId)
     }
 
     fun getByAccountId(email: String): User {
