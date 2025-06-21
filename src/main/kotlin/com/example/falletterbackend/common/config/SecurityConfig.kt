@@ -56,6 +56,7 @@ class SecurityConfig(
 
                     // letter
                     .requestMatchers(HttpMethod.GET, "/letter/count").authenticated()
+                    .requestMatchers(HttpMethod.PATCH, "/letter/update").authenticated()
 
                     // question
                     .requestMatchers(HttpMethod.GET, "/question/all").authenticated()

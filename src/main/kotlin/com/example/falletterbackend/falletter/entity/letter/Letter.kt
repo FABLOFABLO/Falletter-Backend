@@ -13,4 +13,9 @@ class Letter(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     val user: User
-) : EntityBase()
+) : EntityBase() {
+    fun increaseLetterCount(amount: Long) {
+        require(amount > 0) { "추가할 letter 수는 0보다 커야 합니다." }
+        this.letterCount += amount
+    }
+}
