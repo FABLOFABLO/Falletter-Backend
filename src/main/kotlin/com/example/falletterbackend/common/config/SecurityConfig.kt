@@ -63,6 +63,7 @@ class SecurityConfig(
                     // letter_box
                     .requestMatchers(HttpMethod.POST, "/letterBox/sent").authenticated()
                     .requestMatchers(HttpMethod.GET, "/letterBox/sent/{letter-id}").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/letterBox/sent/all").authenticated()
 
                     // question
                     .requestMatchers(HttpMethod.GET, "/question/all").authenticated()

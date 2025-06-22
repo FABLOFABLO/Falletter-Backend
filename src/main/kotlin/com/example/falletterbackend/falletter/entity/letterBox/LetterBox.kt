@@ -10,6 +10,9 @@ class LetterBox(
     @Column(name = "content", columnDefinition = "VARCHAR(512)", nullable = false)
     val content: String,
 
+    @Column(name = "is_delivered", nullable = false)
+    var isDelivered: Boolean = false,
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reception_id", columnDefinition = "BIGINT", nullable = false)
     val reception: User,

@@ -7,4 +7,6 @@ import java.util.Optional
 
 interface LetterBoxRepository : JpaRepository<LetterBox, Long> {
     fun findByIdAndSender(id: Long, sender: User): LetterBox?
+
+    fun findAllBySender(sender: User): List<LetterBox>
 }
