@@ -19,11 +19,12 @@ object RestApiSpec {
     const val COMMENT_CREATE = "/{post-id}"
     const val COMMENT_DELETE = "/{comment-id}"
 
-    const val LETTER_SENT = "/sent"
-    const val LETTER_SENT_DETAIL = "/sent/{letter-id}"
-    const val LETTER_SENT_ALL = "/sent/all"
-    const val LETTER_RECEIVED = "/received/{letter-id}"
-    const val LETTER_RECEIVED_ALL = "/received/all"
+    const val LETTER_BOX_SENT = "/sent"
+    const val LETTER_BOX_SENT_DETAIL = "/sent/{letter-id}"
+    const val LETTER_BOX_SENT_ALL = "/sent/all"
+    const val LETTER_BOX_RECEIVED_DETAIL = "/received/{letter-id}"
+    const val LETTER_BOX_RECEIVED_ALL = "/received/all"
+
     const val LETTER_GET_COUNT = "/count"
     const val LETTER_PATCH_COUNT = "/update"
 
