@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface AnswerRepository : JpaRepository<Answer, Long> {
     fun findAllByWriterId(writer: User): List<Answer>
+
+    fun findAllByTargetUserId(target: User): List<Answer>
 }

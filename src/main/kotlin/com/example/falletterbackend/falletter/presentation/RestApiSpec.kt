@@ -33,7 +33,7 @@ object RestApiSpec {
 
     const val ANSWER_POST = "/choose"
     const val ANSWER_USED = "/used"
-    const val ANSWER_PICK_= "/chosen"
+    const val ANSWER_PICK = "/chosen"
 
     const val QUESTION_ALL = "/all"
 }
