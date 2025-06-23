@@ -18,11 +18,12 @@ class LetterSentDetailsService(
         val letter: LetterBox = letterBoxRepository.findByIdAndSender(id, user)
             ?: throw IllegalArgumentException("해당 편지를 찾을 수 없습니다.")
 
-        if (letter.reception.id != user.id) {
+        if (letter.sender.id != user.id) {
             throw IllegalAccessException("해당 편지에 접근할 권한이 없습니다.")
         }
 
         return LetterSentDetailsResponse(
+            id = letter.id,
             content = letter.content,
             reception = letter.reception.id,
             sender = letter.sender.id,

@@ -1,0 +1,29 @@
+package com.example.falletterbackend.falletter.service.letterBox
+
+import com.example.falletterbackend.falletter.dto.letterBox.response.LetterReceivedListResponse
+import com.example.falletterbackend.falletter.entity.letterBox.repository.LetterBoxRepository
+import com.example.falletterbackend.falletter.facade.user.UserFacade
+import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
+
+@Service
+class LetterReceivedListService(
+    private val letterBoxRepository: LetterBoxRepository,
+    private val userFacade: UserFacade
+) {
+    @Transactional(readOnly = true)
+    fun execute(): List<LetterReceivedListResponse> {
+        val user = userFacade.getCurrentUser()
+        return letterBoxRepository.findAllByReception_Id(user.id)
+            .map {
+                LetterReceivedListResponse(
+                    id = it.id,
+                    content = it.content,
+                    isDelivered = it.isDelivered,
+                    reception = it.reception.id,
+                    sender = it.sender.id,
+                    createdAt = it.createdAt
+                )
+            }
+    }
+}
