@@ -1,9 +1,11 @@
 package com.example.falletterbackend.falletter.presentation.letterBox
 
 import com.example.falletterbackend.falletter.dto.letterBox.request.LetterSentRequest
+import com.example.falletterbackend.falletter.dto.letterBox.response.LetterReceivedDetailsResponse
 import com.example.falletterbackend.falletter.dto.letterBox.response.LetterSentDetailsResponse
 import com.example.falletterbackend.falletter.dto.letterBox.response.LetterSentListResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
+import com.example.falletterbackend.falletter.service.letterBox.LetterReceivedDetailsService
 import com.example.falletterbackend.falletter.service.letterBox.LetterSendByUserService
 import com.example.falletterbackend.falletter.service.letterBox.LetterSentDetailsService
 import com.example.falletterbackend.falletter.service.letterBox.LetterSentListService
@@ -22,7 +24,8 @@ import org.springframework.web.bind.annotation.RestController
 class LetterBoxController(
     private val letterSendByUserService: LetterSendByUserService,
     private val letterSentDetailsService: LetterSentDetailsService,
-    private val letterSentListService: LetterSentListService
+    private val letterSentListService: LetterSentListService,
+    private val letterReceivedDetailsService: LetterReceivedDetailsService
 ) {
     @PostMapping(RestApiSpec.LETTER_BOX_SENT)
     @ResponseStatus(HttpStatus.CREATED)
@@ -40,4 +43,9 @@ class LetterBoxController(
     @ResponseStatus(HttpStatus.OK)
     fun sentAll(): List<LetterSentListResponse>{ return letterSentListService.execute() }
 
+    @GetMapping(RestApiSpec.LETTER_BOX_RECEIVED_DETAIL)
+    @ResponseStatus(HttpStatus.OK)
+    fun receivedDetail(@PathVariable("letter-id") id: Long): LetterReceivedDetailsResponse {
+        return letterReceivedDetailsService.execute(id)
+    }
 }

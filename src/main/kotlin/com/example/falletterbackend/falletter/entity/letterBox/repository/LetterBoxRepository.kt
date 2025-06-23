@@ -10,5 +10,5 @@ interface LetterBoxRepository : JpaRepository<LetterBox, Long> {
 
     fun findAllBySender(sender: User): List<LetterBox>
 
-    fun findAllByIsDeliveredFalse(): List<LetterBox>
+    fun findByIdAndReception_Id(letterId: Long, receiverId: Long): LetterBox?
 }
