@@ -14,8 +14,9 @@ class Letter(
     @JoinColumn(name = "user_id", nullable = false)
     val user: User
 ) : EntityBase() {
-    fun increaseLetterCount(amount: Long) {
-        require(amount > 0) { "추가할 letter 수는 0보다 커야 합니다." }
-        this.letterCount += amount
+    fun changeLetterCount(amount: Long) {
+        val newCount = this.letterCount + amount
+        require(newCount >= 0) { "brickCount는 0보다 작을 수 없습니다." }
+        this.letterCount = newCount
     }
 }

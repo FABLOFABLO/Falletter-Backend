@@ -17,8 +17,9 @@ class Brick(
     val user: User,
 
 ) : EntityBase(){
-    fun increaseBrickCount(amount: Long) {
-        require(amount > 0) { "추가할 letter 수는 0보다 커야 합니다." }
-        this.brickCount += amount
+    fun changeBrickCount(amount: Long) {
+        val newCount = this.brickCount + amount
+        require(newCount >= 0) { "brickCount는 0보다 작을 수 없습니다." }
+        this.brickCount = newCount
     }
 }

@@ -19,6 +19,6 @@ class LetterItemUpdateService(
         val letter = letterRepository.findEntityByUser(user)
             ?: throw IllegalArgumentException("해당 유저의 Letter가 존재하지 않습니다.")
 
-        letter.increaseLetterCount(request.letterUpdate)
+        letter.changeLetterCount(request.letterUpdate)
     }
 }

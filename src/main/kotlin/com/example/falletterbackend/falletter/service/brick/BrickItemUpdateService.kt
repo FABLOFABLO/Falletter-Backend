@@ -15,8 +15,7 @@ class BrickItemUpdateService(
     fun execute(request: BrickItemUpdateRequest) {
         val user = userFacade.getCurrentUser()
         val brick = brickRepository.findEntityByUser(user)
-            ?: throw IllegalArgumentException("해당 유저의 brick가 존재하지 않습니다.")
 
-        brick.increaseBrickCount(request.brickUpdate)
+        brick.changeBrickCount(request.brickUpdate)
     }
 }
