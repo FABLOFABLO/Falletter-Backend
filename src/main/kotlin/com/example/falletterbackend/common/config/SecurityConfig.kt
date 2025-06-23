@@ -56,6 +56,9 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.GET, "/brick/count").authenticated()
                     .requestMatchers(HttpMethod.PATCH, "/brick/update").authenticated()
 
+                    // answer
+                    .requestMatchers(HttpMethod.POST, "/answer/choose").authenticated()
+
                     // letter
                     .requestMatchers(HttpMethod.GET, "/letter/count").authenticated()
                     .requestMatchers(HttpMethod.PATCH, "/letter/update").authenticated()

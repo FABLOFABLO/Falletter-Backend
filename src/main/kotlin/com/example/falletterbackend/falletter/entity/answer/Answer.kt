@@ -17,7 +17,7 @@ class Answer(
     val question: Question,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "target_user_id", columnDefinition = "BIGINT", nullable = false)
+    @JoinColumn(name = "target_user_id", nullable = false)
     val targetUserId: User,
 
     @ManyToOne(fetch = FetchType.LAZY)

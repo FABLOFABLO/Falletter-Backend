@@ -14,9 +14,9 @@ class Brick(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", columnDefinition = "BIGINT", nullable = false)
-    val user: User,
+    val user: User
 
-) : EntityBase(){
+) : EntityBase() {
     fun changeBrickCount(amount: Long) {
         val newCount = this.brickCount + amount
         require(newCount >= 0) { "brickCount는 0보다 작을 수 없습니다." }

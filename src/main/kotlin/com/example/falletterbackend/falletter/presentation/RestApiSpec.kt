@@ -31,5 +31,9 @@ object RestApiSpec {
     const val BRICK_GET_COUNT = "/count"
     const val BRICK_PATCH_COUNT = "/update"
 
+    const val ANSWER_POST = "/choose"
+    const val ANSWER_USED = "/used"
+    const val ANSWER_PICK_= "/chosen"
+
     const val QUESTION_ALL = "/all"
 }
