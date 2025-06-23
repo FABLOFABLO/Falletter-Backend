@@ -58,6 +58,7 @@ class SecurityConfig(
 
                     // answer
                     .requestMatchers(HttpMethod.POST, "/answer/choose").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/answer/used").authenticated()
 
                     // letter
                     .requestMatchers(HttpMethod.GET, "/letter/count").authenticated()
