@@ -3,7 +3,6 @@ package com.example.falletterbackend.falletter.service.comment
 import com.example.falletterbackend.falletter.dto.comment.request.CommentRequest
 import com.example.falletterbackend.falletter.entity.comment.Comment
 import com.example.falletterbackend.falletter.entity.comment.repository.CommentRepository
-import com.example.falletterbackend.falletter.exception.community.PostNotFoundException
 import com.example.falletterbackend.falletter.facade.community.CommunityFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service

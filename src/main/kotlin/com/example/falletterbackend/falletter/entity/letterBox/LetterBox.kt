@@ -19,5 +19,7 @@ class LetterBox(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sender_id", nullable = false)
-    val sender: User
+    val sender: User,
+
+
 ) : EntityBase()

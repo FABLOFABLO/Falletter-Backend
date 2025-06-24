@@ -11,5 +11,4 @@ data class AnswerUserChosenResponse(
     val targetUser: Long,
     val writerUser: Long,
     val createdAt: LocalDateTime
-) {
-}
+)

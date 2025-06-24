@@ -1,8 +1,6 @@
 package com.example.falletterbackend.falletter.service.communtiy
 
 import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsListResponse
-import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsResponse
-import com.example.falletterbackend.falletter.dto.community.response.PostListCommentResponse
 import com.example.falletterbackend.falletter.dto.community.response.PostListUserResponse
 import com.example.falletterbackend.falletter.entity.community.repository.CommunityRepository
 import org.springframework.stereotype.Service

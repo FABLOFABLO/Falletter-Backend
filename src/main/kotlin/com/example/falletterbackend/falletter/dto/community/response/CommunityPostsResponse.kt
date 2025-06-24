@@ -41,7 +41,6 @@ data class PostListUserResponse(
     }
 }
 
-
 data class PostListCommentResponse(
     val user: PostListUserResponse,
     val comment: String

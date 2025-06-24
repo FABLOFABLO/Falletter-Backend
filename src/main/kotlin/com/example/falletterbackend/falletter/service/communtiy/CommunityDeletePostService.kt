@@ -1,7 +1,6 @@
 package com.example.falletterbackend.falletter.service.communtiy
 
 import com.example.falletterbackend.falletter.entity.community.repository.CommunityRepository
-import com.example.falletterbackend.falletter.exception.community.PostNotFoundException
 import com.example.falletterbackend.falletter.exception.user.UserMismatchException
 import com.example.falletterbackend.falletter.facade.community.CommunityFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade

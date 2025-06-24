@@ -4,7 +4,6 @@ import com.example.falletterbackend.falletter.entity.community.Community
 import com.example.falletterbackend.falletter.entity.community.repository.CommunityRepository
 import com.example.falletterbackend.falletter.exception.community.PostNotFoundException
 import org.springframework.stereotype.Component
-import java.util.Optional
 
 @Component
 class CommunityFacade(

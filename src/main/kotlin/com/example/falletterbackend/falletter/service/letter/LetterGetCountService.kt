@@ -15,6 +15,9 @@ class LetterGetCountService(
     fun execute(): LetterGetCountResponse{
         val user = userFacade.getCurrentUser()
 
-        return letterRepository.findByUser(user)
+        val letter = letterRepository.findByUser(user)
+            ?: throw IllegalStateException("레터 정보가 존재하지 않습니다.")
+
+        return LetterGetCountResponse(letter.letterCount)
     }
 }

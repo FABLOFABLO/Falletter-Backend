@@ -3,7 +3,6 @@ package com.example.falletterbackend.falletter.presentation.community
 import com.example.falletterbackend.falletter.dto.community.request.CommunityPostsRequest
 import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsListResponse
 import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsResponse
-import com.example.falletterbackend.falletter.entity.community.Community
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
 import com.example.falletterbackend.falletter.service.communtiy.*
 import jakarta.validation.Valid

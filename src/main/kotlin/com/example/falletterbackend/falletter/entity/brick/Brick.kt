@@ -1,7 +1,6 @@
 package com.example.falletterbackend.falletter.entity.brick
 
 import com.example.falletterbackend.common.entity.EntityBase
-import com.example.falletterbackend.falletter.entity.question.Question
 import com.example.falletterbackend.falletter.entity.user.User
 import jakarta.persistence.*
 
