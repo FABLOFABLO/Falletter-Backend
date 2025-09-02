@@ -16,12 +16,9 @@ class LetterSendByUserService(
 ) {
     @Transactional
     fun execute(request: LetterSentRequest) {
-        val itemLetter = letterRepository.findByUser(request.sender)
-            ?: throw IllegalStateException("보낼 수 있는 래터가 없습니다.")
+        val itemLetter = letterRepository.findByUser(request.sender) ?: throw IllegalStateException("보낼 수 있는 래터가 없습니다.")
 
-        if (itemLetter.letterCount <= 0) {
-            throw IllegalStateException("래터 수가 부족합니다.")
-        }
+        if (itemLetter.letterCount <= 0) { throw IllegalStateException("래터 수가 부족합니다.") }
 
         val sendLetter = LetterBox(
             content = request.content,
