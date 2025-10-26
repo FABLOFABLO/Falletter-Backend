@@ -1,9 +1,9 @@
 package com.example.falletterbackend.falletter.presentation.item
 
-import com.example.falletterbackend.falletter.dto.item.request.BrickItemUpdateRequest
-import com.example.falletterbackend.falletter.dto.item.request.LetterItemUpdateRequest
-import com.example.falletterbackend.falletter.dto.item.response.BrickGetCountResponse
-import com.example.falletterbackend.falletter.dto.item.response.LetterGetCountResponse
+import com.example.falletterbackend.falletter.dto.item.request.ItemBrickItemUpdateRequest
+import com.example.falletterbackend.falletter.dto.item.request.ItemLetterItemUpdateRequest
+import com.example.falletterbackend.falletter.dto.item.response.ItemBrickGetCountResponse
+import com.example.falletterbackend.falletter.dto.item.response.ItemLetterGetCountResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
 import com.example.falletterbackend.falletter.service.item.ItemBrickGetCountService
 import com.example.falletterbackend.falletter.service.item.ItemBrickUpdateService
@@ -24,24 +24,24 @@ class ItemController(
 ) {
     @GetMapping(RestApiSpec.ITEM_BRICK_GET_COUNT)
     @ResponseStatus(HttpStatus.OK)
-    fun getCountBrick(): BrickGetCountResponse {
+    fun getCountBrick(): ItemBrickGetCountResponse {
         return itemBrickGetCountService.execute()
     }
 
     @PatchMapping(RestApiSpec.ITEM_BRICK_PATCH_COUNT)
     @ResponseStatus(HttpStatus.OK)
-    fun brickItemUpdate(@RequestBody @Valid request: BrickItemUpdateRequest) {
+    fun brickItemUpdate(@RequestBody @Valid request: ItemBrickItemUpdateRequest) {
         itemBrickItemUpdateService.execute(request)
     }
     @GetMapping(RestApiSpec.ITEM_LETTER_GET_COUNT)
     @ResponseStatus(HttpStatus.OK)
-    fun getCountLetter(): LetterGetCountResponse {
+    fun getCountLetter(): ItemLetterGetCountResponse {
         return itemLetterGetCountService.execute()
     }
 
     @PatchMapping(RestApiSpec.ITEM_LETTER_PATCH_COUNT)
     @ResponseStatus(HttpStatus.OK)
-    fun letterItemUpdate(@RequestBody @Valid request: LetterItemUpdateRequest) {
+    fun letterItemUpdate(@RequestBody @Valid request: ItemLetterItemUpdateRequest) {
         itemLetterUpdateService.execute(request)
     }
 }

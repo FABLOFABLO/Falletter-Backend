@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.dto.item.response
 
-data class LetterGetCountResponse(
+data class ItemLetterGetCountResponse(
     val letterCount: Long,
     val userId: Long
 )

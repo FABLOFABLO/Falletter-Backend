@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.service.item
 
-import com.example.falletterbackend.falletter.dto.item.request.BrickItemUpdateRequest
+import com.example.falletterbackend.falletter.dto.item.request.ItemBrickItemUpdateRequest
 import com.example.falletterbackend.falletter.entity.brick.repository.BrickRepository
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
@@ -12,7 +12,7 @@ class ItemBrickUpdateService(
     private val userFacade: UserFacade
 ) {
     @Transactional
-    fun execute(request: BrickItemUpdateRequest) {
+    fun execute(request: ItemBrickItemUpdateRequest) {
         val user = userFacade.getCurrentUser()
         val brick = brickRepository.findEntityByUser(user)
 
