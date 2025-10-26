@@ -1,11 +1,12 @@
 package com.example.falletterbackend.falletter.presentation.letterBox
 
-import com.example.falletterbackend.falletter.dto.letterBox.request.LetterSentRequest
+import com.example.falletterbackend.falletter.dto.letter.request.LetterSentRequest
 import com.example.falletterbackend.falletter.dto.letterBox.response.LetterReceivedDetailsResponse
 import com.example.falletterbackend.falletter.dto.letterBox.response.LetterReceivedListResponse
 import com.example.falletterbackend.falletter.dto.letterBox.response.LetterSentDetailsResponse
 import com.example.falletterbackend.falletter.dto.letterBox.response.LetterSentListResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
+import com.example.falletterbackend.falletter.service.letterBox.LetterSendByUserService
 import com.example.falletterbackend.falletter.service.letterBox.*
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
