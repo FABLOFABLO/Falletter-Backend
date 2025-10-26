@@ -1,4 +1,4 @@
-package com.example.falletterbackend.falletter.dto.letterBox.response
+package com.example.falletterbackend.falletter.dto.letter.response
 
 import java.time.LocalDateTime
 
