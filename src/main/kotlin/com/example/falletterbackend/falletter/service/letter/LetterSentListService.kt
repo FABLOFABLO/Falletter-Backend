@@ -1,7 +1,7 @@
-package com.example.falletterbackend.falletter.service.letterBox
+package com.example.falletterbackend.falletter.service.letter
 
-import com.example.falletterbackend.falletter.dto.letterBox.response.LetterSentListResponse
-import com.example.falletterbackend.falletter.entity.letterBox.repository.LetterBoxRepository
+import com.example.falletterbackend.falletter.dto.letter.response.LetterSentListResponse
+import com.example.falletterbackend.falletter.entity.letter.repository.LetterRepository
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -10,7 +10,7 @@ import java.time.LocalDateTime
 @Service
 class LetterSentListService(
     private val userFacade: UserFacade,
-    private val letterBoxRepository: LetterBoxRepository
+    private val letterBoxRepository: LetterRepository
 ) {
     @Transactional(readOnly = true)
     fun execute(): List<LetterSentListResponse> {

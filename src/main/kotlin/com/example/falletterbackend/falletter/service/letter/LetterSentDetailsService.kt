@@ -1,21 +1,21 @@
-package com.example.falletterbackend.falletter.service.letterBox
+package com.example.falletterbackend.falletter.service.letter
 
-import com.example.falletterbackend.falletter.dto.letterBox.response.LetterSentDetailsResponse
-import com.example.falletterbackend.falletter.entity.letterBox.LetterBox
-import com.example.falletterbackend.falletter.entity.letterBox.repository.LetterBoxRepository
+import com.example.falletterbackend.falletter.dto.letter.response.LetterSentDetailsResponse
+import com.example.falletterbackend.falletter.entity.letter.Letter
+import com.example.falletterbackend.falletter.entity.letter.repository.LetterRepository
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class LetterSentDetailsService(
-    private val letterBoxRepository: LetterBoxRepository,
+    private val letterBoxRepository: LetterRepository,
     private val userFacade: UserFacade
 ) {
     @Transactional(readOnly = true)
     fun execute(id: Long): LetterSentDetailsResponse {
         val user = userFacade.getCurrentUser()
-        val letter: LetterBox = letterBoxRepository.findByIdAndSender(id, user)
+        val letter: Letter = letterBoxRepository.findByIdAndSender(id, user)
             ?: throw IllegalArgumentException("해당 편지를 찾을 수 없습니다.")
 
         if (letter.sender.id != user.id) {

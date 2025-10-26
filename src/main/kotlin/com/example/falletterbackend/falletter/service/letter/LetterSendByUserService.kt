@@ -1,16 +1,14 @@
-package com.example.falletterbackend.falletter.service.letterBox
+package com.example.falletterbackend.falletter.service.letter
 
 import com.example.falletterbackend.falletter.dto.letter.request.LetterSentRequest
+import com.example.falletterbackend.falletter.entity.letter.Letter
 import com.example.falletterbackend.falletter.entity.letter.repository.LetterRepository
-import com.example.falletterbackend.falletter.entity.letterBox.LetterBox
-import com.example.falletterbackend.falletter.entity.letterBox.repository.LetterBoxRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class LetterSendByUserService(
-    private val letterBoxRepository: LetterBoxRepository,
-    private val letterRepository: LetterRepository
+    private val letterRepository: LetterRepository,
 ) {
     @Transactional
     fun execute(request: LetterSentRequest) {
@@ -18,12 +16,12 @@ class LetterSendByUserService(
 
         if (itemLetter.letterCount <= 0) { throw IllegalStateException("래터 수가 부족합니다.") }
 
-        val sendLetter = LetterBox(
+        val sendLetter = Letter(
             content = request.content,
             reception = request.reception,
             sender = request.sender
         )
-        letterBoxRepository.save(sendLetter)
+        letterRepository.save(sendLetter)
 
         itemLetter.changeLetterCount(-1)
         letterRepository.save(itemLetter)

@@ -1,13 +1,13 @@
-package com.example.falletterbackend.falletter.service.letterBox
+package com.example.falletterbackend.falletter.service.letter
 
-import com.example.falletterbackend.falletter.dto.letterBox.response.LetterReceivedDetailsResponse
-import com.example.falletterbackend.falletter.entity.letterBox.repository.LetterBoxRepository
+import com.example.falletterbackend.falletter.dto.letter.response.LetterReceivedDetailsResponse
+import com.example.falletterbackend.falletter.entity.letter.repository.LetterRepository
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 
 @Service
 class LetterReceivedDetailsService(
-    private val letterBoxRepository: LetterBoxRepository,
+    private val letterBoxRepository: LetterRepository,
     private val userFacade: UserFacade
 ) {
     fun execute(id: Long): LetterReceivedDetailsResponse {
