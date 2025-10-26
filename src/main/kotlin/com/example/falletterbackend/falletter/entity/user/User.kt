@@ -1,8 +1,8 @@
 package com.example.falletterbackend.falletter.entity.user
 
 import com.example.falletterbackend.common.entity.EntityBase
-import com.example.falletterbackend.falletter.entity.brick.Brick
-import com.example.falletterbackend.falletter.entity.letterBox.LetterBox
+import com.example.falletterbackend.falletter.entity.item.Item
+import com.example.falletterbackend.falletter.entity.letter.Letter
 import jakarta.persistence.*
 
 @Entity
@@ -28,10 +28,10 @@ class User(
     val profileImage: String,
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    val bricks: List<Brick> = mutableListOf(),
+    val items: List<Item> = mutableListOf(),
 
     @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)
-    val letters: List<LetterBox> = mutableListOf()
+    val letters: List<Letter> = mutableListOf()
 ) : EntityBase() {
 
 }
