@@ -25,11 +25,10 @@ object RestApiSpec {
     const val LETTER_BOX_RECEIVED_DETAIL = "/received/{letter-id}"
     const val LETTER_BOX_RECEIVED_ALL = "/received/all"
 
-    const val LETTER_GET_COUNT = "/count"
-    const val LETTER_PATCH_COUNT = "/update"
-
-    const val BRICK_GET_COUNT = "/count"
-    const val BRICK_PATCH_COUNT = "/update"
+    const val ITEM_LETTER_GET_COUNT = "/count"
+    const val ITEM_LETTER_PATCH_COUNT = "/update"
+    const val ITEM_BRICK_GET_COUNT = "/count"
+    const val ITEM_BRICK_PATCH_COUNT = "/update"
 
     const val ANSWER_POST = "/choose"
     const val ANSWER_USED = "/used"
