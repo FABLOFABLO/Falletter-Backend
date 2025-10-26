@@ -1,6 +1,6 @@
-package com.example.falletterbackend.falletter.service.letter
+package com.example.falletterbackend.falletter.service.item
 
-import com.example.falletterbackend.falletter.dto.letter.request.LetterItemUpdateRequest
+import com.example.falletterbackend.falletter.dto.item.request.LetterItemUpdateRequest
 import com.example.falletterbackend.falletter.entity.letter.repository.LetterRepository
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional
 
 
 @Service
-class LetterItemUpdateService(
+class ItemLetterUpdateService(
     private val letterRepository: LetterRepository,
     private val userFacade: UserFacade
 ) {
