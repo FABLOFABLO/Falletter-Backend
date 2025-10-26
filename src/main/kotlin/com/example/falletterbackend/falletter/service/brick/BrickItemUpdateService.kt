@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.service.brick
 
-import com.example.falletterbackend.falletter.dto.brick.request.BrickItemUpdateRequest
+import com.example.falletterbackend.falletter.dto.item.request.BrickItemUpdateRequest
 import com.example.falletterbackend.falletter.entity.brick.repository.BrickRepository
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service

@@ -1,7 +1,7 @@
 package com.example.falletterbackend.falletter.presentation.letter
 
-import com.example.falletterbackend.falletter.dto.letter.request.LetterItemUpdateRequest
-import com.example.falletterbackend.falletter.dto.letter.response.LetterGetCountResponse
+import com.example.falletterbackend.falletter.dto.item.request.LetterItemUpdateRequest
+import com.example.falletterbackend.falletter.dto.item.response.LetterGetCountResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
 import com.example.falletterbackend.falletter.service.letter.LetterGetCountService
 import com.example.falletterbackend.falletter.service.letter.LetterItemUpdateService

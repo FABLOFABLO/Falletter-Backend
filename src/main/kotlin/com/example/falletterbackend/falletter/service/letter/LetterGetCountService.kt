@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.service.letter
 
-import com.example.falletterbackend.falletter.dto.letter.response.LetterGetCountResponse
+import com.example.falletterbackend.falletter.dto.item.response.LetterGetCountResponse
 import com.example.falletterbackend.falletter.entity.letter.repository.LetterRepository
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
@@ -12,7 +12,7 @@ class LetterGetCountService(
     private val letterRepository: LetterRepository
 ) {
     @Transactional(readOnly = true)
-    fun execute(): LetterGetCountResponse{
+    fun execute(): LetterGetCountResponse {
         val user = userFacade.getCurrentUser()
 
         val letter = letterRepository.findByUser(user)

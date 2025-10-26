@@ -1,7 +1,7 @@
 package com.example.falletterbackend.falletter.presentation.brick
 
-import com.example.falletterbackend.falletter.dto.brick.request.BrickItemUpdateRequest
-import com.example.falletterbackend.falletter.dto.brick.response.BrickGetCountResponse
+import com.example.falletterbackend.falletter.dto.item.request.BrickItemUpdateRequest
+import com.example.falletterbackend.falletter.dto.item.response.BrickGetCountResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
 import com.example.falletterbackend.falletter.service.brick.BrickGetCountService
 import com.example.falletterbackend.falletter.service.brick.BrickItemUpdateService
