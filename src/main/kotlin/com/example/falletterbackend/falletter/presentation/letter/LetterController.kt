@@ -1,4 +1,4 @@
-package com.example.falletterbackend.falletter.presentation.letterBox
+package com.example.falletterbackend.falletter.presentation.letter
 
 import com.example.falletterbackend.falletter.dto.letter.request.LetterSentRequest
 import com.example.falletterbackend.falletter.dto.letter.response.LetterReceivedDetailsResponse
@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/letterBox")
-class LetterBoxController(
+@RequestMapping("/letter")
+class LetterController(
     private val letterSendByUserService: LetterSendByUserService,
     private val letterSentDetailsService: LetterSentDetailsService,
     private val letterSentListService: LetterSentListService,
