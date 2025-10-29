@@ -1,11 +1,12 @@
 package com.example.falletterbackend.falletter.entity.letter
 
 import com.example.falletterbackend.common.entity.EntityBase
+import com.example.falletterbackend.falletter.entity.question.Question
 import com.example.falletterbackend.falletter.entity.user.User
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "tbl_letter_box")
+@Table(name = "tbl_letter")
 class Letter(
     @Column(name = "content", columnDefinition = "VARCHAR(512)", nullable = false)
     val content: String,
@@ -18,8 +19,7 @@ class Letter(
     val reception: User,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sender_id", nullable = false)
+    @JoinColumn(name = "sender_id", columnDefinition = "BIGINT", nullable = false)
     val sender: User,
-
 
 ) : EntityBase()
