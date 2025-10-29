@@ -52,9 +52,11 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.POST, "/comment/{post-id}").authenticated()
                     .requestMatchers(HttpMethod.DELETE, "/comment/{comment-id}").authenticated()
 
-                    // brick
-                    .requestMatchers(HttpMethod.GET, "/brick/count").authenticated()
-                    .requestMatchers(HttpMethod.PATCH, "/brick/update").authenticated()
+                    // item
+                    .requestMatchers(HttpMethod.GET, "/item/letter/count").authenticated()
+                    .requestMatchers(HttpMethod.PATCH, "/item/letter/update").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/item/brick/count").authenticated()
+                    .requestMatchers(HttpMethod.PATCH, "/item/brick/update").authenticated()
 
                     // answer
                     .requestMatchers(HttpMethod.POST, "/answer/choose").authenticated()
@@ -62,15 +64,11 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.GET, "/answer/chosen").authenticated()
 
                     // letter
-                    .requestMatchers(HttpMethod.GET, "/letter/count").authenticated()
-                    .requestMatchers(HttpMethod.PATCH, "/letter/update").authenticated()
-
-                    // letter_box
-                    .requestMatchers(HttpMethod.POST, "/letterBox/sent").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/letterBox/sent/{letter-id}").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/letterBox/sent/all").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/letterBox/received/{letter-id}").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/letterBox/received/all").authenticated()
+                    .requestMatchers(HttpMethod.POST, "/letter/sent").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/letter/sent/{letter-id}").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/letter/sent/all").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/letter/received/{letter-id}").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/letter/received/all").authenticated()
 
                     // question
                     .requestMatchers(HttpMethod.GET, "/question/all").authenticated()
