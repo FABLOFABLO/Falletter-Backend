@@ -2,6 +2,7 @@ package com.example.falletterbackend.falletter.service.letter
 
 import com.example.falletterbackend.falletter.dto.letter.response.LetterReceivedDetailsResponse
 import com.example.falletterbackend.falletter.entity.letter.repository.LetterRepository
+import com.example.falletterbackend.falletter.exception.letter.LetterNotFoundException
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 
@@ -13,7 +14,7 @@ class LetterReceivedDetailsService(
     fun execute(id: Long): LetterReceivedDetailsResponse {
         val user = userFacade.getCurrentUser()
         val letter = letterBoxRepository.findByIdAndReception_Id(id, user.id)
-            ?: throw IllegalArgumentException("해당 레터를 찾을 수 없습니다.")
+            ?: throw LetterNotFoundException
 
         return LetterReceivedDetailsResponse(
             id = letter.id,
