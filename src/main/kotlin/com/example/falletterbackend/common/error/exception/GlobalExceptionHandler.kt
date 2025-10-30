@@ -1,4 +1,4 @@
-package com.example.falletterbackend.common.exception
+package com.example.falletterbackend.common.error.exception
 
 import com.example.falletterbackend.falletter.exception.auth.UnExistVerifyCodeException
 import com.example.falletterbackend.falletter.exception.auth.UnMatchVerifyCodeException

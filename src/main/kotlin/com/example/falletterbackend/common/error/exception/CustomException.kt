@@ -1,4 +1,4 @@
-package com.example.falletterbackend.common.exception
+package com.example.falletterbackend.common.error.exception
 
 import org.springframework.http.HttpStatus
 
