@@ -12,7 +12,6 @@ enum class ErrorCode(
 
     // user
     UNMATCHED_PASSWORD(400, "Unmatched Password"),
-    NOT_ALLOW_SELF_APPLICATION(400, "Not Allow Self Application"),
     ALREADY_ACCOUNT_ID(409, "Already Account Id"),
     UNMISMATCH_USER(403, "UnMismatch User"),
     USER_NOT_FOUND(404, "User Not Found"),
