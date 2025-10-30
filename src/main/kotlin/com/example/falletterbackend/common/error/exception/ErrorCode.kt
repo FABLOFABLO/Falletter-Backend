@@ -18,7 +18,6 @@ enum class ErrorCode(
     USER_NOT_FOUND(404, "User Not Found"),
     EMAIL_NOT_VERIFIED(403, "Email Not Verified"),
 
-
     // community
     COMMUNITY_NOT_FOUND(404, "Community Not Found"),
     COMMUNITY_ALREADY_DELETED(409, "Community Already Deleted"),
@@ -30,11 +29,13 @@ enum class ErrorCode(
 
     // item
     ITEM_NOT_FOUND(404, "Item Not Found"),
-
+    BRICK_COUNT_INSUFFICIENT(409, "Brick Count Insufficient"),
+    BRICK_HISTORY_NOT_FOUND(404, "Brick History Not Found"),
 
     // letter
     LETTER_NOT_FOUND(404, "Letter Not Found"),
     LETTER_ALREADY_SENT(409, "Letter Already Sent"),
+    LETTER_COUNT_INSUFFICIENT(400, "Letter Count Insufficient"),
 
 
     // question
