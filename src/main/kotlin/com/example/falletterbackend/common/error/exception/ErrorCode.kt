@@ -4,17 +4,45 @@ enum class ErrorCode(
     val status: Int,
     val message: String,
 ) {
-    INCORRECT_PASSWORD(400, "Incorrect Password"),
-
+    // auth
     TOKEN_INVALID(401, "Token Invalid"),
     TOKEN_EXPIRED(401, "Token Expired"),
-
     UNMATCHED_VERIFY_CODE(403, "Unmatched Verify Code"),
     UNEXIST_VERIFY_CODE(403, "Unexist Verify Code"),
+
+    // user
+    UNMATCHED_PASSWORD(400, "Unmatched Password"),
+    NOT_ALLOW_SELF_APPLICATION(400, "Not Allow Self Application"),
+    ALREADY_ACCOUNT_ID(409, "Already Account Id"),
     UNMISMATCH_USER(403, "UnMismatch User"),
-
     USER_NOT_FOUND(404, "User Not Found"),
-    POST_NOT_FOUND(404, "Post Not Found"),
+    EMAIL_NOT_VERIFIED(403, "Email Not Verified"),
 
+
+    // community
+    COMMUNITY_NOT_FOUND(404, "Community Not Found"),
+    COMMUNITY_ALREADY_DELETED(409, "Community Already Deleted"),
+
+
+    // comment
+    COMMENT_NOT_FOUND(404, "Comment Not Found"),
+    COMMENT_ALREADY_DELETED(409, "Comment Already Deleted"),
+
+    // item
+    ITEM_NOT_FOUND(404, "Item Not Found"),
+
+
+    // letter
+    LETTER_NOT_FOUND(404, "Letter Not Found"),
+    LETTER_ALREADY_SENT(409, "Letter Already Sent"),
+
+
+    // question
+    QUESTION_NOT_FOUND(404, "Question Not Found"),
+
+    // answer
+    ANSWER_NOT_FOUND(404, "Answer Not Found"),
+
+    // internal
     INTERNAL_SERVER_ERROR(500, "Internal Server Error");
 }
