@@ -5,12 +5,11 @@ import com.example.falletterbackend.falletter.entity.item.Item
 import com.example.falletterbackend.falletter.entity.item.repository.ItemRepository
 import com.example.falletterbackend.falletter.entity.user.User
 import com.example.falletterbackend.falletter.entity.user.repository.UserRepository
+import com.example.falletterbackend.falletter.exception.user.AlreadyAccountIdException
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.http.HttpStatus
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import org.springframework.web.server.ResponseStatusException
 
 @Service
 class UserSignUpService(
@@ -26,7 +25,7 @@ class UserSignUpService(
     @Transactional
     fun execute(request: UserSignUpRequest) {
         if (userRepository.existsBySchoolNumber(request.schoolNumber)) {
-            throw ResponseStatusException(HttpStatus.CONFLICT, "이미 존재하는 ${request.schoolNumber} 학번 입니다.")
+            throw AlreadyAccountIdException
         }
 
         val imageUrl = if (request.profileImage.isNullOrEmpty()) {
