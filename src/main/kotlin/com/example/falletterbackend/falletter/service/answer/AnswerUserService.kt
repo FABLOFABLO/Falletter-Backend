@@ -5,6 +5,8 @@ import com.example.falletterbackend.falletter.entity.answer.Answer
 import com.example.falletterbackend.falletter.entity.answer.repository.AnswerRepository
 import com.example.falletterbackend.falletter.entity.question.repository.QuestionRepository
 import com.example.falletterbackend.falletter.entity.user.repository.UserRepository
+import com.example.falletterbackend.falletter.exception.answer.AnswerNotFoundException
+import com.example.falletterbackend.falletter.exception.user.UserNotFoundException
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 
@@ -19,10 +21,10 @@ class AnswerUserService(
         val user = userFacade.getCurrentUser()
 
         val question = questionRepository.findById(request.questionId)
-            .orElseThrow { IllegalArgumentException("질문을 찾을 수 없습니다.") }
+            .orElseThrow { AnswerNotFoundException }
 
         val targetUser = userRepository.findById(request.targetUser)
-            .orElseThrow { IllegalArgumentException("대상 유저를 찾을 수 없습니다.") }
+            .orElseThrow { UserNotFoundException }
 
 
         answerRepository.save(
