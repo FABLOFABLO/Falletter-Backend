@@ -20,7 +20,7 @@ data class CommunityPostsResponse(
                 id = community.id,
                 title = community.title,
                 content = community.content,
-                author = PostListUserResponse(community.author.name),
+                author = PostListUserResponse(community.author.id, community.author.name),
                 createdAt = community.createdAt,
                 updatedAt = community.updatedAt,
                 comment = community.comments.map { PostListCommentResponse.format(it) }
@@ -30,11 +30,13 @@ data class CommunityPostsResponse(
 }
 
 data class PostListUserResponse(
+    val userId: Long,
     val name: String
 ) {
     companion object {
         fun format(user: User): PostListUserResponse {
             return PostListUserResponse(
+                userId = user.id,
                 name = user.name
             )
         }
@@ -42,12 +44,14 @@ data class PostListUserResponse(
 }
 
 data class PostListCommentResponse(
+    val commentId: Long,
     val user: PostListUserResponse,
     val comment: String
 ) {
     companion object {
         fun format(comment: Comment): PostListCommentResponse {
             return PostListCommentResponse(
+                commentId = comment.id,
                 user = PostListUserResponse.format(comment.user),
                 comment = comment.comment
             )
