@@ -11,7 +11,7 @@ class CommunityGetAllPostService(
     private val communityRepository: CommunityRepository
 ) {
     @Transactional(readOnly = true)
-    fun execute(): List<CommunityPostsListResponse>{
+    fun execute(): List<CommunityPostsListResponse> {
         val community = communityRepository.findAll()
 
         return community.map {
@@ -19,7 +19,7 @@ class CommunityGetAllPostService(
                 id = it.id,
                 title = it.title,
                 content = it.content,
-                author = PostListUserResponse(it.author.name),
+                author = PostListUserResponse(it.author.id, it.author.name),
                 createdAt = it.createdAt,
                 updatedAt = it.updatedAt
             )
