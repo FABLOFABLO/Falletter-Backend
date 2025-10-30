@@ -6,7 +6,6 @@ import com.example.falletterbackend.falletter.exception.auth.UnExistVerifyCodeEx
 import com.example.falletterbackend.falletter.exception.auth.UnMatchVerifyCodeException
 import org.springframework.stereotype.Service
 
-
 @Service
 class AuthMailMatchService(
     private val redisUtils: RedisUtils

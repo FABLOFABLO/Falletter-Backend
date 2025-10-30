@@ -13,7 +13,6 @@ import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
-
 @RestController
 @RequestMapping("/item")
 class ItemController(
@@ -33,6 +32,7 @@ class ItemController(
     fun brickItemUpdate(@RequestBody @Valid request: ItemBrickItemUpdateRequest) {
         itemBrickItemUpdateService.execute(request)
     }
+
     @GetMapping(RestApiSpec.ITEM_LETTER_GET_COUNT)
     @ResponseStatus(HttpStatus.OK)
     fun getCountLetter(): ItemLetterGetCountResponse {

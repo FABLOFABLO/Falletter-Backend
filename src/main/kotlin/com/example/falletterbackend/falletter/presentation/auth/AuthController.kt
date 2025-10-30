@@ -20,13 +20,13 @@ class AuthController(
 ) {
     @PostMapping(RestApiSpec.MAIL_VERIFY)
     @ResponseStatus(HttpStatus.OK)
-    fun authMailVerify(@RequestBody request: AuthMailVerifyRequest){
+    fun authMailVerify(@RequestBody request: AuthMailVerifyRequest) {
         authMailVerifyService.execute(request)
     }
 
     @PostMapping(RestApiSpec.MAIL_MATCH)
     @ResponseStatus(HttpStatus.OK)
-    fun authMailMatch(@RequestBody request: AuthMailMatchRequest){
+    fun authMailMatch(@RequestBody request: AuthMailMatchRequest) {
         authMailMatchService.execute(request)
     }
 }

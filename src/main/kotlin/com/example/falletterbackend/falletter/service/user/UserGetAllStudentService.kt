@@ -12,3 +12,4 @@ class UserGetAllStudentService(
         return userRepository.findAllBy()
     }
 }
+
