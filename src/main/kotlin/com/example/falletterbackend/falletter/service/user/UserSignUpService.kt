@@ -3,8 +3,6 @@ package com.example.falletterbackend.falletter.service.user
 import com.example.falletterbackend.falletter.dto.user.request.UserSignUpRequest
 import com.example.falletterbackend.falletter.entity.item.Item
 import com.example.falletterbackend.falletter.entity.item.repository.ItemRepository
-import com.example.falletterbackend.falletter.entity.letter.Letter
-import com.example.falletterbackend.falletter.entity.letter.repository.LetterRepository
 import com.example.falletterbackend.falletter.entity.user.User
 import com.example.falletterbackend.falletter.entity.user.repository.UserRepository
 import org.springframework.beans.factory.annotation.Value
