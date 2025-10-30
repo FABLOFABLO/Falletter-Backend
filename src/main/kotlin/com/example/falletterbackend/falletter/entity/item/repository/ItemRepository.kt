@@ -15,5 +15,4 @@ interface ItemRepository : JpaRepository<Item, Long> {
 
     fun existsByUserAndLetterCountGreaterThan(user: User, count: Long): Boolean
 
-    fun findFirstByUserOrderByIdAsc(user: User): Item?
 }

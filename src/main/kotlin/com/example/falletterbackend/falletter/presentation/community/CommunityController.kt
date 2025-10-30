@@ -34,7 +34,9 @@ class CommunityController(
 
     @GetMapping(RestApiSpec.COMMUNITY_LIST_READ_POST)
     @ResponseStatus(HttpStatus.OK)
-    fun getListPost(): List<CommunityPostsListResponse> { return communityGetAllPostService.execute() }
+    fun getListPost(): List<CommunityPostsListResponse> {
+        return communityGetAllPostService.execute()
+    }
 
     @GetMapping(RestApiSpec.COMMUNITY_READ_POST)
     @ResponseStatus(HttpStatus.OK)

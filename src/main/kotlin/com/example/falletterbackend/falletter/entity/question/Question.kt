@@ -12,3 +12,4 @@ class Question(
     @Column(name = "question", columnDefinition = "VARCHAR(255)")
     val question: String
 )
+

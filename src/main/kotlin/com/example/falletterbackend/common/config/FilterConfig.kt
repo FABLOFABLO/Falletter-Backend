@@ -10,7 +10,6 @@ import org.springframework.security.web.DefaultSecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.stereotype.Component
 
-
 @Component
 class FilterConfig(
     private val tokenProvider: TokenProvider,

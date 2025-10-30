@@ -32,6 +32,4 @@ class User(
 
     @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)
     val letters: List<Letter> = mutableListOf()
-) : EntityBase() {
-
-}
+) : EntityBase()
