@@ -21,7 +21,6 @@ enum class ErrorCode(
     COMMUNITY_NOT_FOUND(404, "Community Not Found"),
     COMMUNITY_ALREADY_DELETED(409, "Community Already Deleted"),
 
-
     // comment
     COMMENT_NOT_FOUND(404, "Comment Not Found"),
     COMMENT_ALREADY_DELETED(409, "Comment Already Deleted"),
@@ -35,7 +34,6 @@ enum class ErrorCode(
     LETTER_NOT_FOUND(404, "Letter Not Found"),
     LETTER_ALREADY_SENT(409, "Letter Already Sent"),
     LETTER_COUNT_INSUFFICIENT(400, "Letter Count Insufficient"),
-
 
     // question
     QUESTION_NOT_FOUND(404, "Question Not Found"),
