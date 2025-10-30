@@ -1,5 +1,7 @@
-package com.example.falletterbackend.falletter.exception.auth
+package com.example.falletterbackend.common.exception
 
+import com.example.falletterbackend.falletter.exception.auth.UnExistVerifyCodeException
+import com.example.falletterbackend.falletter.exception.auth.UnMatchVerifyCodeException
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
