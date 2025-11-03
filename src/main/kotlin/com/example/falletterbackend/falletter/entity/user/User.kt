@@ -27,9 +27,9 @@ class User(
     @Column(name = "profile_image", columnDefinition = "VARCHAR(255)")
     val profileImage: String,
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = [CascadeType.ALL], orphanRemoval = true)
     val items: List<Item> = mutableListOf(),
 
-    @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY, cascade = [CascadeType.ALL], orphanRemoval = true)
     val letters: List<Letter> = mutableListOf()
 ) : EntityBase()
