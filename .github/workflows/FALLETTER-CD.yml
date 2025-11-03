@@ -34,3 +34,20 @@ jobs:
 
       - name: Push on Dockerhub
         run: docker push eeuunn/falletter-image
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            docker pull eeuunn/falletter-image
+            docker stop falletter-container || true
+            docker rm falletter-container || true
+            docker run -d --name falletter-container -p 8080:8080 eeuunn/falletter-image
