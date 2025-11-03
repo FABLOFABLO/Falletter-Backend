@@ -8,7 +8,7 @@ import jakarta.persistence.*
 @Entity
 @Table(name = "tbl_user")
 class User(
-    @Column(name = "email", columnDefinition = "VARCHAR(20)", nullable = false)
+    @Column(name = "email", columnDefinition = "VARCHAR(128)", nullable = false)
     val email: String,
 
     @Column(name = "password", columnDefinition = "VARCHAR(255)", nullable = false)
