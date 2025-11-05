@@ -34,6 +34,7 @@ enum class ErrorCode(
     LETTER_NOT_FOUND(404, "Letter Not Found"),
     LETTER_ALREADY_SENT(409, "Letter Already Sent"),
     LETTER_COUNT_INSUFFICIENT(400, "Letter Count Insufficient"),
+    LETTER_NO_ACCESS_PERMISSION(403, "Letter No Access Permission"),
 
     // question
     QUESTION_NOT_FOUND(404, "Question Not Found"),
