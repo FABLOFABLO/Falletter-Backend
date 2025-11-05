@@ -5,12 +5,14 @@ import com.example.falletterbackend.falletter.entity.letter.repository.LetterRep
 import com.example.falletterbackend.falletter.exception.letter.LetterNotFoundException
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class LetterReceivedDetailsService(
     private val letterBoxRepository: LetterRepository,
     private val userFacade: UserFacade
 ) {
+    @Transactional(readOnly = true)
     fun execute(id: Long): LetterReceivedDetailsResponse {
         val user = userFacade.getCurrentUser()
         val letter = letterBoxRepository.findByIdAndReception_Id(id, user.id)
