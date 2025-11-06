@@ -12,10 +12,12 @@ enum class ErrorCode(
 
     // user
     UNMATCHED_PASSWORD(400, "Unmatched Password"),
-    ALREADY_ACCOUNT_ID(409, "Already Account Id"),
+    ALREADY_ACCOUNT_ID(409, "Already Exist Account Id"),
+    ALREADY_EXIST_EMAIL(409, "Already Exist Email"),
     UNMISMATCH_USER(403, "UnMismatch User"),
     USER_NOT_FOUND(404, "User Not Found"),
     EMAIL_NOT_VERIFIED(403, "Email Not Verified"),
+
 
     // community
     COMMUNITY_NOT_FOUND(404, "Community Not Found"),

@@ -6,6 +6,7 @@ import com.example.falletterbackend.falletter.entity.item.repository.ItemReposit
 import com.example.falletterbackend.falletter.entity.user.User
 import com.example.falletterbackend.falletter.entity.user.repository.UserRepository
 import com.example.falletterbackend.falletter.exception.user.AlreadyAccountIdException
+import com.example.falletterbackend.falletter.exception.user.AlreadyEmailException
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -26,6 +27,10 @@ class UserSignUpService(
     fun execute(request: UserSignUpRequest) {
         if (userRepository.existsBySchoolNumber(request.schoolNumber)) {
             throw AlreadyAccountIdException
+        }
+
+        if (userRepository.existsByEmail(request.email)) {
+            throw AlreadyEmailException
         }
 
         val imageUrl = if (request.profileImage.isNullOrEmpty()) {
