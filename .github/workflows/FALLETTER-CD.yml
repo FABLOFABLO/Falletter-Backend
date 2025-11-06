@@ -40,7 +40,7 @@ jobs:
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
-          key: ${{ secrets.EC2_SSH_KEY }}
+          key: ${{ secrets.EC2_KEY }}
           script: |
             echo ">>> Pulling latest Docker image..."
             sudo docker pull eeuunn/falletter-image:latest
