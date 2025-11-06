@@ -28,9 +28,7 @@ class UserController(
 ) {
     @PostMapping(RestApiSpec.USER_SIGN_UP)
     @ResponseStatus(HttpStatus.CREATED)
-    fun signUp(@RequestBody @Valid request: UserSignUpRequest) {
-        userSignUpService.execute(request)
-    }
+    fun signUp(@RequestBody @Valid request: UserSignUpRequest) { userSignUpService.execute(request) }
 
     @PostMapping(RestApiSpec.USER_SIGN_IN)
     @ResponseStatus(HttpStatus.OK)
