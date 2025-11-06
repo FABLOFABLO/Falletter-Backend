@@ -1,6 +1,7 @@
 package com.example.falletterbackend.falletter.service.comment
 
 import com.example.falletterbackend.falletter.entity.comment.repository.CommentRepository
+import com.example.falletterbackend.falletter.exception.comment.CommentNotFoundException
 import com.example.falletterbackend.falletter.exception.user.UserMismatchException
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
@@ -12,11 +13,11 @@ class CommentDeleteService(
     private val commentRepository: CommentRepository
 ) {
     @Transactional
-    fun execute(id: Long){
+    fun execute(id: Long) {
         val user = userFacade.getCurrentUser()
-        val comment = commentRepository.findById(id).orElseThrow()
+        val comment = commentRepository.findById(id).orElseThrow { CommentNotFoundException }
 
-        if(user.id != comment.user.id) throw UserMismatchException
+        if (user.id != comment.user.id) throw UserMismatchException
 
         commentRepository.deleteById(id)
     }
