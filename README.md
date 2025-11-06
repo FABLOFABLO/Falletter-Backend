@@ -1,1 +1,103 @@
-# Falletter-Backend
+<p align="center">
+  <img src="file:///Users/eeuunn/Desktop/FABLO/%E1%84%88%E1%85%A1%E1%86%AF%E1%84%85%E1%85%A2%E1%84%90%E1%85%A5.png" width="400" alt="Falletter Logo" />
+</p>
+
+<h1 align="center">✨ Falletter-Backend ✨</h1>
+
+<p align="center">
+  <b>오직 DSM 학생들만을 위한 익명 소통과 맞춤형 연결 서비스</b><br/>
+  학교 커뮤니티 내 숨겨진 상호작용을 활성화하고,<br/>
+  학생들 간의 자연스러운 교류를 돕는 <b>익명 편지 기반 커뮤니티 플랫폼</b>입니다.
+</p>
+
+---
+
+## 💌 서비스 소개
+
+**Falletter**는 단순한 메시지 전달을 넘어,  
+학생들이 자유롭게 의견을 나누고 새로운 관계를 형성할 수 있도록 돕는 플랫폼입니다.
+
+- 🕊 **익명 편지 시스템** — 솔직한 마음을 전달할 수 있는 공간
+- 🎯 **맞춤형 연결 서비스** — 공감과 취향 기반의 연결
+- 💬 **커뮤니티 활성화** — 학교 내 자연스러운 소통 촉진
+- 🔒 **DSM 인증 기반 접근** — 재학생만 이용 가능한 안전한 환경
+
+---
+
+## ⚙️ 기술 스택
+
+| 분야 | 사용 기술           |
+|------|-----------------|
+| **Language** | Kotlin          |
+| **Framework** | Spring Boot     |
+| **Database** | MySQL           |
+| **Cache / Token** | Redis, JWT      |
+| **Infra / Deploy** | Docker, AWS EC2 |
+| **Build Tool** | Gradle          |
+| **CI/CD** | GitHub Actions  |
+
+---
+
+## 🧠 주요 기능
+
+- 회원가입 및 로그인 (DSM 인증 기반)
+- 익명 편지 작성 및 전송
+- 받은 편지 / 보낸 편지 관리
+- 자동 배포 파이프라인 구축 (CD)
+
+---
+
+## 🚀 프로젝트 아키택처
+
+### 🔸 계층형 아키텍처 (Layered Architecture)
+
+> 역할별로 명확히 구분된 구조를 통해 유지보수성과 확장성을 확보했습니다.
+
+com.example.falletterbackend  
+├── common  
+│   ├── config  
+│   ├── entity  
+│   ├── error  
+│   ├── exception  
+│   ├── security  
+│   └── utils  
+└── falletter   
+    ├── dto  
+    ├── entity   
+    ├── exception       
+    ├── facade  
+    ├── presentation   
+    ├── service  
+    │   ├── answer  
+    │   ├── auth  
+    │   ├── comment  
+    │   ├── community  
+    │   ├── item  
+    │   ├── letter  
+    │   ├── question  
+    └── └── user
+---
+
+## 🧠 설계 포인트
+
+- **도메인 중심 구조 (DDD-lite 접근)**  
+  → `falletter` 내부에 각 도메인 단위로 service, presentation, entity, facade 등을 구성
+- **공통 모듈(common) 분리**  
+  → 인증, 예외, 설정 등 공통 로직을 별도 패키지로 관리
+- **계층별 역할 명확화**
+    - `presentation`: Controller, 요청/응답 처리
+    - `service`: 비즈니스 로직
+    - `facade`: 도메인 간 복합 로직 통합
+    - `entity`: DB 매핑
+    - `dto`: 데이터 이동 객체
+
+---
+
+## 🚀 배포 및 인프라
+
+- AWS EC2를 이용한 서버 호스팅
+- Docker Swarm 기반 컨테이너 구성
+    - `Spring Boot`, `MySQL`, `Redis`, 
+- GitHub Actions 기반 CI/CD 자동 배포 파이프라인 구축
+
+---
