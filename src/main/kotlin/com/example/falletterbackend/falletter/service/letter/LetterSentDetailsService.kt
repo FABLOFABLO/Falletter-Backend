@@ -17,12 +17,8 @@ class LetterSentDetailsService(
     @Transactional(readOnly = true)
     fun execute(id: Long): LetterSentDetailsResponse {
         val user = userFacade.getCurrentUser()
-        val letter: Letter = letterBoxRepository.findByIdAndSender(id, user)
-            ?: throw LetterNotFoundException
-
-        if (letter.sender.id != user.id) {
-            throw LetterNoAccessPermission
-        }
+        val letter = letterBoxRepository.findByIdAndSender(id, user)
+            ?: throw LetterNoAccessPermission
 
         return LetterSentDetailsResponse(
             id = letter.id,
