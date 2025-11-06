@@ -53,29 +53,6 @@
 
 > 역할별로 명확히 구분된 구조를 통해 유지보수성과 확장성을 확보했습니다.
 
-com.example.falletterbackend  
-├── common  
-│   ├── config  
-│   ├── entity  
-│   ├── error  
-│   ├── exception  
-│   ├── security  
-│   └── utils  
-└── falletter   
-    ├── dto  
-    ├── entity   
-    ├── exception       
-    ├── facade  
-    ├── presentation   
-    ├── service  
-    │   ├── answer  
-    │   ├── auth  
-    │   ├── comment  
-    │   ├── community  
-    │   ├── item  
-    │   ├── letter  
-    │   ├── question  
-    └── └── user
 ---
 
 ## 🧠 설계 포인트
