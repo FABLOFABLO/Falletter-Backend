@@ -23,8 +23,8 @@ class LetterSentDetailsService(
         return LetterSentDetailsResponse(
             id = letter.id,
             content = letter.content,
-            reception = letter.reception.id,
-            sender = letter.sender.id,
+            receptionId = letter.reception.id,
+            senderId = letter.sender.id,
             createdAt = letter.createdAt
         )
 
