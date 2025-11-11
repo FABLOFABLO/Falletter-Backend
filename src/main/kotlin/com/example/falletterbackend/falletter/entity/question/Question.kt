@@ -10,6 +10,9 @@ class Question(
     val id: Long,
 
     @Column(name = "question", columnDefinition = "VARCHAR(255)")
-    val question: String
+    val question: String,
+
+    @Column(name = "emoji", columnDefinition = "VARCHAR(3)")
+    val emoji: String
 )
 
