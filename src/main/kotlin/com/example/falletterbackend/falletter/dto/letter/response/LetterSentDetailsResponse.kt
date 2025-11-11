@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 data class LetterSentDetailsResponse(
     val id: Long,
     val content: String,
-    val reception: Long,
-    val sender: Long,
+    val receptionId: Long,
+    val senderId: Long,
     val createdAt: LocalDateTime
 )
