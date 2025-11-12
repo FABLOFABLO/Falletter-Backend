@@ -1,4 +1,4 @@
-package com.example.falletterbackend.common.config
+package com.example.falletterbackend.common.config.mail
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean

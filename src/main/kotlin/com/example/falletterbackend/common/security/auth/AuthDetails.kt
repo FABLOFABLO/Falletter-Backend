@@ -1,4 +1,4 @@
-package com.example.falletterbackend.common.security
+package com.example.falletterbackend.common.security.auth
 
 import com.example.falletterbackend.falletter.entity.user.User
 import org.springframework.security.core.GrantedAuthority

@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.service.auth
 
-import com.example.falletterbackend.common.utils.RedisUtils
+import com.example.falletterbackend.common.utils.redis.RedisUtils
 import com.example.falletterbackend.falletter.dto.auth.request.AuthMailMatchRequest
 import com.example.falletterbackend.falletter.exception.auth.UnExistVerifyCodeException
 import com.example.falletterbackend.falletter.exception.auth.UnMatchVerifyCodeException

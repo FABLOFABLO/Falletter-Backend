@@ -1,4 +1,4 @@
-package com.example.falletterbackend.common.config
+package com.example.falletterbackend.common.config.filter
 
 import com.example.falletterbackend.common.error.ExceptionFilter
 import com.example.falletterbackend.common.security.TokenFilter

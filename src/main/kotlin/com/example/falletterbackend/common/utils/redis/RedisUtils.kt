@@ -1,4 +1,4 @@
-package com.example.falletterbackend.common.utils
+package com.example.falletterbackend.common.utils.redis
 
 import com.example.falletterbackend.falletter.dto.auth.request.AuthMailMatchRequest
 import org.springframework.data.redis.core.RedisTemplate

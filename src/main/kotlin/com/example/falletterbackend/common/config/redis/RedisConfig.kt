@@ -1,4 +1,4 @@
-package com.example.falletterbackend.common.config
+package com.example.falletterbackend.common.config.redis
 
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties
 import org.springframework.context.annotation.Bean

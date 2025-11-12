@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.service.auth
 
-import com.example.falletterbackend.common.utils.RedisUtils
+import com.example.falletterbackend.common.utils.redis.RedisUtils
 import com.example.falletterbackend.falletter.dto.auth.request.AuthMailVerifyRequest
 import com.example.falletterbackend.falletter.entity.auth.repository.EmailVerifyRepository
 import com.example.falletterbackend.common.error.exception.CustomException

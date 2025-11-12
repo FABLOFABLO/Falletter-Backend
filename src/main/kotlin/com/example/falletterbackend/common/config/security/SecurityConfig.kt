@@ -1,5 +1,6 @@
-package com.example.falletterbackend.common.config
+package com.example.falletterbackend.common.config.security
 
+import com.example.falletterbackend.common.config.filter.FilterConfig
 import com.example.falletterbackend.common.security.TokenProvider
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.context.annotation.Bean
