@@ -15,8 +15,8 @@ import org.springframework.transaction.annotation.Transactional
 class LetterSendByUserService(
     private val itemRepository: ItemRepository,
     private val letterRepository: LetterRepository,
-    private val userFacade: UserFacade,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val userFacade: UserFacade
 ) {
     @Transactional
     fun execute(request: LetterSentRequest) {
