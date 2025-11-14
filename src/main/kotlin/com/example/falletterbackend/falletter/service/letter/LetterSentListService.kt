@@ -31,6 +31,7 @@ class LetterSentListService(
                     receptionId = letter.reception.id,
                     senderId = letter.sender.id,
                     isDelivered = letter.createdAt.plusHours(12).isBefore(LocalDateTime.now()),
+                    isPassed = letter.isPassed,
                     createdAt = letter.createdAt
                 )
             }

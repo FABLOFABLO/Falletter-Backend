@@ -30,6 +30,7 @@ class LetterReceivedListService(
                     id = it.id,
                     content = it.content,
                     isDelivered = it.createdAt.plusHours(12).isBefore(LocalDateTime.now()),
+                    isPassed = it.isPassed,
                     receptionId = it.reception.id,
                     senderId = it.sender.id,
                     createdAt = it.createdAt

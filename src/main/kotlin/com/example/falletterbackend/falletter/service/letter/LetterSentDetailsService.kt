@@ -25,7 +25,9 @@ class LetterSentDetailsService(
             content = letter.content,
             receptionId = letter.reception.id,
             senderId = letter.sender.id,
-            createdAt = letter.createdAt
+            createdAt = letter.createdAt,
+            isDelivered = letter.isDelivered,
+            isPassed = letter.isPassed
         )
 
     }
