@@ -6,6 +6,7 @@ data class LetterReceivedListResponse(
     val id: Long,
     val content: String,
     val isDelivered: Boolean,
+    val isPassed: Boolean,
     val receptionId: Long,
     val senderId: Long,
     val createdAt: LocalDateTime

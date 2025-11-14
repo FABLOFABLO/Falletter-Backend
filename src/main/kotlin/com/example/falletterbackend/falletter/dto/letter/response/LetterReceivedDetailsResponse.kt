@@ -6,6 +6,7 @@ data class LetterReceivedDetailsResponse(
     val id: Long,
     val content:String,
     val isDelivered: Boolean,
+    val isPassed: Boolean,
     val receptionId: Long,
     val createdAt: LocalDateTime
 )
