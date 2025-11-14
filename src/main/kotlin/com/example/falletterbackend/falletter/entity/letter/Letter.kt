@@ -13,6 +13,9 @@ class Letter(
     @Column(name = "is_delivered", nullable = false)
     var isDelivered: Boolean = false,
 
+    @Column(name = "is_passed", nullable = false)
+    var isPassed: Boolean = false,
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reception_id", columnDefinition = "BIGINT", nullable = false)
     val reception: User,
@@ -21,4 +24,4 @@ class Letter(
     @JoinColumn(name = "sender_id", columnDefinition = "BIGINT", nullable = false)
     val sender: User,
 
-) : EntityBase()
+    ) : EntityBase()
