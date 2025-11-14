@@ -1,5 +1,6 @@
 package com.example.falletterbackend.falletter.service.letter
 
+import com.example.falletterbackend.common.config.gemini.GeminiConfig
 import com.example.falletterbackend.falletter.dto.letter.request.LetterSentRequest
 import com.example.falletterbackend.falletter.entity.item.repository.ItemRepository
 import com.example.falletterbackend.falletter.entity.letter.Letter
@@ -16,7 +17,8 @@ class LetterSendByUserService(
     private val itemRepository: ItemRepository,
     private val letterRepository: LetterRepository,
     private val userRepository: UserRepository,
-    private val userFacade: UserFacade
+    private val userFacade: UserFacade,
+    private val geminiConfig: GeminiConfig
 ) {
     @Transactional
     fun execute(request: LetterSentRequest) {
@@ -29,12 +31,17 @@ class LetterSendByUserService(
         val reception = userRepository.findById(request.reception)
             .orElseThrow { UserNotFoundException }
 
+        val isSafe = geminiConfig.checkForProfanity(request.content)
+
 
         val sendLetter = Letter(
             content = request.content,
+            isDelivered = false,
+            isPassed = isSafe,
             reception = reception,
             sender = user
         )
+
         letterRepository.save(sendLetter)
     }
 }
