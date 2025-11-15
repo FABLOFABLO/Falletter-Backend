@@ -23,6 +23,7 @@ class LetterSentListService(
         }
 
         return letters
+            .filter { it.isPassed == true }
             .map { letter ->
                 LetterSentListResponse(
                     id = letter.id,
