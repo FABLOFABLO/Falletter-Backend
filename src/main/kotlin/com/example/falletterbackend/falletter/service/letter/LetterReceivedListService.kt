@@ -23,8 +23,7 @@ class LetterReceivedListService(
             throw LetterNotReceivedException
         }
 
-        return letterBoxRepository.findAllByReception_Id(user.id)
-            .filter { it.reception.id == user.id }
+        return letters
             .map {
                 LetterReceivedListResponse(
                     id = it.id,
