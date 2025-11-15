@@ -7,8 +7,8 @@ data class AnswerUserChosenResponse(
     val id: Long,
     val schoolNumber: String,
     val gender: Gender,
-    val question: Long,
-    val targetUser: Long,
-    val writerUser: Long,
+    val questionId: Long,
+    val targetUserId: Long,
+    val writerUserId: Long,
     val createdAt: LocalDateTime
 )
