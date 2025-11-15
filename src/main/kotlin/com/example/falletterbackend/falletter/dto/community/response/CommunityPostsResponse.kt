@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.dto.community.response
 
-import com.example.falletterbackend.common.util.TimeAgoUtil
+import com.example.falletterbackend.common.utils.time.TimeAgoUtil
 import com.example.falletterbackend.falletter.entity.comment.Comment
 import com.example.falletterbackend.falletter.entity.community.Community
 import com.example.falletterbackend.falletter.entity.user.User

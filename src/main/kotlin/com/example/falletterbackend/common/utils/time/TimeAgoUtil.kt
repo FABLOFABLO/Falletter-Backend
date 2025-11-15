@@ -1,4 +1,4 @@
-package com.example.falletterbackend.common.util
+package com.example.falletterbackend.common.utils.time
 
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
