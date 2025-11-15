@@ -22,8 +22,7 @@ class LetterSentListService(
             throw LetterNotSendException
         }
 
-        return letterBoxRepository.findAllBySender(user)
-            .filter { it.sender.id == user.id }
+        return letters
             .map { letter ->
                 LetterSentListResponse(
                     id = letter.id,
