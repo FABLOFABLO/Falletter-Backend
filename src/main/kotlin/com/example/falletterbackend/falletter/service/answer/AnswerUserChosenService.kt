@@ -20,6 +20,8 @@ class AnswerUserChosenService(
             AnswerUserChosenResponse(
                 id = it.id,
                 questionId = it.question.id,
+                question = it.question.question,
+                emoji = it.question.emoji,
                 targetUserId = it.targetUserId.id,
                 writerUserId = it.writerId.id,
                 gender = it.targetUserId.gender,
