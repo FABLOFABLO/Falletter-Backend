@@ -24,16 +24,13 @@ class LetterReceivedListService(
         }
 
         return letters
-            .filter {
-                val isAfter12Hours = it.createdAt.plusHours(12).isBefore(LocalDateTime.now())
-                isAfter12Hours && it.isPassed
-            }
+            .filter { it.isPassed == true }
             .map {
                 LetterReceivedListResponse(
                     id = it.id,
                     content = it.content,
-                    isDelivered = true,
-                    isPassed = true,
+                    isDelivered = it.createdAt.plusHours(12).isBefore(LocalDateTime.now()),
+                    isPassed = it.isPassed,
                     receptionId = it.reception.id,
                     senderId = it.sender.id,
                     createdAt = it.createdAt
