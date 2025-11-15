@@ -8,6 +8,5 @@ data class CommunityPostsListResponse(
     val content: String,
     val author: PostListUserResponse,
     val createdAt: LocalDateTime,
-    val updatedAt: LocalDateTime,
-    val relativeTime: String
+    val updatedAt: LocalDateTime
 )

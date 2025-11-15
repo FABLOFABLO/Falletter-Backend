@@ -1,6 +1,5 @@
 package com.example.falletterbackend.falletter.dto.community.response
 
-import com.example.falletterbackend.common.utils.time.TimeAgoUtil
 import com.example.falletterbackend.falletter.entity.comment.Comment
 import com.example.falletterbackend.falletter.entity.community.Community
 import com.example.falletterbackend.falletter.entity.user.User
@@ -13,7 +12,6 @@ data class CommunityPostsResponse(
     val author: PostListUserResponse,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime,
-    val relativeTime: String,
     val comment: List<PostListCommentResponse>
 ) {
     companion object {
@@ -25,7 +23,6 @@ data class CommunityPostsResponse(
                 author = PostListUserResponse(community.author.id, community.author.name),
                 createdAt = community.createdAt,
                 updatedAt = community.updatedAt,
-                relativeTime = TimeAgoUtil.getTimeAgo(community.createdAt),
                 comment = community.comments.map { PostListCommentResponse.format(it) }
             )
         }
@@ -50,7 +47,8 @@ data class PostListCommentResponse(
     val commentId: Long,
     val user: PostListUserResponse,
     val comment: String,
-    val relativeTime: String
+    val createdAt: LocalDateTime,
+    val updatedAt: LocalDateTime
 ) {
     companion object {
         fun format(comment: Comment): PostListCommentResponse {
@@ -58,7 +56,8 @@ data class PostListCommentResponse(
                 commentId = comment.id,
                 user = PostListUserResponse.format(comment.user),
                 comment = comment.comment,
-                relativeTime = TimeAgoUtil.getTimeAgo(comment.createdAt)
+                createdAt = comment.createdAt,
+                updatedAt = comment.updatedAt
             )
         }
     }

@@ -1,6 +1,5 @@
 package com.example.falletterbackend.falletter.service.communtiy
 
-import com.example.falletterbackend.common.utils.time.TimeAgoUtil
 import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsListResponse
 import com.example.falletterbackend.falletter.dto.community.response.PostListUserResponse
 import com.example.falletterbackend.falletter.entity.community.repository.CommunityRepository
@@ -23,7 +22,6 @@ class CommunityGetAllPostService(
                 author = PostListUserResponse(it.author.id, it.author.name),
                 createdAt = it.createdAt,
                 updatedAt = it.updatedAt,
-                relativeTime = TimeAgoUtil.getTimeAgo(it.createdAt)
             )
         }.sortedByDescending { it.id }
     }
