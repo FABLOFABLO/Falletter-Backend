@@ -19,9 +19,9 @@ class AnswerUserChosenService(
         return answers.map {
             AnswerUserChosenResponse(
                 id = it.id,
-                question = it.question.id,
-                targetUser = it.targetUserId.id,
-                writerUser = it.writerId.id,
+                questionId = it.question.id,
+                targetUserId = it.targetUserId.id,
+                writerUserId = it.writerId.id,
                 gender = it.targetUserId.gender,
                 schoolNumber = it.targetUserId.schoolNumber,
                 createdAt = it.createdAt
