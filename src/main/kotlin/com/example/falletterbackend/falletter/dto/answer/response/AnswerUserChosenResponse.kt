@@ -6,6 +6,7 @@ import java.time.LocalDateTime
 data class AnswerUserChosenResponse(
     val id: Long,
     val schoolNumber: String,
+    val name: String,
     val gender: Gender,
     val question: String,
     val emoji: String,
