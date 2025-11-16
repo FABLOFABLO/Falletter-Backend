@@ -4,6 +4,6 @@ enum class HistoryType (
     val state: String
 ){
     ATTENDANCE("출석 보상"),
-    QUESTION_VOTE("질문 응답"),
+    QUESTION("질문 응답"),
     ETC("기타")
 }
