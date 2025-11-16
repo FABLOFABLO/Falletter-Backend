@@ -18,7 +18,7 @@ class History(
     val amount: Long,
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type", columnDefinition = "VARCHAR(10)", nullable = false)
+    @Column(name = "type", columnDefinition = "VARCHAR(32)", nullable = false)
     val type: HistoryType,
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -30,6 +30,6 @@ class History(
     val targetUserId: User,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "writer_id", nullable = false)
-    val writerId: User
+    @JoinColumn(name = "writer_user_id", nullable = false)
+    val writerUserId: User
 ) : EntityBase()
