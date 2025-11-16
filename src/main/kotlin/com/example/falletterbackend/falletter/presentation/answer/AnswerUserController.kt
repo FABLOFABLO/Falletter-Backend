@@ -2,7 +2,7 @@ package com.example.falletterbackend.falletter.presentation.answer
 
 import com.example.falletterbackend.falletter.dto.answer.request.AnswerUserRequest
 import com.example.falletterbackend.falletter.dto.answer.response.AnswerUserChosenResponse
-import com.example.falletterbackend.falletter.dto.answer.response.AnswerUserHistoryResponse
+import com.example.falletterbackend.falletter.dto.history.response.BrickUsedHistoryResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
 import com.example.falletterbackend.falletter.service.answer.AnswerUserChosenService
 import com.example.falletterbackend.falletter.service.answer.AnswerUserHistoryService
@@ -31,7 +31,7 @@ class AnswerUserController(
 
     @GetMapping(RestApiSpec.ANSWER_USED)
     @ResponseStatus(HttpStatus.OK)
-    fun answerUsed(): List<AnswerUserHistoryResponse> {
+    fun answerUsed(): List<BrickUsedHistoryResponse> {
         return answerUserHistoryService.execute()
     }
 
