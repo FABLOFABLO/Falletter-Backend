@@ -8,13 +8,13 @@ import jakarta.persistence.*
 @Entity
 @Table(name = "tbl_history")
 class History(
-    @Column(name = "title", nullable = false)
+    @Column(name = "title", columnDefinition = "VARCHAR(255)", nullable = false)
     val title: String,
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "VARCHAR(255)")
     val description: String? = null,
 
-    @Column(name = "amount", nullable = false)
+    @Column(name = "amount", columnDefinition = "VARCHAR(16)", nullable = false)
     val amount: Long,
 
     @Enumerated(EnumType.STRING)
@@ -26,6 +26,6 @@ class History(
     val user: User,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "question_id", columnDefinition = "BIGINT", nullable = false)
-    val question: Question
+    @JoinColumn(name = "question_id", columnDefinition = "BIGINT")
+    val question: Question? = null
 ) : EntityBase()
