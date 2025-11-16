@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.service.answer
 
-import com.example.falletterbackend.falletter.dto.answer.response.AnswerUserHistoryResponse
+import com.example.falletterbackend.falletter.dto.history.response.BrickUsedHistoryResponse
 import com.example.falletterbackend.falletter.entity.answer.repository.AnswerRepository
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
@@ -12,13 +12,13 @@ class AnswerUserHistoryService(
     private val userFacade: UserFacade
 ) {
     @Transactional(readOnly = true)
-    fun execute(): List<AnswerUserHistoryResponse>{
+    fun execute(): List<BrickUsedHistoryResponse>{
         val user = userFacade.getCurrentUser()
 
         val answers = answerRepository.findAllByWriterId(user)
 
         return answers.map {
-            AnswerUserHistoryResponse(
+            BrickUsedHistoryResponse(
                 id = it.id,
                 questionId = it.question.id,
                 targetUserId = it.targetUserId.id,
