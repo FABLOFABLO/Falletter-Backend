@@ -1,9 +1,9 @@
-package com.example.falletterbackend.falletter.dto.answer.response
+package com.example.falletterbackend.falletter.dto.history.response
 
 import com.example.falletterbackend.falletter.entity.user.Gender
 import java.time.LocalDateTime
 
-data class AnswerUserHistoryResponse(
+data class BrickUsedHistoryResponse(
     val id: Long,
     val questionId: Long,
     val targetUserId: Long,
