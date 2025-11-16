@@ -8,7 +8,7 @@ data class BrickSaveHistoryRequest(
     val description: String,
     val amount: Long,
     val type: HistoryType,
-    val question: Question,
+    val questionId: Long,
     val targetUserId: Long,
     val writerUserId: Long
 )

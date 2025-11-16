@@ -5,9 +5,9 @@ import java.time.LocalDateTime
 
 data class BrickUsedHistoryResponse(
     val id: Long,
-    val questionId: Long,
+    val question: String,
     val targetUserId: Long,
-    val writerId: Long,
+    val writerUserId: Long,
     val gender: Gender,
     val schoolNumber: String,
     val createdAt: LocalDateTime
