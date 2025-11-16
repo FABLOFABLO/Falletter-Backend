@@ -5,7 +5,7 @@ import com.example.falletterbackend.falletter.dto.answer.response.AnswerUserChos
 import com.example.falletterbackend.falletter.dto.history.response.BrickUsedHistoryResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
 import com.example.falletterbackend.falletter.service.answer.AnswerUserChosenService
-import com.example.falletterbackend.falletter.service.answer.AnswerUserHistoryService
+import com.example.falletterbackend.falletter.service.history.BrickUsedHistoryService
 import com.example.falletterbackend.falletter.service.answer.AnswerUserService
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
@@ -20,19 +20,12 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/answer")
 class AnswerUserController(
     private val answerUserService: AnswerUserService,
-    private val answerUserHistoryService: AnswerUserHistoryService,
     private val answerUserChosenService: AnswerUserChosenService
 ) {
     @PostMapping(RestApiSpec.ANSWER_POST)
     @ResponseStatus(HttpStatus.CREATED)
     fun answerPost(@RequestBody @Valid request: AnswerUserRequest) {
         answerUserService.execute(request)
-    }
-
-    @GetMapping(RestApiSpec.ANSWER_USED)
-    @ResponseStatus(HttpStatus.OK)
-    fun answerUsed(): List<BrickUsedHistoryResponse> {
-        return answerUserHistoryService.execute()
     }
 
     @GetMapping(RestApiSpec.ANSWER_PICK)
