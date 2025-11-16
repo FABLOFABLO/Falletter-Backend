@@ -59,9 +59,12 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.GET, "/item/brick/count").authenticated()
                     .requestMatchers(HttpMethod.PATCH, "/item/brick/update").authenticated()
 
+                    // history
+                    .requestMatchers(HttpMethod.POST, "/history/brick/save").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/history/brick/used").authenticated()
+
                     // answer
                     .requestMatchers(HttpMethod.POST, "/answer/choose").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/answer/used").authenticated()
                     .requestMatchers(HttpMethod.GET, "/answer/chosen").authenticated()
 
                     // letter
