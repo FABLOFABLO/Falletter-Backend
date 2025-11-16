@@ -21,6 +21,9 @@ class BrickUsedHistoryService(
             it.question?.let { question ->
                 BrickUsedHistoryResponse(
                     id = it.id,
+                    description = it.description,
+                    amount = it.amount,
+                    type = it.type,
                     question = it.question.question,
                     targetUserId = it.targetUserId.id,
                     writerUserId = it.writerUserId.id,
