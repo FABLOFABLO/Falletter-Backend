@@ -18,7 +18,7 @@ class History(
     val amount: Long,
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false)
+    @Column(name = "type", columnDefinition = "VARCHAR(10)", nullable = false)
     val type: HistoryType,
 
     @ManyToOne(fetch = FetchType.LAZY)
