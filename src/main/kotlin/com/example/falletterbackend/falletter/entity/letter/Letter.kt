@@ -23,5 +23,4 @@ class Letter(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sender_id", columnDefinition = "BIGINT", nullable = false)
     val sender: User,
-
     ) : EntityBase()
