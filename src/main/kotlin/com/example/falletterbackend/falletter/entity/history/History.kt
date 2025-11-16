@@ -22,10 +22,14 @@ class History(
     val type: HistoryType,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", columnDefinition = "BIGINT", nullable = false)
-    val user: User,
+    @JoinColumn(name = "question_id", columnDefinition = "BIGINT")
+    val question: Question? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "question_id", columnDefinition = "BIGINT")
-    val question: Question? = null
+    @JoinColumn(name = "target_user_id", nullable = false)
+    val targetUserId: User,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "writer_id", nullable = false)
+    val writerId: User
 ) : EntityBase()
