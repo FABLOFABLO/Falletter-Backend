@@ -26,6 +26,7 @@ class AnswerUserChosenService(
                 writerUserId = it.writerId.id,
                 gender = it.targetUserId.gender,
                 schoolNumber = it.targetUserId.schoolNumber,
+                name = it.writerId.name,
                 createdAt = it.createdAt
             )
         }
