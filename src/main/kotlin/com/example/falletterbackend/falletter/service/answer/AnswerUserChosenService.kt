@@ -24,7 +24,7 @@ class AnswerUserChosenService(
                 emoji = it.question.emoji,
                 targetUserId = it.targetUserId.id,
                 writerUserId = it.writerId.id,
-                gender = it.targetUserId.gender,
+                gender = it.writerId.gender,
                 schoolNumber = it.writerId.schoolNumber,
                 name = it.writerId.name,
                 createdAt = it.createdAt
