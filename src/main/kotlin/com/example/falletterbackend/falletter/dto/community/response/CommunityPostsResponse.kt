@@ -9,7 +9,7 @@ data class CommunityPostsResponse(
     val id: Long,
     val title: String,
     val content: String,
-    val author: PostListUserResponse,
+    val author: CommunityListUserResponse,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime,
     val comment: List<CommunityListCommentResponse>
@@ -20,7 +20,7 @@ data class CommunityPostsResponse(
                 id = community.id,
                 title = community.title,
                 content = community.content,
-                author = PostListUserResponse(community.author.id, community.author.name),
+                author = CommunityListUserResponse(community.author.id, community.author.name),
                 createdAt = community.createdAt,
                 updatedAt = community.updatedAt,
                 comment = community.comments.map { CommunityListCommentResponse.format(it) }
@@ -29,13 +29,13 @@ data class CommunityPostsResponse(
     }
 }
 
-data class PostListUserResponse(
+data class CommunityListUserResponse(
     val userId: Long,
     val name: String
 ) {
     companion object {
-        fun format(user: User): PostListUserResponse {
-            return PostListUserResponse(
+        fun format(user: User): CommunityListUserResponse {
+            return CommunityListUserResponse(
                 userId = user.id,
                 name = user.name
             )
@@ -45,7 +45,7 @@ data class PostListUserResponse(
 
 data class CommunityListCommentResponse(
     val commentId: Long,
-    val user: PostListUserResponse,
+    val user: CommunityListUserResponse,
     val comment: String,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime
@@ -54,7 +54,7 @@ data class CommunityListCommentResponse(
         fun format(comment: Comment): CommunityListCommentResponse {
             return CommunityListCommentResponse(
                 commentId = comment.id,
-                user = PostListUserResponse.format(comment.user),
+                user = CommunityListUserResponse.format(comment.user),
                 comment = comment.comment,
                 createdAt = comment.createdAt,
                 updatedAt = comment.updatedAt
