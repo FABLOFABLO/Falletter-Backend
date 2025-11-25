@@ -6,7 +6,7 @@ data class CommunityPostsListResponse(
     val id: Long,
     val title: String,
     val content: String,
-    val author: PostListUserResponse,
+    val author: CommunityListUserResponse,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime
 )
