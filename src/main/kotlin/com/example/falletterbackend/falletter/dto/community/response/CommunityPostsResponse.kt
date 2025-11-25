@@ -12,7 +12,7 @@ data class CommunityPostsResponse(
     val author: PostListUserResponse,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime,
-    val comment: List<PostListCommentResponse>
+    val comment: List<CommunityListCommentResponse>
 ) {
     companion object {
         fun from(community: Community): CommunityPostsResponse {
@@ -23,7 +23,7 @@ data class CommunityPostsResponse(
                 author = PostListUserResponse(community.author.id, community.author.name),
                 createdAt = community.createdAt,
                 updatedAt = community.updatedAt,
-                comment = community.comments.map { PostListCommentResponse.format(it) }
+                comment = community.comments.map { CommunityListCommentResponse.format(it) }
             )
         }
     }
@@ -43,7 +43,7 @@ data class PostListUserResponse(
     }
 }
 
-data class PostListCommentResponse(
+data class CommunityListCommentResponse(
     val commentId: Long,
     val user: PostListUserResponse,
     val comment: String,
@@ -51,8 +51,8 @@ data class PostListCommentResponse(
     val updatedAt: LocalDateTime
 ) {
     companion object {
-        fun format(comment: Comment): PostListCommentResponse {
-            return PostListCommentResponse(
+        fun format(comment: Comment): CommunityListCommentResponse {
+            return CommunityListCommentResponse(
                 commentId = comment.id,
                 user = PostListUserResponse.format(comment.user),
                 comment = comment.comment,
