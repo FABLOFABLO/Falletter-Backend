@@ -1,7 +1,7 @@
 package com.example.falletterbackend.falletter.service.communtiy
 
+import com.example.falletterbackend.falletter.dto.community.response.CommunityListUserResponse
 import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsListResponse
-import com.example.falletterbackend.falletter.dto.community.response.PostListUserResponse
 import com.example.falletterbackend.falletter.entity.community.repository.CommunityRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -19,7 +19,7 @@ class CommunityGetAllPostService(
                 id = it.id,
                 title = it.title,
                 content = it.content,
-                author = PostListUserResponse(it.author.id, it.author.name),
+                author = CommunityListUserResponse(it.author.id, it.author.name),
                 createdAt = it.createdAt,
                 updatedAt = it.updatedAt,
             )
