@@ -1,17 +1,3 @@
-<p align="center">
-  <img src="file:///Users/eeuunn/Desktop/FABLO/%E1%84%88%E1%85%A1%E1%86%AF%E1%84%85%E1%85%A2%E1%84%90%E1%85%A5.png" width="400" alt="Falletter Logo" />
-</p>
-
-<h1 align="center">✨ Falletter-Backend ✨</h1>
-
-<p align="center">
-  <b>오직 DSM 학생들만을 위한 익명 소통과 맞춤형 연결 서비스</b><br/>
-  학교 커뮤니티 내 숨겨진 상호작용을 활성화하고,<br/>
-  학생들 간의 자연스러운 교류를 돕는 <b>익명 편지 기반 커뮤니티 플랫폼</b>입니다.
-</p>
-
----
-
 ## 💌 서비스 소개
 
 **Falletter**는 단순한 메시지 전달을 넘어,  
