@@ -28,21 +28,15 @@ class CommunityController(
 ) {
     @PostMapping(RestApiSpec.COMMUNITY_CREATE_POST)
     @ResponseStatus(HttpStatus.CREATED)
-    fun createPost(@RequestBody @Valid request: CommunityPostsRequest) {
-        communityCreatePostService.execute(request)
-    }
+    fun createPost(@RequestBody @Valid request: CommunityPostsRequest) { communityCreatePostService.execute(request) }
 
     @GetMapping(RestApiSpec.COMMUNITY_LIST_READ_POST)
     @ResponseStatus(HttpStatus.OK)
-    fun getListPost(): List<CommunityPostsListResponse> {
-        return communityGetAllPostService.execute()
-    }
+    fun getListPost(): List<CommunityPostsListResponse> { return communityGetAllPostService.execute() }
 
     @GetMapping(RestApiSpec.COMMUNITY_READ_POST)
     @ResponseStatus(HttpStatus.OK)
-    fun getPost(@PathVariable("post-id") id: Long): CommunityPostsResponse {
-        return communityGetPostService.execute(id)
-    }
+    fun getPost(@PathVariable("post-id") id: Long): CommunityPostsResponse { return communityGetPostService.execute(id) }
 
     @PatchMapping(RestApiSpec.COMMUNITY_UPDATE_POST)
     @ResponseStatus(HttpStatus.OK)
@@ -55,7 +49,5 @@ class CommunityController(
 
     @DeleteMapping(RestApiSpec.COMMUNITY_DELETE_POST)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun deletePost(@PathVariable("post-id") id: Long) {
-        communityDeletePostService.execute(id)
-    }
+    fun deletePost(@PathVariable("post-id") id: Long) { communityDeletePostService.execute(id) }
 }

@@ -23,7 +23,5 @@ class HistoryController(
 
     @GetMapping(RestApiSpec.HISTORY_USED)
     @ResponseStatus(HttpStatus.OK)
-    fun usedHistory(): List<BrickUsedHistoryResponse> {
-        return brickUsedHistoryService.execute()
-    }
+    fun usedHistory(): List<BrickUsedHistoryResponse> { return brickUsedHistoryService.execute() }
 }

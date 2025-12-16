@@ -31,7 +31,5 @@ class CommentController(
 
     @DeleteMapping(RestApiSpec.COMMENT_DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun commentDelete(@PathVariable("comment-id") id: Long) {
-        commentDeleteService.execute(id)
-    }
+    fun commentDelete(@PathVariable("comment-id") id: Long) { commentDeleteService.execute(id) }
 }

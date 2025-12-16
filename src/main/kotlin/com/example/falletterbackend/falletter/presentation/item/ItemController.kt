@@ -23,25 +23,17 @@ class ItemController(
 ) {
     @GetMapping(RestApiSpec.ITEM_BRICK_GET_COUNT)
     @ResponseStatus(HttpStatus.OK)
-    fun getCountBrick(): ItemBrickGetCountResponse {
-        return itemBrickGetCountService.execute()
-    }
+    fun getCountBrick(): ItemBrickGetCountResponse { return itemBrickGetCountService.execute() }
 
     @PatchMapping(RestApiSpec.ITEM_BRICK_PATCH_COUNT)
     @ResponseStatus(HttpStatus.OK)
-    fun brickItemUpdate(@RequestBody @Valid request: ItemBrickItemUpdateRequest) {
-        itemBrickItemUpdateService.execute(request)
-    }
+    fun brickItemUpdate(@RequestBody @Valid request: ItemBrickItemUpdateRequest) { itemBrickItemUpdateService.execute(request) }
 
     @GetMapping(RestApiSpec.ITEM_LETTER_GET_COUNT)
     @ResponseStatus(HttpStatus.OK)
-    fun getCountLetter(): ItemLetterGetCountResponse {
-        return itemLetterGetCountService.execute()
-    }
+    fun getCountLetter(): ItemLetterGetCountResponse { return itemLetterGetCountService.execute() }
 
     @PatchMapping(RestApiSpec.ITEM_LETTER_PATCH_COUNT)
     @ResponseStatus(HttpStatus.OK)
-    fun letterItemUpdate(@RequestBody @Valid request: ItemLetterItemUpdateRequest) {
-        itemLetterUpdateService.execute(request)
-    }
+    fun letterItemUpdate(@RequestBody @Valid request: ItemLetterItemUpdateRequest) { itemLetterUpdateService.execute(request) }
 }

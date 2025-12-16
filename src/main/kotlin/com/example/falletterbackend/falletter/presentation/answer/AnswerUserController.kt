@@ -22,13 +22,9 @@ class AnswerUserController(
 ) {
     @PostMapping(RestApiSpec.ANSWER_POST)
     @ResponseStatus(HttpStatus.CREATED)
-    fun answerPost(@RequestBody @Valid request: AnswerUserSaveRequest) {
-        answerUserService.execute(request)
-    }
+    fun answerPost(@RequestBody @Valid request: AnswerUserSaveRequest) { answerUserService.execute(request) }
 
     @GetMapping(RestApiSpec.ANSWER_PICK)
     @ResponseStatus(HttpStatus.OK)
-    fun answerPicked(): List<AnswerUserChosenResponse> {
-        return answerUserChosenService.execute()
-    }
+    fun answerPicked(): List<AnswerUserChosenResponse> { return answerUserChosenService.execute() }
 }
