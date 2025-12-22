@@ -24,6 +24,10 @@ class User(
     @Column(name = "gender", columnDefinition = "VARCHAR(10)", nullable = false)
     val gender: Gender,
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "theme", columnDefinition = "VARCHAR(20)", nullable = false)
+    val theme: Theme,
+
     @Column(name = "profile_image", columnDefinition = "VARCHAR(255)")
     val profileImage: String,
 
