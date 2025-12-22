@@ -45,6 +45,7 @@ class UserSignUpService(
             schoolNumber = request.schoolNumber,
             name = request.name,
             gender = request.gender,
+            theme = request.theme,
             profileImage = imageUrl
         )
 
