@@ -22,6 +22,7 @@ class UserInfoService(
             schoolNumber = user.schoolNumber,
             name = user.name,
             gender = user.gender,
+            theme = user.theme,
             profileImage = user.profileImage,
             id = user.id
         )
