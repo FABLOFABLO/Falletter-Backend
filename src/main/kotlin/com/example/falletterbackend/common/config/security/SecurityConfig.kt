@@ -38,51 +38,51 @@ class SecurityConfig(
                     //user
                     .requestMatchers(HttpMethod.POST, "/user/signup").permitAll()
                     .requestMatchers(HttpMethod.POST, "/user/signin").permitAll()
-                    .requestMatchers(HttpMethod.DELETE, "/user/logout").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/user/users").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/user/student").authenticated()
+                    .requestMatchers(HttpMethod.DELETE, "/user/logout").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/user/users").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/user/student").hasAnyRole("USER", "ADMIN")
 
                     // community
-                    .requestMatchers(HttpMethod.POST, "/community/posts").authenticated()
-                    .requestMatchers(HttpMethod.GET, "community/posts").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/community/posts/{post-id}").authenticated()
-                    .requestMatchers(HttpMethod.PATCH, "/community/posts/{post-id}").authenticated()
-                    .requestMatchers(HttpMethod.DELETE, "/community/posts/{post-id}").authenticated()
+                    .requestMatchers(HttpMethod.POST, "/community/posts").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "community/posts").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/community/posts/{post-id}").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.PATCH, "/community/posts/{post-id}").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.DELETE, "/community/posts/{post-id}").hasAnyRole("USER", "ADMIN")
 
                     // comment
-                    .requestMatchers(HttpMethod.POST, "/comment/{post-id}").authenticated()
-                    .requestMatchers(HttpMethod.DELETE, "/comment/{comment-id}").authenticated()
+                    .requestMatchers(HttpMethod.POST, "/comment/{post-id}").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.DELETE, "/comment/{comment-id}").hasAnyRole("USER", "ADMIN")
 
                     // item
-                    .requestMatchers(HttpMethod.GET, "/item/letter/count").authenticated()
-                    .requestMatchers(HttpMethod.PATCH, "/item/letter/update").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/item/brick/count").authenticated()
-                    .requestMatchers(HttpMethod.PATCH, "/item/brick/update").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/item/letter/count").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.PATCH, "/item/letter/update").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/item/brick/count").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.PATCH, "/item/brick/update").hasAnyRole("USER", "ADMIN")
 
                     // history
-                    .requestMatchers(HttpMethod.POST, "/history/brick/save").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/history/brick/used").authenticated()
+                    .requestMatchers(HttpMethod.POST, "/history/brick/save").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/history/brick/used").hasAnyRole("USER", "ADMIN")
 
                     // answer
-                    .requestMatchers(HttpMethod.POST, "/answer/choose").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/answer/chosen").authenticated()
+                    .requestMatchers(HttpMethod.POST, "/answer/choose").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/answer/chosen").hasAnyRole("USER", "ADMIN")
 
                     // letter
-                    .requestMatchers(HttpMethod.POST, "/letter/sent").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/letter/sent/{letter-id}").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/letter/sent/all").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/letter/received/{letter-id}").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/letter/received/all").authenticated()
+                    .requestMatchers(HttpMethod.POST, "/letter/sent").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/letter/sent/{letter-id}").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/letter/sent/all").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/letter/received/{letter-id}").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/letter/received/all").hasAnyRole("USER", "ADMIN")
 
                     // question
-                    .requestMatchers(HttpMethod.GET, "/question/all").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/question/all").hasAnyRole("USER", "ADMIN")
 
                     // hint
-                    .requestMatchers(HttpMethod.POST, "/hint/save").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/hint/{answer-id}").authenticated()
-                    .requestMatchers(HttpMethod.PATCH, "/hint/update").authenticated()
+                    .requestMatchers(HttpMethod.POST, "/hint/save").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/hint/{answer-id}").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.PATCH, "/hint/update").hasAnyRole("USER", "ADMIN")
 
-                    .anyRequest().authenticated()
+                    .anyRequest().hasAnyRole("USER", "ADMIN")
             }
 
         http.with(FilterConfig(tokenProvider, objectMapper)) {}
