@@ -10,8 +10,7 @@ class UserLogoutService(
     private val userFacade: UserFacade
 ) {
     fun execute() {
-        // TODO : 409 처리
         val currentUser = userFacade.getCurrentUser()
-        refreshTokenRepository.deleteById(currentUser.toString())
+        refreshTokenRepository.deleteById(currentUser.email)
     }
 }
