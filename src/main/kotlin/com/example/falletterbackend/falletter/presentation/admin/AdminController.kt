@@ -1,4 +1,4 @@
-package com.example.falletterbackend.falletter.presentation.letter
+package com.example.falletterbackend.falletter.presentation.admin
 
 import com.example.falletterbackend.falletter.dto.letter.response.AdminLetterUnpassedDetailsResponse
 import com.example.falletterbackend.falletter.dto.letter.response.AdminLetterUnpassedListResponse
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/admin")
-class AdminLetterController(
+class AdminController(
     private val adminLetterUnpassedListService: AdminLetterUnpassedListService,
     private val adminLetterUnpassedDetailsService: AdminLetterUnpassedDetailsService
 ) {
