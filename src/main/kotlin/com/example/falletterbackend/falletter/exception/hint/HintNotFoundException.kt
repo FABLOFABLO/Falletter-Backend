@@ -1,0 +1,6 @@
+package com.example.falletterbackend.falletter.exception.hint
+
+import com.example.falletterbackend.common.error.exception.ErrorCode
+import com.example.falletterbackend.common.error.exception.FalletterException
+
+object HintNotFoundException : FalletterException(ErrorCode.HISTORY_NOT_FOUND)

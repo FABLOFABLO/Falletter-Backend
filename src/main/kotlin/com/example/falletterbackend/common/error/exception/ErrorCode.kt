@@ -43,6 +43,9 @@ enum class ErrorCode(
     // question
     QUESTION_NOT_FOUND(404, "Question Not Found"),
 
+    // hint
+    HINT_NOT_FOUND(404, "Hint Not Found"),
+
     // history
     HISTORY_NOT_FOUND(404, "History Not Found"),
 
