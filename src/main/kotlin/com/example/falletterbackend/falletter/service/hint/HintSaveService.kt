@@ -22,9 +22,9 @@ class HintSaveService(
 
         hintRepository.save(
             Hint(
-                firstHint = request.first,
-                secondHint = request.second,
-                thirdHint = request.third,
+                firstHint = request.firstHint,
+                secondHint = request.secondHint,
+                thirdHint = request.thirdHint,
                 user = user,
                 answer = answer,
             )
