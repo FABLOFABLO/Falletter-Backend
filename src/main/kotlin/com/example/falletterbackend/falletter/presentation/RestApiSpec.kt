@@ -39,6 +39,6 @@ object RestApiSpec {
     const val QUESTION_ALL = "/all"
 
     const val HINT_SAVE = "/save"
-    const val HINT_UPDATE = "/update"
-    const val HINT_GET_ALL = "/all"
+    const val HINT_UPDATE = "/{answer-id}"
+    const val HINT_GET_ALL = "/{answer-id}"
 }
