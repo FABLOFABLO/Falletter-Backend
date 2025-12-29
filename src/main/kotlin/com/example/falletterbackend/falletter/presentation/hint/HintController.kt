@@ -1,6 +1,7 @@
 package com.example.falletterbackend.falletter.presentation.hint
 
 import com.example.falletterbackend.falletter.dto.hint.request.HintRequest
+import com.example.falletterbackend.falletter.dto.hint.response.HintResponse
 import com.example.falletterbackend.falletter.entity.hint.Hint
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
 import com.example.falletterbackend.falletter.service.hint.HintGetService
@@ -27,8 +28,8 @@ class HintController(
     }
 
     @GetMapping(RestApiSpec.HINT_GET_ALL)
-    fun getAllHint() {
-
+    fun getAllHint(id: Long): HintResponse {
+        return hintGetService.execute(id)
     }
 
     @PatchMapping(RestApiSpec.HINT_UPDATE)
