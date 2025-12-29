@@ -14,4 +14,8 @@ interface LetterRepository : JpaRepository<Letter, Long> {
     fun findAllByReception_Id(receiverId: Long): List<Letter>
 
     fun findAllByReception_IdAndIsPassed(receiverId: Long, isPassed: Boolean): List<Letter>
+
+    fun findAllByIsPassed(isPassed: Boolean): List<Letter>
+
+    fun findByIdAndIsPassed(letterId: Long, isPassed: Boolean): Letter?
 }
