@@ -1,7 +1,7 @@
 package com.example.falletterbackend.falletter.dto.user.response
 
-import com.example.falletterbackend.falletter.entity.user.Gender
-import com.example.falletterbackend.falletter.entity.user.Theme
+import com.example.falletterbackend.falletter.entity.user.enums.Gender
+import com.example.falletterbackend.falletter.entity.user.enums.Theme
 
 data class UserInfoResponse(
     val id: Long,

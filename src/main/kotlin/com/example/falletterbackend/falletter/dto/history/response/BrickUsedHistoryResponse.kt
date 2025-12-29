@@ -1,7 +1,7 @@
 package com.example.falletterbackend.falletter.dto.history.response
 
 import com.example.falletterbackend.falletter.entity.history.HistoryType
-import com.example.falletterbackend.falletter.entity.user.Gender
+import com.example.falletterbackend.falletter.entity.user.enums.Gender
 import java.time.LocalDateTime
 
 data class BrickUsedHistoryResponse(

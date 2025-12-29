@@ -1,4 +1,4 @@
-package com.example.falletterbackend.falletter.entity.user
+package com.example.falletterbackend.falletter.entity.user.enums
 
 enum class Theme(
     val state: String

@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.dto.answer.response
 
-import com.example.falletterbackend.falletter.entity.user.Gender
+import com.example.falletterbackend.falletter.entity.user.enums.Gender
 import java.time.LocalDateTime
 
 data class AnswerUserChosenResponse(
