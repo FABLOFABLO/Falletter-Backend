@@ -82,7 +82,7 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.GET, "/hint/{answer-id}").authenticated()
                     .requestMatchers(HttpMethod.PATCH, "/hint/update").authenticated()
 
-                    .anyRequest().denyAll()
+                    .anyRequest().authenticated()
             }
 
         http.with(FilterConfig(tokenProvider, objectMapper)) {}
