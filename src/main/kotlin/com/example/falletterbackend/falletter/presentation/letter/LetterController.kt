@@ -1,10 +1,7 @@
 package com.example.falletterbackend.falletter.presentation.letter
 
 import com.example.falletterbackend.falletter.dto.letter.request.LetterSentRequest
-import com.example.falletterbackend.falletter.dto.letter.response.LetterReceivedDetailsResponse
-import com.example.falletterbackend.falletter.dto.letter.response.LetterReceivedListResponse
-import com.example.falletterbackend.falletter.dto.letter.response.LetterSentDetailsResponse
-import com.example.falletterbackend.falletter.dto.letter.response.LetterSentListResponse
+import com.example.falletterbackend.falletter.dto.letter.response.*
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
 import com.example.falletterbackend.falletter.service.letter.LetterSendByUserService
 import com.example.falletterbackend.falletter.service.letter.*
@@ -26,7 +23,8 @@ class LetterController(
     private val letterSentListService: LetterSentListService,
     private val letterReceivedDetailsService: LetterReceivedDetailsService,
     private val letterReceivedListService: LetterReceivedListService,
-    private val adminLetterUnpassedListService: AdminLetterUnpassedListService
+    private val adminLetterUnpassedListService: AdminLetterUnpassedListService,
+    private val adminLetterUnpassedDetailsService: AdminLetterUnpassedDetailsService
 ) {
     @PostMapping(RestApiSpec.LETTER_BOX_SENT)
     @ResponseStatus(HttpStatus.CREATED)
@@ -58,7 +56,13 @@ class LetterController(
 
     @GetMapping(RestApiSpec.LETTER_BOX_UNPASSED)
     @ResponseStatus(HttpStatus.OK)
-    fun adminUnpassedAll(): List<LetterReceivedListResponse> {
+    fun adminUnpassedAll(): List<AdminLetterUnpassedListResponse> {
         return adminLetterUnpassedListService.execute()
+    }
+
+    @GetMapping(RestApiSpec.LETTER_BOX_UNPASSED_DETAIL)
+    @ResponseStatus(HttpStatus.OK)
+    fun adminUnpassedDetail(@PathVariable("letter-id") id: Long): AdminLetterUnpassedDetailsResponse {
+        return adminLetterUnpassedDetailsService.execute(id)
     }
 }
