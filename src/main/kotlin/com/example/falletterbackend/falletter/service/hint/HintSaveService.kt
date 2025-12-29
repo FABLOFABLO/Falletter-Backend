@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.service.hint
 
-import com.example.falletterbackend.falletter.dto.hint.request.HintRequest
+import com.example.falletterbackend.falletter.dto.hint.request.HintSaveRequest
 import com.example.falletterbackend.falletter.entity.hint.Hint
 import com.example.falletterbackend.falletter.entity.hint.repository.HintRepository
 import com.example.falletterbackend.falletter.facade.answer.AnswerFacade
@@ -16,9 +16,9 @@ class HintSaveService(
     private val hintRepository: HintRepository
 ) {
     @Transactional
-    fun execute(request: HintRequest) {
+    fun execute(request: HintSaveRequest) {
         val user = userFacade.getCurrentUser()
-        val answer = answerFacade.getCurrentAnswer(request.answer )
+        val answer = answerFacade.getCurrentAnswer(request.answerId)
 
         hintRepository.save(
             Hint(

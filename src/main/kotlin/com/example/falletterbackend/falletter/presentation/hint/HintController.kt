@@ -1,8 +1,7 @@
 package com.example.falletterbackend.falletter.presentation.hint
 
-import com.example.falletterbackend.falletter.dto.hint.request.HintRequest
+import com.example.falletterbackend.falletter.dto.hint.request.HintSaveRequest
 import com.example.falletterbackend.falletter.dto.hint.response.HintResponse
-import com.example.falletterbackend.falletter.entity.hint.Hint
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
 import com.example.falletterbackend.falletter.service.hint.HintGetService
 import com.example.falletterbackend.falletter.service.hint.HintSaveService
@@ -24,7 +23,7 @@ class HintController(
     private val hintUpdateService: HintUpdateService
 ) {
     @PostMapping(RestApiSpec.HINT_SAVE)
-    fun saveHint(@RequestBody request: HintRequest) {
+    fun saveHint(@RequestBody request: HintSaveRequest) {
         hintSaveService.execute(request)
     }
 
@@ -34,6 +33,6 @@ class HintController(
     }
 
     @PatchMapping(RestApiSpec.HINT_UPDATE)
-    fun updateHint(@RequestBody request: HintRequest) {
+    fun updateHint(@RequestBody request: HintSaveRequest) {
     }
 }
