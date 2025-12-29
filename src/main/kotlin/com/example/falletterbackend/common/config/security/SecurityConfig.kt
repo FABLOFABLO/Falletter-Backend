@@ -73,6 +73,7 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.GET, "/letter/sent/all").hasAnyRole("USER", "ADMIN")
                     .requestMatchers(HttpMethod.GET, "/letter/received/{letter-id}").hasAnyRole("USER", "ADMIN")
                     .requestMatchers(HttpMethod.GET, "/letter/received/all").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/letter/unpassed").hasAnyRole("ADMIN")
 
                     // question
                     .requestMatchers(HttpMethod.GET, "/question/all").hasAnyRole("USER", "ADMIN")
