@@ -25,7 +25,8 @@ class LetterController(
     private val letterSentDetailsService: LetterSentDetailsService,
     private val letterSentListService: LetterSentListService,
     private val letterReceivedDetailsService: LetterReceivedDetailsService,
-    private val letterReceivedListService: LetterReceivedListService
+    private val letterReceivedListService: LetterReceivedListService,
+    private val adminLetterUnpassedListService: AdminLetterUnpassedListService
 ) {
     @PostMapping(RestApiSpec.LETTER_BOX_SENT)
     @ResponseStatus(HttpStatus.CREATED)
@@ -53,5 +54,11 @@ class LetterController(
     @ResponseStatus(HttpStatus.OK)
     fun receivedAll(): List<LetterReceivedListResponse> {
         return letterReceivedListService.execute()
+    }
+
+    @GetMapping(RestApiSpec.LETTER_BOX_UNPASSED)
+    @ResponseStatus(HttpStatus.OK)
+    fun adminUnpassedAll(): List<LetterReceivedListResponse> {
+        return adminLetterUnpassedListService.execute()
     }
 }
