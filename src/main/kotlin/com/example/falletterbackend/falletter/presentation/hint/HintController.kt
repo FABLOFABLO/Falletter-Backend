@@ -9,6 +9,7 @@ import com.example.falletterbackend.falletter.service.hint.HintSaveService
 import com.example.falletterbackend.falletter.service.hint.HintUpdateService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -28,7 +29,7 @@ class HintController(
     }
 
     @GetMapping(RestApiSpec.HINT_GET_ALL)
-    fun getAllHint(id: Long): HintResponse {
+    fun getAllHint(@PathVariable("answer-id") id: Long): HintResponse {
         return hintGetService.execute(id)
     }
 
