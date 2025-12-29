@@ -8,13 +8,13 @@ import jakarta.persistence.*
 @Entity
 @Table(name = "tbl_hint")
 class Hint (
-    @Column(name = "first_hint")
+    @Column(name = "first_hint", columnDefinition = "VARCHAR(3)")
     val firstHint: String?,
 
-    @Column(name = "second_hint")
+    @Column(name = "second_hint", columnDefinition = "VARCHAR(3)")
     val secondHint: String?,
 
-    @Column(name = "third_hint")
+    @Column(name = "third_hint", columnDefinition = "VARCHAR(3)")
     val thirdHint: String?,
 
     @ManyToOne(fetch = FetchType.LAZY)
