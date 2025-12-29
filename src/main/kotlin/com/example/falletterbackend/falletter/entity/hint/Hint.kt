@@ -7,15 +7,15 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "tbl_hint")
-class Hint (
+class Hint(
     @Column(name = "first_hint", columnDefinition = "VARCHAR(3)")
-    val firstHint: String?,
+    var firstHint: String?,
 
     @Column(name = "second_hint", columnDefinition = "VARCHAR(3)")
-    val secondHint: String?,
+    var secondHint: String?,
 
     @Column(name = "third_hint", columnDefinition = "VARCHAR(3)")
-    val thirdHint: String?,
+    var thirdHint: String?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", columnDefinition = "BIGINT", nullable = false)
@@ -24,4 +24,10 @@ class Hint (
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "answer_id", columnDefinition = "BIGINT", nullable = false)
     val answer: Answer
-) : EntityBase()
+) : EntityBase() {
+    fun update(firstHint: String?, secondHint: String?, thirdHint: String?){
+        this.firstHint = firstHint
+        this.secondHint = secondHint
+        this.thirdHint = thirdHint
+    }
+}
