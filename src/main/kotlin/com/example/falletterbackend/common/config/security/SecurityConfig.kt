@@ -79,8 +79,8 @@ class SecurityConfig(
 
                     // hint
                     .requestMatchers(HttpMethod.POST, "/hint/save").authenticated()
-                    .requestMatchers(HttpMethod.GET, "/hint/update").authenticated()
-                    .requestMatchers(HttpMethod.PATCH, "/hint/all").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/hint/{answer-id}").authenticated()
+                    .requestMatchers(HttpMethod.PATCH, "/hint/{hint-id}").authenticated()
 
                     .anyRequest().denyAll()
             }
