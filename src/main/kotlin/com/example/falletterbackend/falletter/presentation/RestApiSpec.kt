@@ -37,4 +37,8 @@ object RestApiSpec {
     const val ANSWER_PICK = "/chosen"
 
     const val QUESTION_ALL = "/all"
+
+    const val HINT_SAVE = "/save"
+    const val HINT_UPDATE = "/update"
+    const val HINT_GET_ALL = "/ALL"
 }
