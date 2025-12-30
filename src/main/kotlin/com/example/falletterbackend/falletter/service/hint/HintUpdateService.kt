@@ -3,8 +3,10 @@ package com.example.falletterbackend.falletter.service.hint
 import com.example.falletterbackend.falletter.dto.hint.request.HintUpdateRequest
 import com.example.falletterbackend.falletter.facade.hint.HintFacade
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional
 class HintUpdateService(
     private val hintFacade: HintFacade
 ) {
