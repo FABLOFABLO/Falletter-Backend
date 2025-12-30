@@ -4,7 +4,7 @@ import com.example.falletterbackend.falletter.dto.community.request.CommunityPos
 import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsListResponse
 import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.communtiy.*
+import com.example.falletterbackend.falletter.service.community.*
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.responses.ApiResponse

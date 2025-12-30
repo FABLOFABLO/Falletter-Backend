@@ -1,4 +1,4 @@
-package com.example.falletterbackend.falletter.service.communtiy
+package com.example.falletterbackend.falletter.service.community
 
 import com.example.falletterbackend.falletter.entity.community.repository.CommunityRepository
 import com.example.falletterbackend.falletter.exception.user.UserMismatchException

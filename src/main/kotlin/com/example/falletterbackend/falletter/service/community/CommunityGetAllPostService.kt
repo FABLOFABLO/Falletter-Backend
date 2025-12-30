@@ -1,4 +1,4 @@
-package com.example.falletterbackend.falletter.service.communtiy
+package com.example.falletterbackend.falletter.service.community
 
 import com.example.falletterbackend.falletter.dto.community.response.CommunityListUserResponse
 import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsListResponse

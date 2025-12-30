@@ -1,4 +1,4 @@
-package com.example.falletterbackend.falletter.service.communtiy
+package com.example.falletterbackend.falletter.service.community
 
 import com.example.falletterbackend.falletter.dto.community.request.CommunityPostsRequest
 import com.example.falletterbackend.falletter.exception.user.IncorrectPasswordException
