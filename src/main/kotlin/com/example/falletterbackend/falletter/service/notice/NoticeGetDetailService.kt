@@ -12,8 +12,8 @@ class NoticeGetDetailService(
     private val noticeRepository: NoticeRepository
 ) {
     @Transactional(readOnly = true)
-    fun execute(noticeId: Long): NoticeDetailsResponse {
-        val notice = noticeRepository.findByIdOrNull(noticeId)
+    fun execute(id: Long): NoticeDetailsResponse {
+        val notice = noticeRepository.findByIdOrNull(id)
             ?: throw NoticeNotFoundException
 
         return NoticeDetailsResponse(

@@ -15,14 +15,14 @@ class NoticeDeleteService(
     private val userFacade: UserFacade
 ) {
     @Transactional
-    fun execute(noticeId: Long) {
+    fun execute(id: Long) {
         val user = userFacade.getCurrentUser()
 
         if (user.role != Role.ADMIN) {
             throw AccessDeniedException
         }
 
-        val notice = noticeRepository.findByIdOrNull(noticeId)
+        val notice = noticeRepository.findByIdOrNull(id)
             ?: throw NoticeNotFoundException
 
         noticeRepository.delete(notice)

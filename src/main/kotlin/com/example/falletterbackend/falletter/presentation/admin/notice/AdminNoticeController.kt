@@ -34,9 +34,7 @@ class AdminNoticeController(
 
     @GetMapping(RestApiSpec.NOTICE_LIST)
     @ResponseStatus(HttpStatus.OK)
-    fun getAllNotices(): List<NoticeListResponse> {
-        return noticeGetAllService.execute()
-    }
+    fun getAllNotices(): List<NoticeListResponse> { return noticeGetAllService.execute() }
 
     @GetMapping(RestApiSpec.NOTICE_DETAIL)
     @ResponseStatus(HttpStatus.OK)
