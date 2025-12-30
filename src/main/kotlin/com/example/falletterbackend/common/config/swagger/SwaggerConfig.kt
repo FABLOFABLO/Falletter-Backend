@@ -16,16 +16,17 @@ class SwaggerConfig {
     private val tagOrder = listOf(
         "Auth",
         "User",
+        "Admin User",
         "Admin Community",
         "Admin Letter",
         "Admin Notice",
         "Answer",
-        "Comment",
         "Community",
-        "Hint",
-        "History",
+        "Comment",
         "Item",
+        "History",
         "Letter",
+        "Hint",
         "Question"
     )
 
@@ -58,16 +59,17 @@ class SwaggerConfig {
             val tagDescriptions = mapOf(
                 "Auth" to "인증 API",
                 "User" to "사용자 API",
+                "Admin User" to "관리자 학생 관리 API",
                 "Admin Community" to "관리자 커뮤니티 관리 API",
                 "Admin Letter" to "관리자 편지 관리 API",
                 "Admin Notice" to "관리자 공지사항 API",
                 "Answer" to "답변 API",
-                "Comment" to "댓글 API",
                 "Community" to "커뮤니티 게시판 API",
-                "Hint" to "힌트 API",
-                "History" to "벽돌 사용 기록 API",
+                "Comment" to "댓글 API",
                 "Item" to "아이템 API",
+                "History" to "벽돌 사용 기록 API",
                 "Letter" to "편지 API",
+                "Hint" to "힌트 API",
                 "Question" to "질문 API"
             )
 
