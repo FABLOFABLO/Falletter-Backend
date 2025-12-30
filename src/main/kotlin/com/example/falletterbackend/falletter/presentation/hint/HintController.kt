@@ -4,7 +4,7 @@ import com.example.falletterbackend.falletter.dto.hint.request.HintSaveRequest
 import com.example.falletterbackend.falletter.dto.hint.request.HintUpdateRequest
 import com.example.falletterbackend.falletter.dto.hint.response.HintResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.hint.HintGetService
+import com.example.falletterbackend.falletter.service.hint.HintGetAllService
 import com.example.falletterbackend.falletter.service.hint.HintSaveService
 import com.example.falletterbackend.falletter.service.hint.HintUpdateService
 import org.springframework.http.HttpStatus
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/hint")
 class HintController(
     private val hintSaveService: HintSaveService,
-    private val hintGetService: HintGetService,
+    private val hintGetAllService: HintGetAllService,
     private val hintUpdateService: HintUpdateService
 ) {
     @PostMapping(RestApiSpec.HINT_SAVE)
@@ -34,7 +34,7 @@ class HintController(
     @GetMapping(RestApiSpec.HINT_GET_ALL)
     @ResponseStatus(HttpStatus.OK)
     fun getAllHint(@PathVariable("answer-id") id: Long): HintResponse {
-        return hintGetService.execute(id)
+        return hintGetAllService.execute(id)
     }
 
     @PatchMapping(RestApiSpec.HINT_UPDATE)
