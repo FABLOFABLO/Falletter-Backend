@@ -24,13 +24,13 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.3")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
 	// developmentOnly
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
 	// validation
-	implementation("org.springframework.boot:spring-boot-starter-validation:2.7.3")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 
 	// jwt
 	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
@@ -58,6 +58,9 @@ dependencies {
 
 	// mail
 	implementation("org.springframework.boot:spring-boot-starter-mail:3.1.2")
+
+	// swagger
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
 }
 
 kotlin {
