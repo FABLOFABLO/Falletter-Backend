@@ -43,4 +43,9 @@ object RestApiSpec {
     const val HINT_SAVE = "/save"
     const val HINT_UPDATE = "/update"
     const val HINT_GET_ALL = "/{answer-id}"
+
+    const val NOTICE_CREATE = "/notice"
+    const val NOTICE_LIST = "/notice"
+    const val NOTICE_DETAIL = "/notice/{notice-id}"
+    const val NOTICE_DELETE = "/notice/{notice-id}"
 }
