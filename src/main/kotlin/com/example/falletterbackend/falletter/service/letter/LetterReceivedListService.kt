@@ -7,7 +7,6 @@ import com.example.falletterbackend.falletter.exception.letter.LetterNotReceived
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.time.LocalDateTime
 
 @Service
 class LetterReceivedListService(
@@ -31,7 +30,7 @@ class LetterReceivedListService(
                     content = it.content,
                     receptionId = it.reception.id,
                     senderId = it.sender.id,
-                    isDelivered = it.createdAt.plusHours(12).isBefore(LocalDateTime.now()),
+                    isDelivered = it.isDelivered,
                     isPassed = it.isPassed,
                     createdAt = it.createdAt
                 )

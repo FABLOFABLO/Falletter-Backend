@@ -8,7 +8,6 @@ import com.example.falletterbackend.falletter.exception.letter.LetterNotFoundExc
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.time.LocalDateTime
 
 @Service
 class LetterSentDetailsService(
@@ -27,7 +26,7 @@ class LetterSentDetailsService(
             receptionId = letter.reception.id,
             senderId = letter.sender.id,
             createdAt = letter.createdAt,
-            isDelivered = letter.createdAt.plusHours(12).isBefore(LocalDateTime.now()),
+            isDelivered = letter.isDelivered,
             isPassed = letter.isPassed
         )
     }
