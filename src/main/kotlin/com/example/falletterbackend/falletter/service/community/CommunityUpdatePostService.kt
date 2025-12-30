@@ -1,7 +1,7 @@
 package com.example.falletterbackend.falletter.service.community
 
 import com.example.falletterbackend.falletter.dto.community.request.CommunityPostsRequest
-import com.example.falletterbackend.falletter.exception.user.IncorrectPasswordException
+import com.example.falletterbackend.falletter.exception.user.UserMismatchException
 import com.example.falletterbackend.falletter.facade.community.CommunityFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
@@ -17,8 +17,8 @@ class CommunityUpdatePostService(
         val user = userFacade.getCurrentUser()
         val community = communityFacade.getCurrentCommunity(id)
 
-        if (user != community.author) {
-            throw IncorrectPasswordException
+        if (user.id != community.author.id) {
+            throw UserMismatchException
         }
         community.update(communityPostsRequest.title, communityPostsRequest.content)
     }

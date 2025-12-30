@@ -24,9 +24,10 @@ class LetterReceivedDetailsService(
         return LetterReceivedDetailsResponse(
             id = letter.id,
             content = letter.content,
+            receptionId = letter.reception.id,
+            senderId = letter.sender.id,
             isDelivered = letter.createdAt.plusHours(12).isBefore(LocalDateTime.now()),
             isPassed = letter.isPassed,
-            receptionId = letter.reception.id,
             createdAt = letter.createdAt
         )
     }

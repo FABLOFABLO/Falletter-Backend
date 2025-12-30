@@ -13,7 +13,7 @@ class CommunityGetPostService(
     @Transactional
     fun execute(id: Long): CommunityPostsResponse {
         val community = communityRepository.findById(id)
-            .orElseThrow { throw CommunityNotFoundException }
+            .orElseThrow { CommunityNotFoundException }
 
         return CommunityPostsResponse.from(community)
     }

@@ -1,7 +1,7 @@
 package com.example.falletterbackend.falletter.presentation.admin.community
 
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.communtiy.AdminCommunityDeleteService
+import com.example.falletterbackend.falletter.service.community.AdminCommunityDeleteService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.responses.ApiResponse

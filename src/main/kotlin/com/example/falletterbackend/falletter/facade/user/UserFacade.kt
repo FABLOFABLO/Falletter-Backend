@@ -20,8 +20,8 @@ class UserFacade(
         return userRepository.existsByEmail(email)
     }
 
-    fun getUserById(userId: Long): User? {
-        return userRepository.findByIdOrNull(userId)
+    fun getUserById(userId: Long): User {
+        return userRepository.findByIdOrNull(userId) ?: throw UserNotFoundException
     }
 
     fun getByAccountId(email: String): User {
