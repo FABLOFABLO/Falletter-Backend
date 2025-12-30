@@ -50,4 +50,9 @@ object RestApiSpec {
     const val NOTICE_DELETE = "/notice/{notice-id}"
 
     const val ADMIN_COMMUNITY_STATUS = "/community/{community-id}"
+
+    const val ADMIN_USER_LIST = "/user/all"
+    const val ADMIN_USER_PROFILE = "/user/{user-id}"
+    const val ADMIN_USER_WARNING = "/user/{user-id}/warning"
+    const val ADMIN_USER_BLOCK = "/user/{user-id}/block"
 }
