@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer
 import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
@@ -34,6 +35,16 @@ class SecurityConfig(
         http
             .authorizeHttpRequests { authorize ->
                 authorize
+                    // swagger
+                    .requestMatchers(
+                        "/swagger-ui/**",
+                        "/swagger-ui.html",
+                        "/v3/api-docs/**",
+                        "/v3/api-docs",
+                        "/swagger-resources/**",
+                        "/webjars/**"
+                    ).permitAll()
+
                     // auth
                     .requestMatchers(HttpMethod.POST, "auth/email/verify").permitAll()
                     .requestMatchers(HttpMethod.POST, "auth/email/match").permitAll()
@@ -93,6 +104,9 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.GET, "/admin/notice/{notice-id}").hasAnyRole("USER", "ADMIN")
                     .requestMatchers(HttpMethod.DELETE, "/admin/notice/{notice-id}").hasRole("ADMIN")
 
+                    // admin community
+                    .requestMatchers(HttpMethod.PATCH, "/admin/community/{community-id}").hasRole("ADMIN")
+
                     .anyRequest().hasAnyRole("USER", "ADMIN")
             }
 
@@ -103,4 +117,18 @@ class SecurityConfig(
 
     @Bean
     fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder()
+
+    @Bean
+    fun webSecurityCustomizer(): WebSecurityCustomizer {
+        return WebSecurityCustomizer { web ->
+            web.ignoring().requestMatchers(
+                "/swagger-ui/**",
+                "/swagger-ui.html",
+                "/v3/api-docs/**",
+                "/v3/api-docs",
+                "/swagger-resources/**",
+                "/webjars/**"
+            )
+        }
+    }
 }
