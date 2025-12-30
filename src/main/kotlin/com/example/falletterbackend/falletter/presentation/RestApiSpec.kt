@@ -48,4 +48,6 @@ object RestApiSpec {
     const val NOTICE_LIST = "/notice"
     const val NOTICE_DETAIL = "/notice/{notice-id}"
     const val NOTICE_DELETE = "/notice/{notice-id}"
+
+    const val ADMIN_COMMUNITY_STATUS = "/community/{community-id}"
 }
