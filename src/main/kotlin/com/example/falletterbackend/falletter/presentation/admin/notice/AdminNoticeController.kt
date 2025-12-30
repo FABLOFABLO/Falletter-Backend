@@ -4,10 +4,10 @@ import com.example.falletterbackend.falletter.dto.notice.request.NoticeCreateReq
 import com.example.falletterbackend.falletter.dto.notice.response.NoticeDetailsResponse
 import com.example.falletterbackend.falletter.dto.notice.response.NoticeListResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.notice.AdminNoticeCreateService
-import com.example.falletterbackend.falletter.service.notice.AdminNoticeDeleteService
-import com.example.falletterbackend.falletter.service.notice.AdminNoticeGetAllService
-import com.example.falletterbackend.falletter.service.notice.AdminNoticeGetDetailService
+import com.example.falletterbackend.falletter.service.admin.notice.AdminNoticeCreateService
+import com.example.falletterbackend.falletter.service.admin.notice.AdminNoticeDeleteService
+import com.example.falletterbackend.falletter.service.admin.notice.AdminNoticeGetAllService
+import com.example.falletterbackend.falletter.service.admin.notice.AdminNoticeGetDetailService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.responses.ApiResponse
