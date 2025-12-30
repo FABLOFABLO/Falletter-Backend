@@ -52,6 +52,9 @@ enum class ErrorCode(
     // answer
     ANSWER_NOT_FOUND(404, "Answer Not Found"),
 
+    // notice
+    NOTICE_NOT_FOUND(404, "Notice Not Found"),
+
     // internal
     INTERNAL_SERVER_ERROR(500, "Internal Server Error");
 }
