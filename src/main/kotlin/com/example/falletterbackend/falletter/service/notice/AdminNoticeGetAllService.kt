@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class NoticeGetAllService(
+class AdminNoticeGetAllService(
     private val noticeRepository: NoticeRepository
 ) {
     @Transactional(readOnly = true)
