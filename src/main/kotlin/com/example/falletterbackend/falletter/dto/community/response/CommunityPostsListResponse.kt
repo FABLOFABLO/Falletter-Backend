@@ -17,6 +17,9 @@ data class CommunityPostsListResponse(
     @Schema(description = "작성자 정보")
     val author: CommunityListUserResponse,
 
+    @Schema(description = "삭제 여부", example = "false")
+    val isDeleted: Boolean,
+
     @Schema(description = "생성일시", example = "2024-12-30T10:00:00")
     val createdAt: LocalDateTime,
 

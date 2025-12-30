@@ -20,6 +20,7 @@ class CommunityGetAllPostService(
                 title = it.title,
                 content = it.content,
                 author = CommunityListUserResponse(it.author.id, it.author.name),
+                isDeleted = it.isDeleted,
                 createdAt = it.createdAt,
                 updatedAt = it.updatedAt,
             )
