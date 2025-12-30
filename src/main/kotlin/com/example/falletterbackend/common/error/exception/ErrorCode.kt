@@ -7,6 +7,7 @@ enum class ErrorCode(
     // auth
     TOKEN_INVALID(401, "Token Invalid"),
     TOKEN_EXPIRED(401, "Token Expired"),
+    ACCESS_DENIED(403, "Access Denied"),
     UNMATCHED_VERIFY_CODE(403, "Unmatched Verify Code"),
     UNEXIST_VERIFY_CODE(403, "Unexist Verify Code"),
 
