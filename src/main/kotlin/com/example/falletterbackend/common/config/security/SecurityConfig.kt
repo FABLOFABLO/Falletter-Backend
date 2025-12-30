@@ -2,6 +2,7 @@ package com.example.falletterbackend.common.config.security
 
 import com.example.falletterbackend.common.config.filter.FilterConfig
 import com.example.falletterbackend.common.security.TokenProvider
+import com.example.falletterbackend.common.security.handler.CustomAccessDeniedHandler
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -18,7 +19,8 @@ import org.springframework.security.web.SecurityFilterChain
 @EnableWebSecurity
 class SecurityConfig(
     private val objectMapper: ObjectMapper,
-    private val tokenProvider: TokenProvider
+    private val tokenProvider: TokenProvider,
+    private val accessDeniedHandler: CustomAccessDeniedHandler
 ) {
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
@@ -27,6 +29,7 @@ class SecurityConfig(
             .formLogin { it.disable() }
             .cors(Customizer.withDefaults())
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
+            .exceptionHandling { it.accessDeniedHandler(accessDeniedHandler) }
 
         http
             .authorizeHttpRequests { authorize ->
@@ -83,6 +86,12 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.POST, "/hint/save").hasAnyRole("USER", "ADMIN")
                     .requestMatchers(HttpMethod.GET, "/hint/{answer-id}").hasAnyRole("USER", "ADMIN")
                     .requestMatchers(HttpMethod.PATCH, "/hint/update").hasAnyRole("USER", "ADMIN")
+
+                    // notice
+                    .requestMatchers(HttpMethod.POST, "/admin/notice").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/admin/notice").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/admin/notice/{notice-id}").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.DELETE, "/admin/notice/{notice-id}").hasRole("ADMIN")
 
                     .anyRequest().hasAnyRole("USER", "ADMIN")
             }
