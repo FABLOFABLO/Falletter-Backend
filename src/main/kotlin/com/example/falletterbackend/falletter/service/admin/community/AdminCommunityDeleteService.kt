@@ -1,4 +1,4 @@
-package com.example.falletterbackend.falletter.service.community
+package com.example.falletterbackend.falletter.service.admin.community
 
 import com.example.falletterbackend.common.exception.AccessDeniedException
 import com.example.falletterbackend.falletter.entity.community.repository.CommunityRepository
