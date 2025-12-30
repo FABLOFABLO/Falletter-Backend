@@ -1,4 +1,4 @@
-package com.example.falletterbackend.falletter.service.notice
+package com.example.falletterbackend.falletter.service.admin.notice
 
 import com.example.falletterbackend.falletter.dto.notice.response.NoticeListResponse
 import com.example.falletterbackend.falletter.entity.notice.repository.NoticeRepository
