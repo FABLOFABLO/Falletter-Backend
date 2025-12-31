@@ -4,6 +4,7 @@ import com.example.falletterbackend.falletter.entity.comment.repository.CommentR
 import com.example.falletterbackend.falletter.exception.comment.CommentNotFoundException
 import com.example.falletterbackend.falletter.exception.user.UserMismatchException
 import com.example.falletterbackend.falletter.facade.user.UserFacade
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -15,7 +16,7 @@ class CommentDeleteService(
     @Transactional
     fun execute(id: Long) {
         val user = userFacade.getCurrentUser()
-        val comment = commentRepository.findById(id).orElseThrow { CommentNotFoundException }
+        val comment = commentRepository.findByIdOrNull(id) ?: throw CommentNotFoundException
 
         if (user.id != comment.user.id) throw UserMismatchException
 
