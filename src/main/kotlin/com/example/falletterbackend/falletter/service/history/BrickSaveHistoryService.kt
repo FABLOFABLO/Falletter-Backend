@@ -3,30 +3,22 @@ package com.example.falletterbackend.falletter.service.history
 import com.example.falletterbackend.falletter.dto.history.request.BrickSaveHistoryRequest
 import com.example.falletterbackend.falletter.entity.history.History
 import com.example.falletterbackend.falletter.entity.history.repository.HistoryRepository
-import com.example.falletterbackend.falletter.entity.question.repository.QuestionRepository
-import com.example.falletterbackend.falletter.entity.user.repository.UserRepository
-import com.example.falletterbackend.falletter.exception.question.QuestionNotFoundException
-import com.example.falletterbackend.falletter.exception.user.UserNotFoundException
-import org.springframework.data.repository.findByIdOrNull
+import com.example.falletterbackend.falletter.facade.question.QuestionFacade
+import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class BrickSaveHistoryService(
     private val historyRepository: HistoryRepository,
-    private val userRepository: UserRepository,
-    private val questionRepository: QuestionRepository
+    private val userFacade: UserFacade,
+    private val questionFacade: QuestionFacade
 ) {
     @Transactional
     fun execute(request: BrickSaveHistoryRequest) {
-        val targetUser = userRepository.findByIdOrNull(request.targetUserId)
-            ?: throw UserNotFoundException
-
-        val writerUser = userRepository.findByIdOrNull(request.writerUserId)
-            ?: throw UserNotFoundException
-
-        val question = questionRepository.findByIdOrNull(request.questionId)
-            ?: throw QuestionNotFoundException
+        val targetUser = userFacade.getUserById(request.targetUserId)
+        val writerUser = userFacade.getUserById(request.writerUserId)
+        val question = questionFacade.getQuestionById(request.questionId)
 
         val history = History(
             title = request.title,
