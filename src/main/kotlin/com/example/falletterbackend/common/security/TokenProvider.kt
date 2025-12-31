@@ -50,7 +50,6 @@ class TokenProvider(
     }
 
     fun getAuthentication(token: String): UsernamePasswordAuthenticationToken {
-        println(getAccountId(token))
         val userDetails: UserDetails = authDetailsService.loadUserByUsername(getAccountId(token))
         return UsernamePasswordAuthenticationToken(userDetails, "", userDetails.authorities)
     }
@@ -68,7 +67,6 @@ class TokenProvider(
         } catch (e: ExpiredJwtException) {
             throw TokenExpiredException
         } catch (e: Exception) {
-            e.printStackTrace()
             throw TokenInvalidException
         }
     }
