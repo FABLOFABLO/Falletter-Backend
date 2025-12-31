@@ -1,6 +1,8 @@
 package com.example.falletterbackend.falletter.entity.letter
 
 import com.example.falletterbackend.common.entity.EntityBase
+import com.example.falletterbackend.falletter.dto.letter.response.LetterReceivedListResponse
+import com.example.falletterbackend.falletter.dto.letter.response.LetterSentListResponse
 import com.example.falletterbackend.falletter.entity.user.User
 import jakarta.persistence.*
 
@@ -23,4 +25,24 @@ class Letter(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sender_id", columnDefinition = "BIGINT", nullable = false)
     val sender: User,
-) : EntityBase()
+) : EntityBase() {
+    fun toReceivedListResponse() = LetterReceivedListResponse(
+        id = id,
+        content = content,
+        receptionId = reception.id,
+        senderId = sender.id,
+        isDelivered = isDelivered,
+        isPassed = isPassed,
+        createdAt = createdAt
+    )
+
+    fun toSentListResponse() = LetterSentListResponse(
+        id = id,
+        content = content,
+        receptionId = reception.id,
+        senderId = sender.id,
+        isDelivered = isDelivered,
+        isPassed = isPassed,
+        createdAt = createdAt
+    )
+}

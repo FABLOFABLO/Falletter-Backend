@@ -6,9 +6,10 @@ import com.example.falletterbackend.falletter.entity.item.repository.ItemReposit
 import com.example.falletterbackend.falletter.entity.letter.Letter
 import com.example.falletterbackend.falletter.entity.letter.repository.LetterRepository
 import com.example.falletterbackend.falletter.entity.user.repository.UserRepository
-import com.example.falletterbackend.falletter.exception.letter.LetterNotFoundException
+import com.example.falletterbackend.falletter.exception.letter.LetterCountInsufficientException
 import com.example.falletterbackend.falletter.exception.user.UserNotFoundException
 import com.example.falletterbackend.falletter.facade.user.UserFacade
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -25,11 +26,11 @@ class LetterSendByUserService(
         val user = userFacade.getCurrentUser()
 
         if (!itemRepository.existsByUserAndLetterCountGreaterThan(user, 0)) {
-            throw LetterNotFoundException
+            throw LetterCountInsufficientException
         }
 
-        val reception = userRepository.findById(request.reception)
-            .orElseThrow { UserNotFoundException }
+        val reception = userRepository.findByIdOrNull(request.reception)
+            ?: throw UserNotFoundException
 
         val isSafe = geminiConfig.checkForProfanity(request.content)
 

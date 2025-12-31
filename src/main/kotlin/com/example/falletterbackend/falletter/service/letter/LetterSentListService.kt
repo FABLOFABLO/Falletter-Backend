@@ -10,29 +10,19 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class LetterSentListService(
     private val userFacade: UserFacade,
-    private val letterBoxRepository: LetterRepository
+    private val letterRepository: LetterRepository
 ) {
     @Transactional(readOnly = true)
     fun execute(): List<LetterSentListResponse> {
         val user = userFacade.getCurrentUser()
-        val letters = letterBoxRepository.findAllBySender(user)
+        val letters = letterRepository.findAllBySender(user)
 
         if (letters.isEmpty()) {
             throw LetterNotSendException
         }
 
         return letters
-            .filter { it.isPassed == true }
-            .map { letter ->
-                LetterSentListResponse(
-                    id = letter.id,
-                    content = letter.content,
-                    receptionId = letter.reception.id,
-                    senderId = letter.sender.id,
-                    isDelivered = letter.isDelivered,
-                    isPassed = letter.isPassed,
-                    createdAt = letter.createdAt
-                )
-            }
+            .filter { it.isPassed }
+            .map { it.toSentListResponse() }
     }
 }

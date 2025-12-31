@@ -2,6 +2,7 @@ package com.example.falletterbackend.falletter.service.letter
 
 import com.example.falletterbackend.falletter.entity.letter.repository.LetterRepository
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -9,14 +10,16 @@ import java.time.LocalDateTime
 
 @Service
 class LetterDeliveryScheduler(
-    private val letterRepository: LetterRepository
+    private val letterRepository: LetterRepository,
+    @Value("\${falletter.scheduler.letter-delivery-threshold-hours}")
+    private val deliveryThresholdHours: Long
 ) {
     private val log = LoggerFactory.getLogger(this::class.java)
 
-    @Scheduled(fixedRate = 180000) // 3분마다 실행
+    @Scheduled(fixedRateString = "\${falletter.scheduler.letter-delivery-rate-ms}")
     @Transactional
     fun updateDeliveryStatus() {
-        val threshold = LocalDateTime.now().minusHours(12)
+        val threshold = LocalDateTime.now().minusHours(deliveryThresholdHours)
         val undeliveredLetters = letterRepository.findAllUndeliveredBefore(threshold)
 
         if (undeliveredLetters.isNotEmpty()) {
