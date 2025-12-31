@@ -1,24 +1,20 @@
 package com.example.falletterbackend.falletter.service.letter
 
 import com.example.falletterbackend.falletter.dto.letter.response.LetterReceivedDetailsResponse
-import com.example.falletterbackend.falletter.entity.letter.repository.LetterRepository
-import com.example.falletterbackend.falletter.exception.letter.LetterNoAccessPermission
-import com.example.falletterbackend.falletter.exception.letter.LetterNotFoundException
-import com.example.falletterbackend.falletter.exception.letter.LetterNotReceivedException
+import com.example.falletterbackend.falletter.facade.letter.LetterFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class LetterReceivedDetailsService(
-    private val letterBoxRepository: LetterRepository,
+    private val letterFacade: LetterFacade,
     private val userFacade: UserFacade
 ) {
     @Transactional(readOnly = true)
     fun execute(id: Long): LetterReceivedDetailsResponse {
         val user = userFacade.getCurrentUser()
-        val letter = letterBoxRepository.findByIdAndReception_Id(id, user.id)
-            ?: throw LetterNoAccessPermission
+        val letter = letterFacade.getReceivedLetterWithAccess(id, user.id)
 
         return LetterReceivedDetailsResponse(
             id = letter.id,
