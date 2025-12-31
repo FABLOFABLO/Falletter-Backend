@@ -8,6 +8,7 @@ import com.example.falletterbackend.falletter.entity.user.repository.UserReposit
 import com.example.falletterbackend.falletter.exception.question.QuestionNotFoundException
 import com.example.falletterbackend.falletter.exception.user.UserNotFoundException
 import com.example.falletterbackend.falletter.facade.user.UserFacade
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
@@ -20,12 +21,11 @@ class AnswerUserSaveService(
     fun execute(request: AnswerUserSaveRequest) {
         val user = userFacade.getCurrentUser()
 
-        val question = questionRepository.findById(request.questionId)
-            .orElseThrow { QuestionNotFoundException }
+        val question = questionRepository.findByIdOrNull(request.questionId)
+            ?: throw QuestionNotFoundException
 
-        val targetUser = userRepository.findById(request.targetUser)
-            .orElseThrow { UserNotFoundException }
-
+        val targetUser = userRepository.findByIdOrNull(request.targetUser)
+            ?: throw UserNotFoundException
 
         answerRepository.save(
             Answer(
