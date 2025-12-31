@@ -1,7 +1,6 @@
 package com.example.falletterbackend.falletter.service.community
 
 import com.example.falletterbackend.falletter.dto.community.request.CommunityPostsRequest
-import com.example.falletterbackend.falletter.exception.user.UserMismatchException
 import com.example.falletterbackend.falletter.facade.community.CommunityFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
@@ -15,11 +14,8 @@ class CommunityUpdatePostService(
     @Transactional
     fun execute(id: Long, communityPostsRequest: CommunityPostsRequest) {
         val user = userFacade.getCurrentUser()
-        val community = communityFacade.getCurrentCommunity(id)
+        val community = communityFacade.getCommunityWithOwnerCheck(id, user.id)
 
-        if (user.id != community.author.id) {
-            throw UserMismatchException
-        }
         community.update(communityPostsRequest.title, communityPostsRequest.content)
     }
 }

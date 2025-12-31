@@ -1,7 +1,5 @@
 package com.example.falletterbackend.falletter.service.community
 
-import com.example.falletterbackend.falletter.entity.community.repository.CommunityRepository
-import com.example.falletterbackend.falletter.exception.user.UserMismatchException
 import com.example.falletterbackend.falletter.facade.community.CommunityFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
@@ -10,16 +8,13 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class CommunityDeletePostService(
     private val userFacade: UserFacade,
-    private val communityFacade: CommunityFacade,
-    private val communityRepository: CommunityRepository
+    private val communityFacade: CommunityFacade
 ) {
     @Transactional
-    fun execute(id: Long){
+    fun execute(id: Long) {
         val user = userFacade.getCurrentUser()
-        val community = communityFacade.getCurrentCommunity(id)
+        communityFacade.getCommunityWithOwnerCheck(id, user.id)
 
-        if (user.id != community.author.id) throw UserMismatchException
-
-        communityRepository.deleteById(id)
+        communityFacade.deleteCommunity(id)
     }
 }
