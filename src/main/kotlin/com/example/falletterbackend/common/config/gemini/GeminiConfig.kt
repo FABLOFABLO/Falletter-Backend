@@ -1,27 +1,28 @@
 package com.example.falletterbackend.common.config.gemini
 
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
 import org.springframework.http.MediaType
-import org.springframework.stereotype.Service
+import org.springframework.stereotype.Component
 import org.springframework.web.client.RestTemplate
 
-@Service
+@Component
 class GeminiConfig(
     @Value("\${google.gemini.api.key}")
-    private val geminiApiKey: String
+    private val geminiApiKey: String,
+    private val restTemplate: RestTemplate
 ) {
-
-    private val restTemplate = RestTemplate()
+    private val log = LoggerFactory.getLogger(GeminiConfig::class.java)
 
     fun checkForProfanity(content: String): Boolean {
-        val url =
-            "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=$geminiApiKey"
+        val url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
 
         val headers = HttpHeaders().apply {
             contentType = MediaType.APPLICATION_JSON
+            set("x-goog-api-key", geminiApiKey)
         }
 
         val requestBody = mapOf(
@@ -44,21 +45,25 @@ class GeminiConfig(
 
         val entity = HttpEntity(requestBody, headers)
 
-        val response = restTemplate.exchange(url, HttpMethod.POST, entity, Map::class.java)
-        println("Gemini API Response: ${response.body}")
+        return try {
+            val response = restTemplate.exchange(url, HttpMethod.POST, entity, Map::class.java)
 
-        val text = (response.body?.get("candidates") as? List<Map<String, Any>>)
-            ?.get(0)
-            ?.get("content")
-            ?.let { contentMap ->
-                val parts = (contentMap as Map<*, *>)["parts"] as? List<Map<String, Any>>
-                parts?.get(0)?.get("text")?.toString()
-            }
-            ?.trim()
-            ?.split("\\s+".toRegex())
-            ?.get(0)
-            ?.lowercase() ?: "false"
+            val text = (response.body?.get("candidates") as? List<Map<String, Any>>)
+                ?.firstOrNull()
+                ?.get("content")
+                ?.let { contentMap ->
+                    val parts = (contentMap as Map<*, *>)["parts"] as? List<Map<String, Any>>
+                    parts?.firstOrNull()?.get("text")?.toString()
+                }
+                ?.trim()
+                ?.split("\\s+".toRegex())
+                ?.firstOrNull()
+                ?.lowercase() ?: "false"
 
-        return text == "true"
+            text == "true"
+        } catch (e: Exception) {
+            log.error("Gemini API 호출 실패", e)
+            false
+        }
     }
 }
