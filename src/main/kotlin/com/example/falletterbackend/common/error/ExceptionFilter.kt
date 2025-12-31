@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
+import org.slf4j.LoggerFactory
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
@@ -15,6 +16,8 @@ import java.io.IOException
 class ExceptionFilter(
     private val objectMapper: ObjectMapper
 ) : OncePerRequestFilter() {
+    private val log = LoggerFactory.getLogger(ExceptionFilter::class.java)
+
     @Throws(IOException::class)
     override fun doFilterInternal(
         request: HttpServletRequest,
@@ -24,7 +27,7 @@ class ExceptionFilter(
         try {
             filterChain.doFilter(request, response)
         } catch (e: Exception) {
-            e.printStackTrace()
+            log.error("Filter exception occurred: {}", e.message)
             when (e) {
                 is FalletterException -> writeErrorCode(e, response)
                 else -> writeErrorCode(InternalServerError, response)

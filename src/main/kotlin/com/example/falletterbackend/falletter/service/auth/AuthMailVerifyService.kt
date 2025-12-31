@@ -26,41 +26,39 @@ class AuthMailVerifyService(
     @Value("\${spring.mail.auth-code-expiration-millis}")
     private val authCodeExpirationMillis: Long = 0
 
-    fun makeRandomNumber(): String {
+    private fun generateVerificationCode(): String {
         val random = Random()
-        val checkNum = random.nextInt(888888) + 111111
-        return checkNum.toString()
+        val code = random.nextInt(888888) + 111111
+        return code.toString()
     }
 
-    val random = makeRandomNumber()
-
-    private fun createEmailForm(request: AuthMailVerifyRequest): SimpleMailMessage {
+    private fun createEmailForm(email: String, verificationCode: String): SimpleMailMessage {
         return SimpleMailMessage().apply {
-            setTo(request.email)
+            setTo(email)
             setSubject("FALLETTER 이메일 인증 번호")
-            setText("FALLETTER 이메일 인증번호 입니다 : $random 타인에게 공유하지 마세요")
+            setText("FALLETTER 이메일 인증번호 입니다 : $verificationCode 타인에게 공유하지 마세요")
         }
     }
 
-    fun sendEmail(request: AuthMailVerifyRequest) {
-        val emailForm = createEmailForm(request)
-        try {
-            javaMailSender.send(emailForm)
-            log.info("이메일 발송 성공")
-        } catch (e: Exception) {
-            log.error("이메일 발송 오류", e)
-        }
+    private fun sendEmail(email: String, verificationCode: String) {
+        val emailForm = createEmailForm(email, verificationCode)
+        javaMailSender.send(emailForm)
+        log.info("이메일 발송 성공: {}", email)
     }
 
     fun execute(request: AuthMailVerifyRequest) {
         if (emailVerifyRepository.existsByEmail(request.email)) {
             throw CustomException(HttpStatus.CONFLICT, "중복 된 이메일 입니다.")
         }
+
+        val verificationCode = generateVerificationCode()
+
         redisUtils.setValues(
             request.email,
-            random,
+            verificationCode,
             Duration.ofMillis(authCodeExpirationMillis)
         )
-        sendEmail(request)
+
+        sendEmail(request.email, verificationCode)
     }
 }
