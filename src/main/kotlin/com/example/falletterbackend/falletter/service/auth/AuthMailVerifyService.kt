@@ -4,8 +4,6 @@ import com.example.falletterbackend.common.utils.redis.RedisUtils
 import com.example.falletterbackend.falletter.dto.auth.request.AuthMailVerifyRequest
 import com.example.falletterbackend.falletter.entity.auth.repository.EmailVerifyRepository
 import com.example.falletterbackend.common.error.exception.CustomException
-import lombok.RequiredArgsConstructor
-import lombok.extern.slf4j.Slf4j
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
@@ -16,10 +14,8 @@ import org.springframework.transaction.annotation.Transactional
 import java.time.Duration
 import java.util.*
 
-@Slf4j
 @Service
 @Transactional
-@RequiredArgsConstructor
 class AuthMailVerifyService(
     private val redisUtils: RedisUtils,
     private val javaMailSender: JavaMailSender,

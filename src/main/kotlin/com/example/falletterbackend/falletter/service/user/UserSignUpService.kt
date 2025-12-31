@@ -16,12 +16,14 @@ import org.springframework.transaction.annotation.Transactional
 class UserSignUpService(
     private val userRepository: UserRepository,
     private val itemRepository: ItemRepository,
-    private val passwordEncoder: PasswordEncoder
-) {
-
-    // TODO : 기본 이미지 설정
+    private val passwordEncoder: PasswordEncoder,
     @Value("\${cloud.aws.stack.default.image.address}")
-    private lateinit var defaultImageAddress: String
+    private val defaultImageAddress: String,
+    @Value("\${falletter.item.default-brick-count}")
+    private val defaultBrickCount: Long,
+    @Value("\${falletter.item.default-letter-count}")
+    private val defaultLetterCount: Long
+) {
 
     @Transactional
     fun execute(request: UserSignUpRequest) {
@@ -54,8 +56,8 @@ class UserSignUpService(
         val userReference = userRepository.getReferenceById(newUser.id)
 
         val item = Item(
-            brickCount = 5,
-            letterCount = 5,
+            brickCount = defaultBrickCount,
+            letterCount = defaultLetterCount,
             user = userReference
         )
 
