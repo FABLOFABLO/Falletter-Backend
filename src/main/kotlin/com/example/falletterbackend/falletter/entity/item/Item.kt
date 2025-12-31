@@ -25,7 +25,7 @@ class Item(
 
     fun changeLetterCount(amount: Long) {
         val newCount = this.letterCount + amount
-        require(newCount >= 0) { "brickCount는 0보다 작을 수 없습니다." }
+        require(newCount >= 0) { "letterCount는 0보다 작을 수 없습니다." }
         this.letterCount = newCount
     }
 }

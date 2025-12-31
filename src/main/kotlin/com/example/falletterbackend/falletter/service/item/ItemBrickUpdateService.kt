@@ -2,6 +2,7 @@ package com.example.falletterbackend.falletter.service.item
 
 import com.example.falletterbackend.falletter.dto.item.request.ItemBrickItemUpdateRequest
 import com.example.falletterbackend.falletter.entity.item.repository.ItemRepository
+import com.example.falletterbackend.falletter.exception.item.ItemNotFoundException
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -14,8 +15,9 @@ class ItemBrickUpdateService(
     @Transactional
     fun execute(request: ItemBrickItemUpdateRequest) {
         val user = userFacade.getCurrentUser()
-        val brick = itemRepository.findEntityByUser(user)
+        val item = itemRepository.findEntityByUser(user)
+            ?: throw ItemNotFoundException
 
-        brick.changeBrickCount(request.brickUpdate)
+        item.changeBrickCount(request.brickUpdate)
     }
 }

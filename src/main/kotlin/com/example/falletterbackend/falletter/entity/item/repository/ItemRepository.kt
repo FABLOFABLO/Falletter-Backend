@@ -11,7 +11,7 @@ interface ItemRepository : JpaRepository<Item, Long> {
 
     fun findLetterCountByUser(user: User): ItemLetterGetCountResponse
 
-    fun findEntityByUser(user: User): Item
+    fun findEntityByUser(user: User): Item?
 
     fun existsByUserAndLetterCountGreaterThan(user: User, count: Long): Boolean
 
