@@ -46,8 +46,8 @@ class SecurityConfig(
                     ).permitAll()
 
                     // auth
-                    .requestMatchers(HttpMethod.POST, "auth/email/verify").permitAll()
-                    .requestMatchers(HttpMethod.POST, "auth/email/match").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/auth/email/verify").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/auth/email/match").permitAll()
 
                     //user
                     .requestMatchers(HttpMethod.POST, "/user/signup").permitAll()
@@ -58,7 +58,7 @@ class SecurityConfig(
 
                     // community
                     .requestMatchers(HttpMethod.POST, "/community/posts").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "community/posts").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/community/posts").hasAnyRole("USER", "ADMIN")
                     .requestMatchers(HttpMethod.GET, "/community/posts/{post-id}").hasAnyRole("USER", "ADMIN")
                     .requestMatchers(HttpMethod.PATCH, "/community/posts/{post-id}").hasAnyRole("USER", "ADMIN")
                     .requestMatchers(HttpMethod.DELETE, "/community/posts/{post-id}").hasAnyRole("USER", "ADMIN")
@@ -94,6 +94,7 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.GET, "/question/all").hasAnyRole("USER", "ADMIN")
 
                     // hint
+
                     .requestMatchers(HttpMethod.POST, "/hint/save").hasAnyRole("USER", "ADMIN")
                     .requestMatchers(HttpMethod.GET, "/hint/{answer-id}").hasAnyRole("USER", "ADMIN")
                     .requestMatchers(HttpMethod.PATCH, "/hint/update").hasAnyRole("USER", "ADMIN")
