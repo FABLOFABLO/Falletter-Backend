@@ -93,3 +93,11 @@ google:
   gemini:
     api:
       key: ${GEMINI_KEY}
+
+falletter:
+  item:
+    default-brick-count: 5
+    default-letter-count: 5
+  scheduler:
+    letter-delivery-rate-ms: 180000
+    letter-delivery-threshold-hours: 12
