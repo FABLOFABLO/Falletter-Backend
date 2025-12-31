@@ -4,9 +4,7 @@ import com.example.falletterbackend.falletter.dto.user.request.UserSignUpRequest
 import com.example.falletterbackend.falletter.entity.item.Item
 import com.example.falletterbackend.falletter.entity.item.repository.ItemRepository
 import com.example.falletterbackend.falletter.entity.user.User
-import com.example.falletterbackend.falletter.entity.user.repository.UserRepository
-import com.example.falletterbackend.falletter.exception.user.AlreadyAccountIdException
-import com.example.falletterbackend.falletter.exception.user.AlreadyEmailException
+import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -14,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class UserSignUpService(
-    private val userRepository: UserRepository,
+    private val userFacade: UserFacade,
     private val itemRepository: ItemRepository,
     private val passwordEncoder: PasswordEncoder,
     @Value("\${cloud.aws.stack.default.image.address}")
@@ -27,13 +25,8 @@ class UserSignUpService(
 
     @Transactional
     fun execute(request: UserSignUpRequest) {
-        if (userRepository.existsBySchoolNumber(request.schoolNumber)) {
-            throw AlreadyAccountIdException
-        }
-
-        if (userRepository.existsByEmail(request.email)) {
-            throw AlreadyEmailException
-        }
+        userFacade.validateSchoolNumberNotExists(request.schoolNumber)
+        userFacade.validateEmailNotExists(request.email)
 
         val imageUrl = if (request.profileImage.isNullOrEmpty()) {
             defaultImageAddress
@@ -51,9 +44,9 @@ class UserSignUpService(
             profileImage = imageUrl
         )
 
-        userRepository.save(newUser)
+        userFacade.saveUser(newUser)
 
-        val userReference = userRepository.getReferenceById(newUser.id)
+        val userReference = userFacade.getUserReference(newUser.id)
 
         val item = Item(
             brickCount = defaultBrickCount,

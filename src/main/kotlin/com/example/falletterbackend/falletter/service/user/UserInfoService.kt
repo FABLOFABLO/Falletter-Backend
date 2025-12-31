@@ -1,21 +1,15 @@
 package com.example.falletterbackend.falletter.service.user
 
 import com.example.falletterbackend.falletter.dto.user.response.UserInfoResponse
-import com.example.falletterbackend.falletter.entity.user.repository.UserRepository
-import com.example.falletterbackend.falletter.exception.user.UserNotFoundException
-import org.springframework.security.core.context.SecurityContextHolder
+import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 
 @Service
 class UserInfoService(
-    private val userRepository: UserRepository,
+    private val userFacade: UserFacade
 ) {
     fun execute(): UserInfoResponse {
-        val authentication = SecurityContextHolder.getContext().authentication
-        val email = authentication.name
-
-        val user = userRepository.findByEmail(email)
-            ?: throw UserNotFoundException
+        val user = userFacade.getCurrentUser()
 
         return UserInfoResponse(
             email = user.email,

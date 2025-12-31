@@ -2,25 +2,21 @@ package com.example.falletterbackend.falletter.service.admin.user
 
 import com.example.falletterbackend.falletter.dto.admin.user.response.AdminUserProfileResponse
 import com.example.falletterbackend.falletter.dto.admin.user.response.BlockResponse
-import com.example.falletterbackend.falletter.entity.block.enums.BlockType
-import com.example.falletterbackend.falletter.entity.block.repository.BlockRepository
-import com.example.falletterbackend.falletter.entity.user.repository.UserRepository
-import com.example.falletterbackend.falletter.exception.user.UserNotFoundException
-import org.springframework.data.repository.findByIdOrNull
+import com.example.falletterbackend.falletter.facade.block.BlockFacade
+import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class AdminUserProfileService(
-    private val userRepository: UserRepository,
-    private val blockRepository: BlockRepository
+    private val userFacade: UserFacade,
+    private val blockFacade: BlockFacade
 ) {
     @Transactional(readOnly = true)
     fun execute(userId: Long): AdminUserProfileResponse {
-        val user = userRepository.findByIdOrNull(userId)
-            ?: throw UserNotFoundException
+        val user = userFacade.getUserById(userId)
 
-        val blocks = blockRepository.findAllByUser(user).map { block ->
+        val blocks = blockFacade.getBlocksByUser(user).map { block ->
             BlockResponse(
                 id = block.id,
                 type = block.type,
@@ -32,7 +28,7 @@ class AdminUserProfileService(
             )
         }
 
-        val warningCount = blockRepository.countByUserAndType(user, BlockType.WARNING)
+        val warningCount = blockFacade.getWarningCountByUser(user)
 
         return AdminUserProfileResponse(
             id = user.id,

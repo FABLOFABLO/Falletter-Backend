@@ -1,34 +1,18 @@
 package com.example.falletterbackend.falletter.service.admin.user
 
-import com.example.falletterbackend.falletter.entity.block.Block
-import com.example.falletterbackend.falletter.entity.block.enums.BlockType
-import com.example.falletterbackend.falletter.entity.block.repository.BlockRepository
-import com.example.falletterbackend.falletter.entity.user.repository.UserRepository
-import com.example.falletterbackend.falletter.exception.user.UserNotFoundException
-import org.springframework.data.repository.findByIdOrNull
+import com.example.falletterbackend.falletter.facade.block.BlockFacade
+import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.time.LocalDateTime
 
 @Service
 class AdminUserWarningService(
-    private val userRepository: UserRepository,
-    private val blockRepository: BlockRepository
+    private val userFacade: UserFacade,
+    private val blockFacade: BlockFacade
 ) {
     @Transactional
     fun execute(userId: Long) {
-        val user = userRepository.findByIdOrNull(userId)
-            ?: throw UserNotFoundException
-
-        val warning = Block(
-            user = user,
-            type = BlockType.WARNING,
-            days = 0,
-            blockReason = null,
-            startDate = LocalDateTime.now(),
-            endDate = LocalDateTime.now()
-        )
-
-        blockRepository.save(warning)
+        val user = userFacade.getUserById(userId)
+        blockFacade.createWarning(user)
     }
 }

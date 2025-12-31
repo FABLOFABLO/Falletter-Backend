@@ -1,7 +1,10 @@
 package com.example.falletterbackend.falletter.facade.user
 
+import com.example.falletterbackend.falletter.dto.user.response.UserGetAllStudentResponse
 import com.example.falletterbackend.falletter.entity.user.User
 import com.example.falletterbackend.falletter.entity.user.repository.UserRepository
+import com.example.falletterbackend.falletter.exception.user.AlreadyAccountIdException
+import com.example.falletterbackend.falletter.exception.user.AlreadyEmailException
 import com.example.falletterbackend.falletter.exception.user.UserNotFoundException
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.core.context.SecurityContextHolder
@@ -26,5 +29,33 @@ class UserFacade(
 
     fun getByAccountId(email: String): User {
         return userRepository.findByEmail(email) ?: throw UserNotFoundException
+    }
+
+    fun getAllUsers(): List<User> {
+        return userRepository.findAll()
+    }
+
+    fun getAllStudents(): List<UserGetAllStudentResponse> {
+        return userRepository.findAllBy()
+    }
+
+    fun validateSchoolNumberNotExists(schoolNumber: String) {
+        if (userRepository.existsBySchoolNumber(schoolNumber)) {
+            throw AlreadyAccountIdException
+        }
+    }
+
+    fun validateEmailNotExists(email: String) {
+        if (userRepository.existsByEmail(email)) {
+            throw AlreadyEmailException
+        }
+    }
+
+    fun saveUser(user: User): User {
+        return userRepository.save(user)
+    }
+
+    fun getUserReference(userId: Long): User {
+        return userRepository.getReferenceById(userId)
     }
 }
