@@ -10,5 +10,9 @@ class ErrorResponse(
         fun of(e: FalletterException): ErrorResponse {
             return ErrorResponse(e.status, e.message)
         }
+
+        fun of(status: Int, message: String): ErrorResponse {
+            return ErrorResponse(status, message)
+        }
     }
 }
