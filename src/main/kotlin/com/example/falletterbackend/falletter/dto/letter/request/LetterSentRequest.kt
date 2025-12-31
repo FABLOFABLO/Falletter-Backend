@@ -8,5 +8,5 @@ data class LetterSentRequest(
     val content: String,
 
     @Schema(description = "수신자 ID", example = "2")
-    val reception: Long
+    val receptionId: Long
 )

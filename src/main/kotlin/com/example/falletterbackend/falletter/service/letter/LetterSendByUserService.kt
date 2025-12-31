@@ -21,7 +21,7 @@ class LetterSendByUserService(
         val user = userFacade.getCurrentUser()
         itemFacade.validateLetterAvailable(user)
 
-        val reception = userFacade.getUserById(request.reception)
+        val reception = userFacade.getUserById(request.receptionId)
         val isSafe = geminiConfig.checkForProfanity(request.content)
 
         val sendLetter = Letter(

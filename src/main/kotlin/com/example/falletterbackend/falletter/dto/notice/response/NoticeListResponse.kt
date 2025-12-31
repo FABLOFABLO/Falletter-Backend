@@ -11,7 +11,7 @@ data class NoticeListResponse(
     @Schema(description = "공지사항 제목", example = "서비스 점검 안내")
     val title: String,
 
-    @Schema(description = "작성자 이름", example = "관리자")
+    @Schema(description = "작성자 이름", example = "유하은")
     val authorName: String,
 
     @Schema(description = "작성일시", example = "2025-12-30T14:00:00")

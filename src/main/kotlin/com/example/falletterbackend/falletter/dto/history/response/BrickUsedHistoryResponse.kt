@@ -16,7 +16,7 @@ data class BrickUsedHistoryResponse(
     @Schema(description = "사용량", example = "10")
     val amount: Long,
 
-    @Schema(description = "기록 타입", example = "USE")
+    @Schema(description = "기록 타입", example = "QUESTION")
     val type: HistoryType,
 
     @Schema(description = "질문 내용", example = "가장 친한 친구는?")
@@ -31,7 +31,7 @@ data class BrickUsedHistoryResponse(
     @Schema(description = "성별", example = "MALE")
     val gender: Gender,
 
-    @Schema(description = "학번", example = "2401")
+    @Schema(description = "학번", example = "0000")
     val schoolNumber: String,
 
     @Schema(description = "생성일시", example = "2024-12-30T10:00:00")

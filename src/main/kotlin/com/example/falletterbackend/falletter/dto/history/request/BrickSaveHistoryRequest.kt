@@ -14,7 +14,7 @@ data class BrickSaveHistoryRequest(
     @Schema(description = "사용량", example = "10")
     val amount: Long,
 
-    @Schema(description = "기록 타입", example = "USE")
+    @Schema(description = "기록 타입", example = "QUESTION")
     val type: HistoryType,
 
     @Schema(description = "질문 ID", example = "1")

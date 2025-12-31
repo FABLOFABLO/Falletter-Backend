@@ -7,13 +7,13 @@ data class HintResponse(
     @Schema(description = "힌트 ID", example = "1")
     val id: Long,
 
-    @Schema(description = "첫 번째 힌트", example = "키가 170cm 이상이에요")
+    @Schema(description = "첫 번째 힌트", example = "ㅇ")
     val firstHint: String,
 
-    @Schema(description = "두 번째 힌트", example = "같은 반이에요")
+    @Schema(description = "두 번째 힌트", example = "")
     val secondHint: String,
 
-    @Schema(description = "세 번째 힌트", example = "이름이 ㄱ으로 시작해요")
+    @Schema(description = "세 번째 힌트", example = "")
     val thirdHint: String,
 
     @Schema(description = "사용자 ID", example = "1")

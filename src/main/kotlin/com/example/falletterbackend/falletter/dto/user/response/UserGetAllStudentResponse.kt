@@ -7,7 +7,7 @@ data class UserGetAllStudentResponse(
     @Schema(description = "사용자 ID", example = "1")
     val id: Long,
 
-    @Schema(description = "학번", example = "2401")
+    @Schema(description = "학번", example = "0000")
     val schoolNumber: String,
 
     @Schema(description = "이름", example = "홍길동")

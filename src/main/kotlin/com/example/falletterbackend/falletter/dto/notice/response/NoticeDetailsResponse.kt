@@ -14,7 +14,7 @@ data class NoticeDetailsResponse(
     @Schema(description = "공지사항 내용", example = "12월 31일 00:00 ~ 06:00 서비스 점검이 진행됩니다.")
     val content: String,
 
-    @Schema(description = "작성자 이름", example = "관리자")
+    @Schema(description = "작성자 이름", example = "유하은")
     val authorName: String,
 
     @Schema(description = "작성일시", example = "2025-12-30T14:00:00")
