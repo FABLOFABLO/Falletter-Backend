@@ -125,6 +125,10 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.POST, "/timer/roulette").hasAnyRole("USER", "ADMIN")
                     .requestMatchers(HttpMethod.GET, "/timer/roulette").hasAnyRole("USER", "ADMIN")
 
+                    // suspend
+                    .requestMatchers(HttpMethod.GET, "/suspend/all").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/suspend/{suspend-id}").hasAnyRole("USER", "ADMIN")
+
                     .anyRequest().hasAnyRole("USER", "ADMIN")
             }
 
