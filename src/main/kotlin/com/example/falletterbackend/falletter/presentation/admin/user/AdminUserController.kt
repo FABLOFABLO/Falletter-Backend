@@ -46,9 +46,9 @@ class AdminUserController(
     @ResponseStatus(HttpStatus.OK)
     fun getUserProfile(
         @Parameter(description = "학생 ID", example = "1")
-        @PathVariable("user-id") userId: Long
+        @PathVariable("user-id") id: Long
     ): AdminUserProfileResponse {
-        return adminUserProfileService.execute(userId)
+        return adminUserProfileService.execute(id)
     }
 
     @Operation(summary = "경고 부여", description = "학생에게 경고를 부여합니다. (ADMIN 전용)")
@@ -61,9 +61,9 @@ class AdminUserController(
     @ResponseStatus(HttpStatus.CREATED)
     fun giveWarning(
         @Parameter(description = "학생 ID", example = "1")
-        @PathVariable("user-id") userId: Long
+        @PathVariable("user-id") id: Long
     ) {
-        adminUserWarningService.execute(userId)
+        adminUserWarningService.execute(id)
     }
 
     @Operation(summary = "정지 부여", description = "학생에게 정지를 부여합니다. (ADMIN 전용)")
@@ -76,9 +76,9 @@ class AdminUserController(
     @ResponseStatus(HttpStatus.CREATED)
     fun giveBlock(
         @Parameter(description = "학생 ID", example = "1")
-        @PathVariable("user-id") userId: Long,
+        @PathVariable("user-id") id: Long,
         @RequestBody request: AdminUserBlockRequest
     ) {
-        adminUserBlockService.execute(userId, request)
+        adminUserBlockService.execute(id, request)
     }
 }

@@ -36,7 +36,7 @@ class DeviceTokenController(
     )
     @DeleteMapping(RestApiSpec.DEVICE_TOKEN_DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun deleteToken(@PathVariable("device-id") deviceId: Long) {
-        deviceTokenDeleteService.execute(deviceId)
+    fun deleteToken(@PathVariable("device-id") id: Long) {
+        deviceTokenDeleteService.execute(id)
     }
 }

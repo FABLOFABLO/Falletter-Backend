@@ -36,7 +36,7 @@ class SuspendController(
     )
     @GetMapping(RestApiSpec.SUSPEND_DETAIL)
     @ResponseStatus(HttpStatus.OK)
-    fun getBlockReason(@PathVariable("suspend-id") suspendId: Long): UserBlockReasonResponse {
-        return userBlockReasonService.execute(suspendId)
+    fun getBlockReason(@PathVariable("suspend-id") id: Long): UserBlockReasonResponse {
+        return userBlockReasonService.execute(id)
     }
 }
