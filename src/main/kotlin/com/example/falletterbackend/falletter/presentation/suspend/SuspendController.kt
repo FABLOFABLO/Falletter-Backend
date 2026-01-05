@@ -12,7 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
-@Tag(name = "Suspend", description = "경고/정지 내역 API")
+@Tag(name = "suspend", description = "경고/정지 내역 API")
 @RestController
 @RequestMapping("/suspend")
 class SuspendController(

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
-@Tag(name = "Letter", description = "편지 API")
+@Tag(name = "letter", description = "편지 API")
 @RestController
 @RequestMapping("/letter")
 class LetterController(

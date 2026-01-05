@@ -17,7 +17,7 @@ import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
-@Tag(name = "Item", description = "아이템 API")
+@Tag(name = "item", description = "아이템 API")
 @RestController
 @RequestMapping("/item")
 class ItemController(

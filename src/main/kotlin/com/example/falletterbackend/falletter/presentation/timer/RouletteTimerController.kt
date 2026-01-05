@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
-@Tag(name = "Timer", description = "룰렛 타이머 API")
+@Tag(name = "timer", description = "룰렛 타이머 API")
 @RestController
 @RequestMapping("/timer")
 class RouletteTimerController(

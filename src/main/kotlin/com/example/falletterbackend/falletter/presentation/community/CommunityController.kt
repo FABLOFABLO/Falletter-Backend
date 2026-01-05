@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
-@Tag(name = "Community", description = "커뮤니티 게시판 API")
+@Tag(name = "community", description = "커뮤니티 게시판 API")
 @RestController
 @RequestMapping("/community")
 class CommunityController(

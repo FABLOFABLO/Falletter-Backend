@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
-@Tag(name = "Comment", description = "댓글 API")
+@Tag(name = "comment", description = "댓글 API")
 @RestController
 @RequestMapping("/comment")
 class CommentController(

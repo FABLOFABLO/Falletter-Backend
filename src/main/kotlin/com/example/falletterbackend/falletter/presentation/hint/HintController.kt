@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
-@Tag(name = "Hint", description = "힌트 API")
+@Tag(name = "hint", description = "힌트 API")
 @RestController
 @RequestMapping("/hint")
 class HintController(

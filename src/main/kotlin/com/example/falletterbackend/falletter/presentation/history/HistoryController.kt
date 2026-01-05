@@ -13,7 +13,7 @@ import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
-@Tag(name = "History", description = "벽돌 사용 기록 API")
+@Tag(name = "history", description = "벽돌 사용 기록 API")
 @RestController
 @RequestMapping("/history")
 class HistoryController(

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
-@Tag(name = "Notice", description = "공지사항 API")
+@Tag(name = "notice", description = "공지사항 API")
 @RestController
 @RequestMapping("/notice")
 class NoticeController(

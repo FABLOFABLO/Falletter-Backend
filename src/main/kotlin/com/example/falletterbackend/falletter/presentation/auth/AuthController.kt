@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
-@Tag(name = "Auth", description = "인증 API")
+@Tag(name = "auth", description = "인증 API")
 @RestController
 @RequestMapping("/auth")
 class AuthController(
