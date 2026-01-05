@@ -55,4 +55,10 @@ object RestApiSpec {
     const val ADMIN_USER_PROFILE = "/user/{user-id}"
     const val ADMIN_USER_WARNING = "/user/{user-id}/warning"
     const val ADMIN_USER_BLOCK = "/user/{user-id}/block"
+
+    const val TIMER_BRICK_POST = "/brick"
+    const val TIMER_BRICK_GET = "/brick"
+
+    const val TIMER_ROULETTE_POST = "/roulette"
+    const val TIMER_ROULETTE_GET = "/roulette"
 }
