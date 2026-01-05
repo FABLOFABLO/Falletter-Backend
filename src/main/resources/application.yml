@@ -3,7 +3,7 @@ server:
 
 firebase:
   credentials:
-    path: /home/ubuntu/serviceAccountKey.json
+    path: ${FIREBASE_CREDENTIALS_PATH}
 
 springdoc:
   api-docs:
