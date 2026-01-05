@@ -61,6 +61,9 @@ dependencies {
 
 	// swagger
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
+
+	// firebase
+	implementation("com.google.firebase:firebase-admin:9.2.0")
 }
 
 kotlin {
