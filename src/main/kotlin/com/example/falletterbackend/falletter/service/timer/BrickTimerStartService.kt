@@ -12,7 +12,7 @@ class BrickTimerStartService(
 ) {
     companion object {
         const val BRICK_TIMER_KEY_PREFIX = "brick_timer:"
-        private val TIMER_DURATION = Duration.ofHours(5)
+        private val TIMER_DURATION = Duration.ofHours(4)
     }
 
     fun execute() {
