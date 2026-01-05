@@ -61,4 +61,7 @@ object RestApiSpec {
 
     const val TIMER_ROULETTE_POST = "/roulette"
     const val TIMER_ROULETTE_GET = "/roulette"
+
+    const val SUSPEND_ALL = "/all"
+    const val SUSPEND_DETAIL = "/{suspend-id}"
 }
