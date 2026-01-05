@@ -6,23 +6,25 @@ import com.google.firebase.FirebaseOptions
 import com.google.firebase.messaging.FirebaseMessaging
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import java.io.File
 
 @Configuration
 class FcmConfig {
 
     @Bean
-    fun firebaseMessaging(): FirebaseMessaging {
-        if (FirebaseApp.getApps().isEmpty()) {
-            val options = FirebaseOptions.builder()
-                .setCredentials(GoogleCredentials.fromStream(File(PATH).inputStream()))
-                .build()
-            FirebaseApp.initializeApp(options)
+    fun firebaseApp(): FirebaseApp {
+        if (FirebaseApp.getApps().isNotEmpty()) {
+            return FirebaseApp.getInstance()
         }
-        return FirebaseMessaging.getInstance()
+
+        val options = FirebaseOptions.builder()
+            .setCredentials(GoogleCredentials.getApplicationDefault())
+            .build()
+
+        return FirebaseApp.initializeApp(options)
     }
 
-    companion object {
-        private const val PATH = "./serviceAccountKey.json"
+    @Bean
+    fun firebaseMessaging(firebaseApp: FirebaseApp): FirebaseMessaging {
+        return FirebaseMessaging.getInstance(firebaseApp)
     }
 }
