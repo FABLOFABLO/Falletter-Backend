@@ -1,0 +1,92 @@
+package com.example.falletterbackend.falletter.service.fcm
+
+import com.example.falletterbackend.falletter.entity.user.User
+import com.example.falletterbackend.falletter.facade.device.DeviceTokenFacade
+import com.example.falletterbackend.falletter.facade.notification.NotificationFacade
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.Message
+import org.springframework.stereotype.Service
+
+@Service
+class FcmService(
+    private val firebaseMessaging: FirebaseMessaging,
+    private val notificationFacade: NotificationFacade,
+    private val deviceTokenFacade: DeviceTokenFacade
+) {
+    fun sendWarningNotification(user: User) {
+        val notification = notificationFacade.getOrCreateByUser(user)
+        if (notification.pushEnabled) {
+            sendToAllDevices(user, FcmMessage.Warning.TITLE, FcmMessage.Warning.BODY)
+        }
+    }
+
+    fun sendBlockNotification(user: User, days: Int) {
+        val notification = notificationFacade.getOrCreateByUser(user)
+        if (notification.pushEnabled) {
+            sendToAllDevices(user, FcmMessage.Block.TITLE, FcmMessage.Block.body(days))
+        }
+    }
+
+    fun sendCommentNotification(user: User) {
+        val notification = notificationFacade.getOrCreateByUser(user)
+        if (notification.pushEnabled && notification.commentEnabled) {
+            sendToAllDevices(user, FcmMessage.Comment.TITLE, FcmMessage.Comment.BODY)
+        }
+    }
+
+    fun sendBrickActivationNotification(user: User) {
+        val notification = notificationFacade.getOrCreateByUser(user)
+        if (notification.pushEnabled && notification.brickActivationEnabled) {
+            sendToAllDevices(user, FcmMessage.BrickActivation.TITLE, FcmMessage.BrickActivation.BODY)
+        }
+    }
+
+    fun sendBrickNotification(user: User) {
+        val notification = notificationFacade.getOrCreateByUser(user)
+        if (notification.pushEnabled && notification.brickEnabled) {
+            sendToAllDevices(user, FcmMessage.Brick.TITLE, FcmMessage.Brick.BODY)
+        }
+    }
+
+    fun sendLetterNotification(user: User) {
+        val notification = notificationFacade.getOrCreateByUser(user)
+        if (notification.pushEnabled && notification.letterEnabled) {
+            sendToAllDevices(user, FcmMessage.Letter.TITLE, FcmMessage.Letter.BODY)
+        }
+    }
+
+    fun sendLetterSentNotification(user: User) {
+        val notification = notificationFacade.getOrCreateByUser(user)
+        if (notification.pushEnabled && notification.letterSentEnabled) {
+            sendToAllDevices(user, FcmMessage.LetterSent.TITLE, FcmMessage.LetterSent.BODY)
+        }
+    }
+
+    fun sendAdminNoticeNotification(user: User, noticeTitle: String) {
+        val notification = notificationFacade.getOrCreateByUser(user)
+        if (notification.pushEnabled && notification.adminNoticeEnabled) {
+            sendToAllDevices(user, FcmMessage.AdminNotice.TITLE, FcmMessage.AdminNotice.body(noticeTitle))
+        }
+    }
+
+    private fun sendToAllDevices(user: User, title: String, body: String) {
+        val tokens = deviceTokenFacade.getTokensByUser(user)
+        tokens.forEach { token ->
+            sendNotification(token, title, body)
+        }
+    }
+
+    private fun sendNotification(fcmToken: String, title: String, body: String) {
+        val notification = com.google.firebase.messaging.Notification.builder()
+            .setTitle(title)
+            .setBody(body)
+            .build()
+
+        val message = Message.builder()
+            .setToken(fcmToken)
+            .setNotification(notification)
+            .build()
+
+        firebaseMessaging.send(message)
+    }
+}
