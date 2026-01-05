@@ -27,4 +27,12 @@ class RedisUtils(private val redisTemplate: RedisTemplate<String, String>) {
     fun checkExistsValue(value: String): Boolean {
         return value != "false"
     }
+
+    fun getTtl(key: String): Long {
+        return redisTemplate.getExpire(key)
+    }
+
+    fun hasKey(key: String): Boolean {
+        return redisTemplate.hasKey(key)
+    }
 }
