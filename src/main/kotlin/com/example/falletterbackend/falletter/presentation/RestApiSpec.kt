@@ -64,4 +64,10 @@ object RestApiSpec {
 
     const val SUSPEND_ALL = "/all"
     const val SUSPEND_DETAIL = "/{suspend-id}"
+
+    const val NOTIFICATION_GET = "/setting"
+    const val NOTIFICATION_UPDATE = "/setting"
+
+    const val DEVICE_TOKEN_REGISTER = "/token"
+    const val DEVICE_TOKEN_DELETE = "/token/{device-id}"
 }
