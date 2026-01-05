@@ -1,8 +1,8 @@
 package com.example.falletterbackend.falletter.service.admin.user
 
 import com.example.falletterbackend.falletter.dto.admin.user.response.AdminUserProfileResponse
-import com.example.falletterbackend.falletter.dto.admin.user.response.AdminUserBlockResponse
-import com.example.falletterbackend.falletter.facade.block.BlockFacade
+import com.example.falletterbackend.falletter.dto.admin.user.response.AdminUserSanctionResponse
+import com.example.falletterbackend.falletter.facade.sanction.SanctionFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -10,25 +10,25 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class AdminUserProfileService(
     private val userFacade: UserFacade,
-    private val blockFacade: BlockFacade
+    private val sanctionFacade: SanctionFacade
 ) {
     @Transactional(readOnly = true)
     fun execute(userId: Long): AdminUserProfileResponse {
         val user = userFacade.getUserById(userId)
 
-        val blocks = blockFacade.getBlocksByUser(user).map { block ->
-            AdminUserBlockResponse(
-                id = block.id,
-                type = block.type,
-                days = block.days,
-                reason = block.blockReason,
-                startDate = block.startDate,
-                endDate = block.endDate,
-                createdAt = block.createdAt
+        val sanctions = sanctionFacade.getSanctionsByUser(user).map { sanction ->
+            AdminUserSanctionResponse(
+                id = sanction.id,
+                type = sanction.type,
+                days = sanction.days,
+                reason = sanction.blockReason,
+                startDate = sanction.startDate,
+                endDate = sanction.endDate,
+                createdAt = sanction.createdAt
             )
         }
 
-        val warningCount = blockFacade.getWarningCountByUser(user)
+        val warningCount = sanctionFacade.getWarningCountByUser(user)
 
         return AdminUserProfileResponse(
             id = user.id,
@@ -37,7 +37,7 @@ class AdminUserProfileService(
             profileImage = user.profileImage,
             gender = user.gender,
             warningCount = warningCount,
-            blocks = blocks
+            sanctions = sanctions
         )
     }
 }

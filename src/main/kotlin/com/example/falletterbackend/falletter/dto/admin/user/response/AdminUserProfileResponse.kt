@@ -24,5 +24,5 @@ data class AdminUserProfileResponse(
     val warningCount: Long,
 
     @Schema(description = "경고/정지 이력 목록")
-    val blocks: List<AdminUserBlockResponse>
+    val sanctions: List<AdminUserSanctionResponse>
 )

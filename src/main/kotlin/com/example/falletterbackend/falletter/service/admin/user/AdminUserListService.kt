@@ -1,7 +1,7 @@
 package com.example.falletterbackend.falletter.service.admin.user
 
 import com.example.falletterbackend.falletter.dto.admin.user.response.AdminUserListResponse
-import com.example.falletterbackend.falletter.facade.block.BlockFacade
+import com.example.falletterbackend.falletter.facade.sanction.SanctionFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class AdminUserListService(
     private val userFacade: UserFacade,
-    private val blockFacade: BlockFacade
+    private val sanctionFacade: SanctionFacade
 ) {
     @Transactional(readOnly = true)
     fun execute(): List<AdminUserListResponse> {
@@ -20,7 +20,7 @@ class AdminUserListService(
                 name = user.name,
                 profileImage = user.profileImage,
                 gender = user.gender,
-                warningCount = blockFacade.getWarningCountByUser(user)
+                warningCount = sanctionFacade.getWarningCountByUser(user)
             )
         }
     }
