@@ -50,8 +50,4 @@ jobs:
             sudo docker rm falletter-container || true
 
             echo ">>> Running new container with .env..."
-            sudo docker run -d -p 8080:8080 \
-              --name falletter-container \
-              --env-file /home/ubuntu/falletter/.env \
-              -v /home/ubuntu/serviceAccountKey.json:/app/serviceAccountKey.json:ro \
-              eeuunn/falletter-image:latest
+            sudo docker run -d -p 8080:8080 --name falletter-container --env-file /home/ubuntu/falletter/.env -v /home/ubuntu/serviceAccountKey.json:/app/serviceAccountKey.json:ro eeuunn/falletter-image:latest
