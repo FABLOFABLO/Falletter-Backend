@@ -87,26 +87,37 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.GET, "/letter/sent/all").hasAnyRole("USER", "ADMIN")
                     .requestMatchers(HttpMethod.GET, "/letter/received/{letter-id}").hasAnyRole("USER", "ADMIN")
                     .requestMatchers(HttpMethod.GET, "/letter/received/all").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/letter/unpassed").hasAnyRole("ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/letter/unpassed/{letter-id}").hasAnyRole("ADMIN")
 
                     // question
                     .requestMatchers(HttpMethod.GET, "/question/all").hasAnyRole("USER", "ADMIN")
 
                     // hint
-
                     .requestMatchers(HttpMethod.POST, "/hint/save").hasAnyRole("USER", "ADMIN")
                     .requestMatchers(HttpMethod.GET, "/hint/{answer-id}").hasAnyRole("USER", "ADMIN")
                     .requestMatchers(HttpMethod.PATCH, "/hint/update").hasAnyRole("USER", "ADMIN")
 
                     // notice
+                    .requestMatchers(HttpMethod.GET, "/notice").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/notice/{notice-id}").hasAnyRole("USER", "ADMIN")
+
+                    // admin letter
+                    .requestMatchers(HttpMethod.GET, "/admin/letter/unpassed").hasAnyRole("ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/admin/letter/unpassed/{letter-id}").hasAnyRole("ADMIN")
+
+                    // admin notice
                     .requestMatchers(HttpMethod.POST, "/admin/notice").hasRole("ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/admin/notice").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/admin/notice/{notice-id}").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/admin/notice").hasAnyRole("ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/admin/notice/{notice-id}").hasAnyRole("ADMIN")
                     .requestMatchers(HttpMethod.DELETE, "/admin/notice/{notice-id}").hasRole("ADMIN")
 
                     // admin community
                     .requestMatchers(HttpMethod.PATCH, "/admin/community/{community-id}").hasRole("ADMIN")
+
+                    // admin user
+                    .requestMatchers(HttpMethod.GET, "/admin/user/all").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/admin/user/{user-id}").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/admin/user/{user-id}/warning").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/admin/user/{user-id}/block").hasRole("ADMIN")
 
                     .anyRequest().hasAnyRole("USER", "ADMIN")
             }
