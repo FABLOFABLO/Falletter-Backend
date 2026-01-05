@@ -6,6 +6,7 @@ import com.google.firebase.FirebaseOptions
 import com.google.firebase.messaging.FirebaseMessaging
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.core.io.ClassPathResource
 
 @Configuration
 class FcmConfig {
@@ -16,8 +17,9 @@ class FcmConfig {
             return FirebaseApp.getInstance()
         }
 
+        val resource = ClassPathResource("serviceAccountKey.json")
         val options = FirebaseOptions.builder()
-            .setCredentials(GoogleCredentials.getApplicationDefault())
+            .setCredentials(GoogleCredentials.fromStream(resource.inputStream))
             .build()
 
         return FirebaseApp.initializeApp(options)

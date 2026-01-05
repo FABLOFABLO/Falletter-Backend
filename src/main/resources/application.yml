@@ -1,6 +1,10 @@
 server:
   port: 8080
 
+firebase:
+  credentials:
+    path: /home/ubuntu/serviceAccountKey.json
+
 springdoc:
   api-docs:
     path: /v3/api-docs
