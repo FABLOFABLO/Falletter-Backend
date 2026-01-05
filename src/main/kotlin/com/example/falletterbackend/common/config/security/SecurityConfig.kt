@@ -119,6 +119,12 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.POST, "/admin/user/{user-id}/warning").hasRole("ADMIN")
                     .requestMatchers(HttpMethod.POST, "/admin/user/{user-id}/block").hasRole("ADMIN")
 
+                    // timer
+                    .requestMatchers(HttpMethod.POST, "/timer/brick").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/timer/brick").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/timer/roulette").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/timer/roulette").hasAnyRole("USER", "ADMIN")
+
                     .anyRequest().hasAnyRole("USER", "ADMIN")
             }
 
