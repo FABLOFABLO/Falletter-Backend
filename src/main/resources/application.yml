@@ -94,6 +94,10 @@ google:
     api:
       key: ${GEMINI_KEY}
 
+fcm:
+  credentials:
+    path: ${FCM_CREDENTIALS_PATH}
+
 falletter:
   item:
     default-brick-count: 5
