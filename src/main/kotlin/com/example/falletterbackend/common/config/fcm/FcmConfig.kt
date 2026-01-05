@@ -4,30 +4,34 @@ import com.google.auth.oauth2.GoogleCredentials
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
 import com.google.firebase.messaging.FirebaseMessaging
-import org.springframework.beans.factory.annotation.Value
+import jakarta.annotation.PostConstruct
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import java.io.FileInputStream
-import javax.annotation.PostConstruct
+import java.io.File
+import java.io.IOException
 
 @Configuration
-class FcmConfig(
-    @Value("\${fcm.credentials.path}")
-    private val credentialsPath: String
-) {
+class FcmConfig {
     @PostConstruct
     fun initialize() {
-        if (FirebaseApp.getApps().isEmpty()) {
-            val options = FirebaseOptions.builder()
-                .setCredentials(GoogleCredentials.fromStream(FileInputStream(credentialsPath)))
-                .build()
-
-            FirebaseApp.initializeApp(options)
+        try {
+            if (FirebaseApp.getApps().isEmpty()) {
+                val options = FirebaseOptions.builder()
+                    .setCredentials(GoogleCredentials.fromStream(File(PATH).inputStream()))
+                    .build()
+                FirebaseApp.initializeApp(options)
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
         }
     }
 
     @Bean
     fun firebaseMessaging(): FirebaseMessaging {
         return FirebaseMessaging.getInstance()
+    }
+
+    companion object {
+        private const val PATH = "./serviceAccountKey.json"
     }
 }
