@@ -1,5 +1,6 @@
 HELP.md
 .gradle
+.env
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
@@ -38,9 +39,6 @@ out/
 
 ### Kotlin ###
 .kotlin
-
-### Environment ###
-.env
 
 ### Firebase ###
 *firebase*.json
