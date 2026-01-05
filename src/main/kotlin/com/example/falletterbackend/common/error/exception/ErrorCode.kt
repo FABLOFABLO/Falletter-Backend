@@ -59,6 +59,9 @@ enum class ErrorCode(
     // block
     BLOCK_NOT_FOUND(404, "Block Not Found"),
 
+    // notification
+    NOTIFICATION_NOT_FOUND(404, "Notification Not Found"),
+
     // internal
     INTERNAL_SERVER_ERROR(500, "Internal Server Error");
 }
