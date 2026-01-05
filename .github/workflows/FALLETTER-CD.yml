@@ -53,6 +53,5 @@ jobs:
             sudo docker run -d -p 8080:8080 \
               --name falletter-container \
               --env-file /home/ubuntu/falletter/.env \
-              eeuunn/falletter-image:latest
               -v /home/ubuntu/serviceAccountKey.json:/app/serviceAccountKey.json:ro \
-                            eeuunn/falletter-image:latest
+              eeuunn/falletter-image:latest
