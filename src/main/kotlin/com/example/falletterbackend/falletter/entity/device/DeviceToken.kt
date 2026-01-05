@@ -12,8 +12,12 @@ class DeviceToken(
     val user: User,
 
     @Column(name = "token", columnDefinition = "VARCHAR(512)", nullable = false)
-    val token: String,
+    var token: String,
 
     @Column(name = "device_id", columnDefinition = "VARCHAR(255)", nullable = false)
     val deviceId: String
-) : EntityBase()
+) : EntityBase() {
+    fun updateToken(newToken: String) {
+        this.token = newToken
+    }
+}

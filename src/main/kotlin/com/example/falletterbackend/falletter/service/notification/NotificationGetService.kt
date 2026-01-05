@@ -11,7 +11,7 @@ class NotificationGetService(
     private val userFacade: UserFacade,
     private val notificationFacade: NotificationFacade
 ) {
-    @Transactional(readOnly = true)
+    @Transactional
     fun execute(): NotificationResponse {
         val user = userFacade.getCurrentUser()
         val notification = notificationFacade.getOrCreateByUser(user)

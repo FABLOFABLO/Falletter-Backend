@@ -21,8 +21,8 @@ class DeviceTokenFacade(
         val existing = deviceTokenRepository.findByUserAndDeviceId(user, deviceId)
 
         return if (existing != null) {
-            deviceTokenRepository.delete(existing)
-            deviceTokenRepository.save(DeviceToken(user = user, token = token, deviceId = deviceId))
+            existing.updateToken(token)
+            existing
         } else {
             deviceTokenRepository.save(DeviceToken(user = user, token = token, deviceId = deviceId))
         }

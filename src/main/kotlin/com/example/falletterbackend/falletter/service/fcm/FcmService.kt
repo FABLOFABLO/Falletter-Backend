@@ -4,7 +4,9 @@ import com.example.falletterbackend.falletter.entity.user.User
 import com.example.falletterbackend.falletter.facade.device.DeviceTokenFacade
 import com.example.falletterbackend.falletter.facade.notification.NotificationFacade
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.FirebaseMessagingException
 import com.google.firebase.messaging.Message
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
 @Service
@@ -13,6 +15,7 @@ class FcmService(
     private val notificationFacade: NotificationFacade,
     private val deviceTokenFacade: DeviceTokenFacade
 ) {
+    private val log = LoggerFactory.getLogger(FcmService::class.java)
     fun sendWarningNotification(user: User) {
         val notification = notificationFacade.getOrCreateByUser(user)
         if (notification.pushEnabled) {
@@ -77,16 +80,20 @@ class FcmService(
     }
 
     private fun sendNotification(fcmToken: String, title: String, body: String) {
-        val notification = com.google.firebase.messaging.Notification.builder()
-            .setTitle(title)
-            .setBody(body)
-            .build()
+        try {
+            val notification = com.google.firebase.messaging.Notification.builder()
+                .setTitle(title)
+                .setBody(body)
+                .build()
 
-        val message = Message.builder()
-            .setToken(fcmToken)
-            .setNotification(notification)
-            .build()
+            val message = Message.builder()
+                .setToken(fcmToken)
+                .setNotification(notification)
+                .build()
 
-        firebaseMessaging.send(message)
+            firebaseMessaging.send(message)
+        } catch (e: FirebaseMessagingException) {
+            log.warn("FCM 전송 실패 - token: {}, error: {}", fcmToken, e.message)
+        }
     }
 }
