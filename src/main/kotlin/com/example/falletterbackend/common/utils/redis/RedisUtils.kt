@@ -1,6 +1,5 @@
 package com.example.falletterbackend.common.utils.redis
 
-import com.example.falletterbackend.falletter.dto.auth.request.AuthMailMatchRequest
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.data.redis.core.ValueOperations
 import org.springframework.stereotype.Component
@@ -19,13 +18,12 @@ class RedisUtils(private val redisTemplate: RedisTemplate<String, String>) {
         values.set(key, data, duration)
     }
 
-    fun getValues(request: AuthMailMatchRequest): String? {
-        val valueOperations = redisTemplate.opsForValue()
-        return valueOperations[request.email]
+    fun getValues(key: String): String? {
+        return redisTemplate.opsForValue()[key]
     }
 
-    fun checkExistsValue(value: String): Boolean {
-        return value != "false"
+    fun deleteValues(key: String): Boolean {
+        return redisTemplate.delete(key)
     }
 
     fun getTtl(key: String): Long {
