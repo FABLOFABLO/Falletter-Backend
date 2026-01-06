@@ -1,7 +1,7 @@
 package com.example.falletterbackend.common.security
 
-import com.example.falletterbackend.common.exception.TokenExpiredException
-import com.example.falletterbackend.common.exception.TokenInvalidException
+import com.example.falletterbackend.falletter.exception.auth.TokenExpiredException
+import com.example.falletterbackend.falletter.exception.auth.TokenInvalidException
 import com.example.falletterbackend.common.security.auth.AuthDetailsService
 import com.example.falletterbackend.falletter.dto.auth.response.AuthTokenResponse
 import com.example.falletterbackend.falletter.entity.auth.RefreshToken

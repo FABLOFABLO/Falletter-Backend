@@ -62,6 +62,11 @@ enum class ErrorCode(
     // notification
     NOTIFICATION_NOT_FOUND(404, "Notification Not Found"),
 
+    // s3
+    S3_UPLOAD_FAILED(500, "S3 Upload Failed"),
+    S3_DELETE_FAILED(500, "S3 Delete Failed"),
+    S3_INVALID_URL(400, "Invalid S3 URL Format"),
+
     // internal
     INTERNAL_SERVER_ERROR(500, "Internal Server Error");
 }

@@ -1,7 +1,7 @@
 package com.example.falletterbackend.common.error
 
 import com.example.falletterbackend.common.error.exception.FalletterException
-import com.example.falletterbackend.common.exception.InternalServerError
+import com.example.falletterbackend.falletter.exception.InternalServerErrorException
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
@@ -30,7 +30,7 @@ class ExceptionFilter(
             log.error("Filter exception occurred: {}", e.message)
             when (e) {
                 is FalletterException -> writeErrorCode(e, response)
-                else -> writeErrorCode(InternalServerError, response)
+                else -> writeErrorCode(InternalServerErrorException, response)
             }
         }
     }

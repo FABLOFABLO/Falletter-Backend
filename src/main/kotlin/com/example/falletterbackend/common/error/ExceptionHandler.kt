@@ -1,6 +1,7 @@
 package com.example.falletterbackend.common.error
 
 import com.example.falletterbackend.common.error.exception.FalletterException
+import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 
 @RestControllerAdvice
 class ExceptionHandler {
+    private val log = LoggerFactory.getLogger(javaClass)
     @ExceptionHandler(FalletterException::class)
     fun customExceptionHandling(e: FalletterException): ResponseEntity<ErrorResponse> {
         return ResponseEntity(ErrorResponse.of(e), HttpStatus.valueOf(e.status))
@@ -60,6 +62,7 @@ class ExceptionHandler {
 
     @ExceptionHandler(Exception::class)
     fun handleException(e: Exception): ResponseEntity<ErrorResponse> {
+        log.error("Unexpected exception occurred", e)
         return ResponseEntity(
             ErrorResponse.of(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Internal server error"),
             HttpStatus.INTERNAL_SERVER_ERROR

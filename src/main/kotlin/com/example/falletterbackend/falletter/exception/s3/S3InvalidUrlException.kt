@@ -1,6 +1,6 @@
-package com.example.falletterbackend.common.exception
+package com.example.falletterbackend.falletter.exception.s3
 
 import com.example.falletterbackend.common.error.exception.ErrorCode
 import com.example.falletterbackend.common.error.exception.FalletterException
 
-object TokenInvalidException : FalletterException(ErrorCode.TOKEN_INVALID)
+object S3InvalidUrlException : FalletterException(ErrorCode.S3_INVALID_URL)
