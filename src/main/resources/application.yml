@@ -86,14 +86,19 @@ logging:
 
 cloud:
   aws:
+    credentials:
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
     region:
       static: ap-northeast-2
       auto: false
+    s3:
+      bucket: ${AWS_S3_BUCKET}
     stack:
       auto: false
       default:
         image:
-          address: "s3://falletter/users/?????????.jpeg"
+          address: ${AWS_DEFAULT_IMAGE_ADDRESS}
 
 google:
   gemini:

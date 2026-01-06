@@ -64,6 +64,9 @@ dependencies {
 
 	// firebase
 	implementation("com.google.firebase:firebase-admin:9.2.0")
+
+	// aws s3
+	implementation("software.amazon.awssdk:s3:2.25.16")
 }
 
 kotlin {
