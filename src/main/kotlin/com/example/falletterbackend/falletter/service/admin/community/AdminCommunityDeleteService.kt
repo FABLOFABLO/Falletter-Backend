@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.service.admin.community
 
-import com.example.falletterbackend.common.exception.AccessDeniedException
+import com.example.falletterbackend.falletter.exception.auth.AccessDeniedException
 import com.example.falletterbackend.falletter.entity.user.enums.Role
 import com.example.falletterbackend.falletter.exception.community.CommunityAlreadyDeletedException
 import com.example.falletterbackend.falletter.facade.community.CommunityFacade

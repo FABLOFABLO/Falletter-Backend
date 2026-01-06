@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.service.admin.notice
 
-import com.example.falletterbackend.common.exception.AccessDeniedException
+import com.example.falletterbackend.falletter.exception.auth.AccessDeniedException
 import com.example.falletterbackend.falletter.dto.notice.request.NoticeCreateRequest
 import com.example.falletterbackend.falletter.entity.notice.Notice
 import com.example.falletterbackend.falletter.entity.notice.repository.NoticeRepository
