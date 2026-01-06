@@ -37,7 +37,12 @@ class SwaggerConfig(
             )
             .servers(
                 listOf(
-                    Server().url("https://falletter.co.kr")
+                    Server()
+                        .url("http://localhost:8080")
+                        .description("dev"),
+                    Server()
+                        .url("https://falletter.co.kr")
+                        .description("prod")
                 )
             )
             .components(
