@@ -70,4 +70,6 @@ object RestApiSpec {
 
     const val DEVICE_TOKEN_REGISTER = "/token"
     const val DEVICE_TOKEN_DELETE = "/token/{device-id}"
+
+    const val IMAGE_UPLOAD = "/upload"
 }
