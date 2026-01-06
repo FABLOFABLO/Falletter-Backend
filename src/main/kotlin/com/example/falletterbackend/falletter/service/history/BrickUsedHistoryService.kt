@@ -19,7 +19,7 @@ class BrickUsedHistoryService(
         val histories = historyRepository.findAllByWriterUserId(user)
 
         if (histories.isEmpty()) {
-            HistoryNotFoundException
+            throw HistoryNotFoundException
         }
 
         return histories.mapNotNull {

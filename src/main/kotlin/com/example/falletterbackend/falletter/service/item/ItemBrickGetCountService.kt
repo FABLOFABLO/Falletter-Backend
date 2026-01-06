@@ -7,8 +7,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class
-ItemBrickGetCountService(
+class ItemBrickGetCountService(
     private val userFacade: UserFacade,
     private val itemRepository: ItemRepository
 ) {

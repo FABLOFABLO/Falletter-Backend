@@ -11,7 +11,7 @@ class AuthMailMatchService(
     private val redisUtils: RedisUtils
 ) {
     fun execute(request: AuthMailMatchRequest) {
-        val redisAuthCode = redisUtils.getValues(request) ?: throw UnExistVerifyCodeException
+        val redisAuthCode = redisUtils.getValues(request.email) ?: throw UnExistVerifyCodeException
         if (redisAuthCode != request.verifyCode) {
             throw UnMatchVerifyCodeException
         }
