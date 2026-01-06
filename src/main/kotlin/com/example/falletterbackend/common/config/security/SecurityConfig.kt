@@ -132,6 +132,9 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.GET, "/suspend/all").hasAnyRole("USER", "ADMIN")
                     .requestMatchers(HttpMethod.GET, "/suspend/{suspend-id}").hasAnyRole("USER", "ADMIN")
 
+                    // image
+                    .requestMatchers(HttpMethod.POST, "/image/upload").hasAnyRole("USER", "ADMIN")
+
                     .anyRequest().hasAnyRole("USER", "ADMIN")
             }
 
