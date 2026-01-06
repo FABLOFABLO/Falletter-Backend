@@ -8,7 +8,9 @@ firebase:
 springdoc:
   api-docs:
     path: /v3/api-docs
+    enabled: true
   swagger-ui:
+    url: /v3/api-docs
     path: /swagger-ui.html
     enabled: true
   packages-to-scan: com.example.falletterbackend
