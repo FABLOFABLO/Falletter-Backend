@@ -7,6 +7,7 @@ import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.oas.models.info.Info
 import io.swagger.v3.oas.models.security.SecurityRequirement
 import io.swagger.v3.oas.models.security.SecurityScheme
+import io.swagger.v3.oas.models.servers.Server
 import io.swagger.v3.oas.models.tags.Tag
 import org.springdoc.core.customizers.OpenApiCustomizer
 import org.springframework.context.annotation.Bean
@@ -16,6 +17,34 @@ import org.springframework.context.annotation.Configuration
 class SwaggerConfig(
     private val objectMapper: ObjectMapper
 ) {
+
+    @Bean
+    fun openAPI(): OpenAPI {
+        val securityScheme = SecurityScheme()
+            .type(SecurityScheme.Type.HTTP)
+            .scheme("bearer")
+            .bearerFormat("JWT")
+            .name("Authorization")
+
+        val securityRequirement = SecurityRequirement().addList("Bearer Token")
+
+        return OpenAPI()
+            .info(
+                Info()
+                    .title("Falletter API")
+                    .description("Falletter Backend API Documentation")
+                    .version("1.0.0")
+            )
+            .servers(
+                listOf(
+                    Server().url("https://falletter.co.kr")
+                )
+            )
+            .components(
+                Components().addSecuritySchemes("Bearer Token", securityScheme)
+            )
+            .addSecurityItem(securityRequirement)
+    }
 
     @Bean
     fun modelResolver(): ModelResolver {
@@ -43,29 +72,6 @@ class SwaggerConfig(
         "Admin Letter",
         "Admin Notice",
     )
-
-    @Bean
-    fun openAPI(): OpenAPI {
-        val securityScheme = SecurityScheme()
-            .type(SecurityScheme.Type.HTTP)
-            .scheme("bearer")
-            .bearerFormat("JWT")
-            .name("Authorization")
-
-        val securityRequirement = SecurityRequirement().addList("Bearer Token")
-
-        return OpenAPI()
-            .info(
-                Info()
-                    .title("Falletter API")
-                    .description("Falletter Backend API Documentation")
-                    .version("1.0.0")
-            )
-            .components(
-                Components().addSecuritySchemes("Bearer Token", securityScheme)
-            )
-            .addSecurityItem(securityRequirement)
-    }
 
     @Bean
     fun sortTagsAlphabetically(): OpenApiCustomizer {
