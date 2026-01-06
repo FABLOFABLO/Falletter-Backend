@@ -59,6 +59,7 @@ class SwaggerConfig(
     private val tagOrder = listOf(
         "auth",
         "user",
+        "image",
         "answer",
         "community",
         "comment",
@@ -84,6 +85,7 @@ class SwaggerConfig(
             val tagDescriptions = mapOf(
                 "auth" to "인증 API",
                 "user" to "사용자 API",
+                "image" to "이미지 API",
                 "answer" to "답변 API",
                 "community" to "커뮤니티 게시판 API",
                 "comment" to "댓글 API",
