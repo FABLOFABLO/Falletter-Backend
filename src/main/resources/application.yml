@@ -98,7 +98,7 @@ cloud:
       auto: false
       default:
         image:
-          address: ${AWS_DEFAULT_IMAGE_ADDRESS}
+          address: https://fablo.s3.ap-northeast-2.amazonaws.com/falletter/profile/default.png
 
 google:
   gemini:
