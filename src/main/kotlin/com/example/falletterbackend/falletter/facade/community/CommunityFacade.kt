@@ -27,6 +27,10 @@ class CommunityFacade(
         return communityRepository.findAll()
     }
 
+    fun getAllCommunitiesWithAuthor(): List<Community> {
+        return communityRepository.findAllWithAuthorOrderByIdDesc()
+    }
+
     fun saveCommunity(community: Community): Community {
         return communityRepository.save(community)
     }

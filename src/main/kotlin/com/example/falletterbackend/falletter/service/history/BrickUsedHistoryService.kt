@@ -15,7 +15,7 @@ class BrickUsedHistoryService(
     fun execute(): List<BrickUsedHistoryResponse> {
         val user = userFacade.getCurrentUser()
 
-        val histories = historyFacade.getHistoriesByWriter(user)
+        val histories = historyFacade.getHistoriesByWriterWithRelations(user)
 
         return histories.mapNotNull {
             it.question?.let { question ->

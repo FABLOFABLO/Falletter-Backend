@@ -18,6 +18,14 @@ class HistoryFacade(
         return histories
     }
 
+    fun getHistoriesByWriterWithRelations(writer: User): List<History> {
+        val histories = historyRepository.findAllByWriterUserIdWithRelations(writer)
+        if (histories.isEmpty()) {
+            throw HistoryNotFoundException
+        }
+        return histories
+    }
+
     fun save(history: History): History {
         return historyRepository.save(history)
     }

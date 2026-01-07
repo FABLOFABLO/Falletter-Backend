@@ -12,7 +12,7 @@ class CommunityGetAllPostService(
 ) {
     @Transactional(readOnly = true)
     fun execute(): List<CommunityPostsListResponse> {
-        val communities = communityFacade.getAllCommunities()
+        val communities = communityFacade.getAllCommunitiesWithAuthor()
 
         return communities.map {
             CommunityPostsListResponse(
@@ -24,6 +24,6 @@ class CommunityGetAllPostService(
                 createdAt = it.createdAt,
                 updatedAt = it.updatedAt,
             )
-        }.sortedByDescending { it.id }
+        }
     }
 }

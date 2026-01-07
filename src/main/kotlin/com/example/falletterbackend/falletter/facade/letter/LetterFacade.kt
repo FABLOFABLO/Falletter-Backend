@@ -37,6 +37,14 @@ class LetterFacade(
         return letters
     }
 
+    fun getUnpassedLettersWithRelations(): List<Letter> {
+        val letters = letterRepository.findAllUnpassedWithRelations()
+        if (letters.isEmpty()) {
+            throw LetterNotFoundException
+        }
+        return letters
+    }
+
     fun getReceivedLetters(userId: Long): List<Letter> {
         val letters = letterRepository.findAllByReception_Id(userId)
         if (letters.isEmpty()) {
@@ -45,8 +53,24 @@ class LetterFacade(
         return letters
     }
 
+    fun getReceivedPassedLettersWithSender(userId: Long): List<Letter> {
+        val letters = letterRepository.findAllByReceptionIdAndPassedWithSender(userId)
+        if (letters.isEmpty()) {
+            throw LetterNotReceivedException
+        }
+        return letters
+    }
+
     fun getSentLetters(user: User): List<Letter> {
         val letters = letterRepository.findAllBySender(user)
+        if (letters.isEmpty()) {
+            throw LetterNotSendException
+        }
+        return letters
+    }
+
+    fun getSentPassedLettersWithReception(user: User): List<Letter> {
+        val letters = letterRepository.findAllBySenderAndPassedWithReception(user)
         if (letters.isEmpty()) {
             throw LetterNotSendException
         }

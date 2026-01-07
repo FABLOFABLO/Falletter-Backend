@@ -14,10 +14,8 @@ class LetterSentListService(
     @Transactional(readOnly = true)
     fun execute(): List<LetterSentListResponse> {
         val user = userFacade.getCurrentUser()
-        val letters = letterFacade.getSentLetters(user)
+        val letters = letterFacade.getSentPassedLettersWithReception(user)
 
-        return letters
-            .filter { it.isPassed }
-            .map { it.toSentListResponse() }
+        return letters.map { it.toSentListResponse() }
     }
 }

@@ -11,7 +11,7 @@ class AdminLetterUnpassedListService(
 ) {
     @Transactional(readOnly = true)
     fun execute(): List<AdminLetterUnpassedListResponse> {
-        val letters = letterFacade.getUnpassedLetters()
+        val letters = letterFacade.getUnpassedLettersWithRelations()
 
         return letters.map {
             AdminLetterUnpassedListResponse(
