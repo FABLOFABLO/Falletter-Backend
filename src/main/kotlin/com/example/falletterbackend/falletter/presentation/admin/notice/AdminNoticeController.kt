@@ -1,8 +1,8 @@
 package com.example.falletterbackend.falletter.presentation.admin.notice
 
-import com.example.falletterbackend.falletter.dto.notice.request.NoticeCreateRequest
-import com.example.falletterbackend.falletter.dto.notice.response.NoticeDetailsResponse
-import com.example.falletterbackend.falletter.dto.notice.response.NoticeListResponse
+import com.example.falletterbackend.falletter.dto.admin.notice.request.NoticeCreateRequest
+import com.example.falletterbackend.falletter.dto.admin.notice.response.NoticeDetailsResponse
+import com.example.falletterbackend.falletter.dto.admin.notice.response.NoticeListResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
 import com.example.falletterbackend.falletter.service.admin.notice.AdminNoticeCreateService
 import com.example.falletterbackend.falletter.service.admin.notice.AdminNoticeDeleteService

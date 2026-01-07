@@ -1,4 +1,4 @@
-package com.example.falletterbackend.falletter.dto.notice.request
+package com.example.falletterbackend.falletter.dto.admin.notice.request
 
 import io.swagger.v3.oas.annotations.media.Schema
 

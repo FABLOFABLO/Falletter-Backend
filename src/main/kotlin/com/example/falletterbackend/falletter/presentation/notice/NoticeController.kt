@@ -1,7 +1,7 @@
 package com.example.falletterbackend.falletter.presentation.notice
 
-import com.example.falletterbackend.falletter.dto.notice.response.NoticeDetailsResponse
-import com.example.falletterbackend.falletter.dto.notice.response.NoticeListResponse
+import com.example.falletterbackend.falletter.dto.admin.notice.response.NoticeDetailsResponse
+import com.example.falletterbackend.falletter.dto.admin.notice.response.NoticeListResponse
 import com.example.falletterbackend.falletter.service.notice.NoticeGetAllService
 import com.example.falletterbackend.falletter.service.notice.NoticeGetDetailService
 import io.swagger.v3.oas.annotations.Operation

@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.service.admin.notice
 
-import com.example.falletterbackend.falletter.dto.notice.response.NoticeListResponse
+import com.example.falletterbackend.falletter.dto.admin.notice.response.NoticeListResponse
 import com.example.falletterbackend.falletter.entity.notice.repository.NoticeRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

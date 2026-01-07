@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.service.admin.notice
 
-import com.example.falletterbackend.falletter.dto.notice.response.NoticeDetailsResponse
+import com.example.falletterbackend.falletter.dto.admin.notice.response.NoticeDetailsResponse
 import com.example.falletterbackend.falletter.entity.notice.repository.NoticeRepository
 import com.example.falletterbackend.falletter.exception.notice.NoticeNotFoundException
 import org.springframework.data.repository.findByIdOrNull

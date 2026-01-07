@@ -1,7 +1,7 @@
 package com.example.falletterbackend.falletter.service.admin.notice
 
 import com.example.falletterbackend.common.annotation.AdminOnly
-import com.example.falletterbackend.falletter.dto.notice.request.NoticeCreateRequest
+import com.example.falletterbackend.falletter.dto.admin.notice.request.NoticeCreateRequest
 import com.example.falletterbackend.falletter.entity.notice.Notice
 import com.example.falletterbackend.falletter.facade.notice.NoticeFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
