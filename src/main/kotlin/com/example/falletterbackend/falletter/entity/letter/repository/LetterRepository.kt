@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import java.time.LocalDateTime
 
-interface LetterRepository : JpaRepository<Letter, Long> {
+interface LetterRepository : JpaRepository<Letter, Long>, LetterRepositoryCustom {
     fun findByIdAndSender(id: Long, sender: User): Letter?
 
     fun findAllBySender(sender: User): List<Letter>
