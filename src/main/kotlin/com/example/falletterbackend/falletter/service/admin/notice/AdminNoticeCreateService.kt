@@ -3,15 +3,15 @@ package com.example.falletterbackend.falletter.service.admin.notice
 import com.example.falletterbackend.falletter.exception.auth.AccessDeniedException
 import com.example.falletterbackend.falletter.dto.notice.request.NoticeCreateRequest
 import com.example.falletterbackend.falletter.entity.notice.Notice
-import com.example.falletterbackend.falletter.entity.notice.repository.NoticeRepository
 import com.example.falletterbackend.falletter.entity.user.enums.Role
+import com.example.falletterbackend.falletter.facade.notice.NoticeFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class AdminNoticeCreateService(
-    private val noticeRepository: NoticeRepository,
+    private val noticeFacade: NoticeFacade,
     private val userFacade: UserFacade
 ) {
     @Transactional
@@ -28,6 +28,6 @@ class AdminNoticeCreateService(
             author = user
         )
 
-        noticeRepository.save(notice)
+        noticeFacade.save(notice)
     }
 }

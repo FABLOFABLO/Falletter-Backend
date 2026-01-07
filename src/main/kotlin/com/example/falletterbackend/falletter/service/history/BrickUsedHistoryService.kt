@@ -1,26 +1,21 @@
 package com.example.falletterbackend.falletter.service.history
 
 import com.example.falletterbackend.falletter.dto.history.response.BrickUsedHistoryResponse
-import com.example.falletterbackend.falletter.entity.history.repository.HistoryRepository
-import com.example.falletterbackend.falletter.exception.history.HistoryNotFoundException
+import com.example.falletterbackend.falletter.facade.history.HistoryFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class BrickUsedHistoryService(
-    private val historyRepository: HistoryRepository,
+    private val historyFacade: HistoryFacade,
     private val userFacade: UserFacade
 ) {
     @Transactional(readOnly = true)
     fun execute(): List<BrickUsedHistoryResponse> {
         val user = userFacade.getCurrentUser()
 
-        val histories = historyRepository.findAllByWriterUserId(user)
-
-        if (histories.isEmpty()) {
-            throw HistoryNotFoundException
-        }
+        val histories = historyFacade.getHistoriesByWriter(user)
 
         return histories.mapNotNull {
             it.question?.let { question ->

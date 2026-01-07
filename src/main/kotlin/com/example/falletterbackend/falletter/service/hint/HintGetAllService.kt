@@ -1,18 +1,18 @@
 package com.example.falletterbackend.falletter.service.hint
 
 import com.example.falletterbackend.falletter.dto.hint.response.HintResponse
-import com.example.falletterbackend.falletter.entity.hint.repository.HintRepository
+import com.example.falletterbackend.falletter.facade.hint.HintFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 
 @Service
 class HintGetAllService(
     private val userFacade: UserFacade,
-    private val hintRepository: HintRepository
+    private val hintFacade: HintFacade
 ) {
     fun execute(id: Long): HintResponse {
         val user = userFacade.getCurrentUser()
 
-        return hintRepository.findByIdAndUser(id, user)
+        return hintFacade.getHintByIdAndUser(id, user)
     }
 }

@@ -2,8 +2,8 @@ package com.example.falletterbackend.falletter.service.user
 
 import com.example.falletterbackend.falletter.dto.user.request.UserSignUpRequest
 import com.example.falletterbackend.falletter.entity.item.Item
-import com.example.falletterbackend.falletter.entity.item.repository.ItemRepository
 import com.example.falletterbackend.falletter.entity.user.User
+import com.example.falletterbackend.falletter.facade.item.ItemFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class UserSignUpService(
     private val userFacade: UserFacade,
-    private val itemRepository: ItemRepository,
+    private val itemFacade: ItemFacade,
     private val passwordEncoder: PasswordEncoder,
     @Value("\${cloud.aws.stack.default.image.address}")
     private val defaultImageAddress: String,
@@ -54,6 +54,6 @@ class UserSignUpService(
             user = userReference
         )
 
-        itemRepository.save(item)
+        itemFacade.save(item)
     }
 }

@@ -2,7 +2,7 @@ package com.example.falletterbackend.falletter.service.history
 
 import com.example.falletterbackend.falletter.dto.history.request.BrickSaveHistoryRequest
 import com.example.falletterbackend.falletter.entity.history.History
-import com.example.falletterbackend.falletter.entity.history.repository.HistoryRepository
+import com.example.falletterbackend.falletter.facade.history.HistoryFacade
 import com.example.falletterbackend.falletter.facade.question.QuestionFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class BrickSaveHistoryService(
-    private val historyRepository: HistoryRepository,
+    private val historyFacade: HistoryFacade,
     private val userFacade: UserFacade,
     private val questionFacade: QuestionFacade
 ) {
@@ -30,6 +30,6 @@ class BrickSaveHistoryService(
             writerUserId = writerUser
         )
 
-        historyRepository.save(history)
+        historyFacade.save(history)
     }
 }

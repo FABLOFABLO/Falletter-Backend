@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.service.letter
 
-import com.example.falletterbackend.falletter.entity.letter.repository.LetterRepository
+import com.example.falletterbackend.falletter.facade.letter.LetterFacade
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.scheduling.annotation.Scheduled
@@ -10,7 +10,7 @@ import java.time.LocalDateTime
 
 @Service
 class LetterDeliveryScheduler(
-    private val letterRepository: LetterRepository,
+    private val letterFacade: LetterFacade,
     @Value("\${falletter.scheduler.letter-delivery-threshold-hours}")
     private val deliveryThresholdHours: Long
 ) {
@@ -20,13 +20,13 @@ class LetterDeliveryScheduler(
     @Transactional
     fun updateDeliveryStatus() {
         val threshold = LocalDateTime.now().minusHours(deliveryThresholdHours)
-        val undeliveredLetters = letterRepository.findAllUndeliveredBefore(threshold)
+        val undeliveredLetters = letterFacade.getUndeliveredLettersBefore(threshold)
 
         if (undeliveredLetters.isNotEmpty()) {
             undeliveredLetters.forEach { letter ->
                 letter.isDelivered = true
             }
-            letterRepository.saveAll(undeliveredLetters)
+            letterFacade.saveAllLetters(undeliveredLetters)
             log.info("${undeliveredLetters.size}개의 편지가 배달 완료 처리되었습니다.")
         }
     }
