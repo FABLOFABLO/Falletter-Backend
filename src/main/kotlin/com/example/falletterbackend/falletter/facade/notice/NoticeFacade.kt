@@ -18,4 +18,12 @@ class NoticeFacade(
     fun getAllNotices(): List<Notice> {
         return noticeRepository.findAll()
     }
+
+    fun save(notice: Notice): Notice {
+        return noticeRepository.save(notice)
+    }
+
+    fun delete(notice: Notice) {
+        noticeRepository.delete(notice)
+    }
 }

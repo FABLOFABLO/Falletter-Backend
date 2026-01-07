@@ -13,4 +13,8 @@ class AnswerFacade(
     fun getCurrentAnswer(id: Long): Answer {
         return answerRepository.findByIdOrNull(id) ?: throw AnswerNotFoundException
     }
+
+    fun save(answer: Answer): Answer {
+        return answerRepository.save(answer)
+    }
 }

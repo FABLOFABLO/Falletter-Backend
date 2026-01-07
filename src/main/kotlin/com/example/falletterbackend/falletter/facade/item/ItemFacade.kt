@@ -21,4 +21,8 @@ class ItemFacade(
             throw LetterCountInsufficientException
         }
     }
+
+    fun save(item: Item): Item {
+        return itemRepository.save(item)
+    }
 }

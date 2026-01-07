@@ -8,6 +8,7 @@ import com.example.falletterbackend.falletter.exception.letter.LetterNotFoundExc
 import com.example.falletterbackend.falletter.exception.letter.LetterNotReceivedException
 import com.example.falletterbackend.falletter.exception.letter.LetterNotSendException
 import org.springframework.stereotype.Component
+import java.time.LocalDateTime
 
 @Component
 class LetterFacade(
@@ -54,5 +55,13 @@ class LetterFacade(
 
     fun saveLetter(letter: Letter): Letter {
         return letterRepository.save(letter)
+    }
+
+    fun saveAllLetters(letters: List<Letter>): List<Letter> {
+        return letterRepository.saveAll(letters)
+    }
+
+    fun getUndeliveredLettersBefore(threshold: LocalDateTime): List<Letter> {
+        return letterRepository.findAllUndeliveredBefore(threshold)
     }
 }
