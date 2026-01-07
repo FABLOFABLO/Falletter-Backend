@@ -49,11 +49,4 @@ class SuspendFacade(
         return suspendRepository.save(suspend)
     }
 
-    fun getAllBlocks(): List<Suspend> {
-        return suspendRepository.findAllByType(SuspendType.BLOCK)
-    }
-
-    fun getAllWarnings(): List<Suspend> {
-        return suspendRepository.findAllByType(SuspendType.WARNING)
-    }
 }

@@ -119,8 +119,10 @@ class SecurityConfig(
                     // admin user
                     .requestMatchers(HttpMethod.GET, "/admin/user/all").hasRole("ADMIN")
                     .requestMatchers(HttpMethod.GET, "/admin/user/{user-id}").hasRole("ADMIN")
-                    .requestMatchers(HttpMethod.POST, "/admin/user/{user-id}/warning").hasRole("ADMIN")
-                    .requestMatchers(HttpMethod.POST, "/admin/user/{user-id}/block").hasRole("ADMIN")
+
+                    // admin suspend
+                    .requestMatchers(HttpMethod.POST, "/admin/warning/{user-id}").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/admin/block/{user-id}").hasRole("ADMIN")
 
                     // timer
                     .requestMatchers(HttpMethod.POST, "/timer/brick").hasAnyRole("USER", "ADMIN")

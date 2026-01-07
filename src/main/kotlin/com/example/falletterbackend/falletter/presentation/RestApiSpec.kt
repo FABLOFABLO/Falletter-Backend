@@ -53,8 +53,9 @@ object RestApiSpec {
 
     const val ADMIN_USER_LIST = "/user/all"
     const val ADMIN_USER_PROFILE = "/user/{user-id}"
-    const val ADMIN_USER_WARNING = "/user/{user-id}/warning"
-    const val ADMIN_USER_SANCTION = "/user/{user-id}/sanction"
+
+    const val ADMIN_BLOCK_CREATE = "/block/{user-id}"
+    const val ADMIN_WARNING_CREATE = "/warning/{user-id}"
 
     const val TIMER_BRICK_POST = "/brick"
     const val TIMER_BRICK_GET = "/brick"

@@ -1,16 +1,16 @@
 package com.example.falletterbackend.falletter.dto.admin.user.response
 
-import com.example.falletterbackend.falletter.entity.sanction.enums.SanctionType
+import com.example.falletterbackend.falletter.entity.suspend.enums.SuspendType
 import io.swagger.v3.oas.annotations.media.Schema
 import java.time.LocalDateTime
 
 @Schema(description = "사용자 경고/정지 이력 응답")
-data class AdminUserSanctionResponse(
+data class AdminUserSuspendResponse(
     @Schema(description = "이력 ID", example = "1")
     val id: Long,
 
     @Schema(description = "유형 (WARNING: 경고, BLOCK: 정지)", example = "BLOCK")
-    val type: SanctionType,
+    val type: SuspendType,
 
     @Schema(description = "정지 일수", example = "7")
     val days: Int?,

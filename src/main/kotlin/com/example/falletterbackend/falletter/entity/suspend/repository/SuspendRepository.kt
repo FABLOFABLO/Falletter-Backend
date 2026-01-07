@@ -11,5 +11,4 @@ interface SuspendRepository : JpaRepository<Suspend, Long> {
     fun findByUserAndEndDateAfter(user: User, now: LocalDateTime): Suspend?
     fun countByUserAndType(user: User, type: SuspendType): Long
     fun findAllByUserAndType(user: User, type: SuspendType): List<Suspend>
-    fun findAllByType(type: SuspendType): List<Suspend>
 }

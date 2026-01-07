@@ -1,20 +1,20 @@
-package com.example.falletterbackend.falletter.service.admin.user
+package com.example.falletterbackend.falletter.service.admin.suspend
 
 import com.example.falletterbackend.common.annotation.AdminOnly
-import com.example.falletterbackend.falletter.facade.sanction.SanctionFacade
+import com.example.falletterbackend.falletter.facade.suspend.SuspendFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class AdminUserWarningService(
+class AdminWarningCreateService(
     private val userFacade: UserFacade,
-    private val sanctionFacade: SanctionFacade
+    private val suspendFacade: SuspendFacade
 ) {
     @AdminOnly
     @Transactional
     fun execute(userId: Long) {
         val user = userFacade.getUserById(userId)
-        sanctionFacade.createWarning(user)
+        suspendFacade.createWarning(user)
     }
 }
