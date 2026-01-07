@@ -6,6 +6,8 @@ import com.example.falletterbackend.falletter.entity.user.repository.UserReposit
 import com.example.falletterbackend.falletter.exception.user.AlreadyAccountIdException
 import com.example.falletterbackend.falletter.exception.user.AlreadyEmailException
 import com.example.falletterbackend.falletter.exception.user.UserNotFoundException
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
@@ -33,6 +35,10 @@ class UserFacade(
 
     fun getAllUsers(): List<User> {
         return userRepository.findAll()
+    }
+
+    fun getAllUsers(pageable: Pageable): Page<User> {
+        return userRepository.findAll(pageable)
     }
 
     fun getAllStudents(): List<UserGetAllStudentResponse> {
