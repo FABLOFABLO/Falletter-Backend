@@ -1,4 +1,4 @@
-package com.example.falletterbackend.common.service
+package com.example.falletterbackend.common.utils.s3
 
 import com.example.falletterbackend.falletter.exception.s3.S3DeleteFailedException
 import com.example.falletterbackend.falletter.exception.s3.S3InvalidUrlException
@@ -16,7 +16,7 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest
 import java.util.UUID
 
 @Service
-class S3Service(
+class S3Utils(
     private val s3Client: S3Client,
 
     @Value("\${cloud.aws.s3.bucket}")
