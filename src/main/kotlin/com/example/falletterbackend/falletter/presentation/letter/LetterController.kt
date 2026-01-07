@@ -29,8 +29,6 @@ class LetterController(
     private val letterSentListService: LetterSentListService,
     private val letterReceivedDetailsService: LetterReceivedDetailsService,
     private val letterReceivedListService: LetterReceivedListService,
-    private val adminLetterUnpassedListService: AdminLetterUnpassedListService,
-    private val adminLetterUnpassedDetailsService: AdminLetterUnpassedDetailsService
 ) {
     @Operation(summary = "편지 발송", description = "새로운 편지를 발송합니다.")
     @ApiResponses(
