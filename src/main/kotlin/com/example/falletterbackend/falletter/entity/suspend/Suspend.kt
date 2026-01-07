@@ -1,21 +1,21 @@
-package com.example.falletterbackend.falletter.entity.sanction
+package com.example.falletterbackend.falletter.entity.suspend
 
 import com.example.falletterbackend.common.entity.EntityBase
-import com.example.falletterbackend.falletter.entity.sanction.enums.SanctionType
+import com.example.falletterbackend.falletter.entity.suspend.enums.SuspendType
 import com.example.falletterbackend.falletter.entity.user.User
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
 @Entity
-@Table(name = "tbl_sanction")
-class Sanction(
+@Table(name = "tbl_suspend")
+class Suspend(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     val user: User,
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
-    val type: SanctionType,
+    val type: SuspendType,
 
     @Column(name = "days")
     val days: Int? = null,

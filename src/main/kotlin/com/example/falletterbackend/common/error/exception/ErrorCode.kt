@@ -56,8 +56,8 @@ enum class ErrorCode(
     // notice
     NOTICE_NOT_FOUND(404, "Notice Not Found"),
 
-    // sanction
-    SANCTION_NOT_FOUND(404, "Sanction Not Found"),
+    // suspend
+    SUSPEND_NOT_FOUND(404, "Suspend Not Found"),
 
     // notification
     NOTIFICATION_NOT_FOUND(404, "Notification Not Found"),
