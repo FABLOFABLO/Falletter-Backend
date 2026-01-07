@@ -2,6 +2,7 @@ package com.example.falletterbackend.falletter.service.question
 
 import com.example.falletterbackend.falletter.dto.question.response.QuestionResponse
 import com.example.falletterbackend.falletter.entity.question.repository.QuestionRepository
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 class QuestionAllGetService(
     private val questionRepository: QuestionRepository
 ) {
+    @Cacheable(value = ["questions"], key = "'all'")
     @Transactional(readOnly = true)
     fun execute(): List<QuestionResponse> {
         return questionRepository.findAll()
