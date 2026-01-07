@@ -6,7 +6,7 @@ import com.example.falletterbackend.falletter.entity.user.User
 import com.example.falletterbackend.falletter.exception.letter.LetterNoAccessPermission
 import com.example.falletterbackend.falletter.exception.letter.LetterNotFoundException
 import com.example.falletterbackend.falletter.exception.letter.LetterNotReceivedException
-import com.example.falletterbackend.falletter.exception.letter.LetterNotSendException
+import com.example.falletterbackend.falletter.exception.letter.LetterNotSentException
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 
@@ -64,7 +64,7 @@ class LetterFacade(
     fun getSentLetters(user: User): List<Letter> {
         val letters = letterRepository.findAllBySender(user)
         if (letters.isEmpty()) {
-            throw LetterNotSendException
+            throw LetterNotSentException
         }
         return letters
     }
@@ -72,7 +72,7 @@ class LetterFacade(
     fun getSentPassedLettersWithReception(user: User): List<Letter> {
         val letters = letterRepository.findAllBySenderAndPassedWithReception(user)
         if (letters.isEmpty()) {
-            throw LetterNotSendException
+            throw LetterNotSentException
         }
         return letters
     }

@@ -4,7 +4,7 @@ import com.example.falletterbackend.falletter.dto.hint.request.HintSaveRequest
 import com.example.falletterbackend.falletter.dto.hint.request.HintUpdateRequest
 import com.example.falletterbackend.falletter.dto.hint.response.HintResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.hint.HintGetAllService
+import com.example.falletterbackend.falletter.service.hint.HintGetDetailService
 import com.example.falletterbackend.falletter.service.hint.HintSaveService
 import com.example.falletterbackend.falletter.service.hint.HintUpdateService
 import io.swagger.v3.oas.annotations.Operation
@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/hint")
 class HintController(
     private val hintSaveService: HintSaveService,
-    private val hintGetAllService: HintGetAllService,
+    private val hintGetDetailService: HintGetDetailService,
     private val hintUpdateService: HintUpdateService
 ) {
     @Operation(summary = "힌트 저장", description = "새로운 힌트를 저장합니다.")
@@ -47,11 +47,11 @@ class HintController(
     )
     @GetMapping(RestApiSpec.HINT_GET_ALL)
     @ResponseStatus(HttpStatus.OK)
-    fun getAllHint(
+    fun getHintDetail(
         @Parameter(description = "답변 ID", example = "1")
         @PathVariable("answer-id") id: Long
     ): HintResponse {
-        return hintGetAllService.execute(id)
+        return hintGetDetailService.execute(id)
     }
 
     @Operation(summary = "힌트 수정", description = "힌트를 수정합니다.")

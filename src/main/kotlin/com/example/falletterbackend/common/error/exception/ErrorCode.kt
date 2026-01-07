@@ -15,7 +15,7 @@ enum class ErrorCode(
     UNMATCHED_PASSWORD(400, "Unmatched Password"),
     ALREADY_ACCOUNT_ID(409, "Already Exist Account Id"),
     ALREADY_EXIST_EMAIL(409, "Already Exist Email"),
-    UNMISMATCH_USER(403, "UnMismatch User"),
+    UNMATCHED_USER(403, "Unmatched User"),
     USER_NOT_FOUND(404, "User Not Found"),
     EMAIL_NOT_VERIFIED(403, "Email Not Verified"),
 
@@ -39,7 +39,7 @@ enum class ErrorCode(
     LETTER_COUNT_INSUFFICIENT(400, "Letter Count Insufficient"),
     LETTER_NO_ACCESS_PERMISSION(403, "Letter No Access Permission"),
     LETTER_NOT_RECEIVED(404, "Letter Not Received"),
-    LETTER_NOT_SEND(404, "Letter Not Send"),
+    LETTER_NOT_SENT(404, "Letter Not Sent"),
 
     // question
     QUESTION_NOT_FOUND(404, "Question Not Found"),

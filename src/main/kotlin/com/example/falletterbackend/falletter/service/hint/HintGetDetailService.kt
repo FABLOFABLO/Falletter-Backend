@@ -6,7 +6,7 @@ import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
 
 @Service
-class HintGetAllService(
+class HintGetDetailService(
     private val userFacade: UserFacade,
     private val hintFacade: HintFacade
 ) {
