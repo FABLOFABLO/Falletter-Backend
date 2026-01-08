@@ -74,12 +74,18 @@ class FcmService(
 
     private fun sendToAllDevices(user: User, title: String, body: String) {
         val tokens = deviceTokenFacade.getTokensByUser(user)
+        if (tokens.isEmpty()) {
+            log.warn("FCM 전송 스킵 - 등록된 디바이스 토큰 없음 (userId: {})", user.id)
+            return
+        }
+        log.info("FCM 전송 대상 디바이스 수: {} (userId: {})", tokens.size, user.id)
         tokens.forEach { token ->
             sendNotification(token, title, body)
         }
     }
 
     private fun sendNotification(fcmToken: String, title: String, body: String) {
+        log.info("FCM 전송 시도 - token: {}, title: {}, body: {}", fcmToken, title, body)
         try {
             val notification = com.google.firebase.messaging.Notification.builder()
                 .setTitle(title)
@@ -91,7 +97,8 @@ class FcmService(
                 .setNotification(notification)
                 .build()
 
-            firebaseMessaging.send(message)
+            val response = firebaseMessaging.send(message)
+            log.info("FCM 전송 성공 - response: {}", response)
         } catch (e: FirebaseMessagingException) {
             log.warn("FCM 전송 실패 - token: {}, error: {}", fcmToken, e.message)
         }
