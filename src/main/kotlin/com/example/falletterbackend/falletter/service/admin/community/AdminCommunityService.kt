@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class AdminCommunityDeleteService(
+class AdminCommunityService(
     private val communityFacade: CommunityFacade
 ) {
     @AdminOnly
     @Transactional
-    fun execute(communityId: Long) {
+    fun deleteCommunity(communityId: Long) {
         val community = communityFacade.getCurrentCommunity(communityId)
 
         if (community.isDeleted) {

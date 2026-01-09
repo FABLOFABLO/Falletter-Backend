@@ -1,7 +1,7 @@
 package com.example.falletterbackend.falletter.presentation.admin.community
 
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.admin.community.AdminCommunityDeleteService
+import com.example.falletterbackend.falletter.service.admin.community.AdminCommunityService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/admin")
 class AdminCommunityController(
-    private val adminCommunityDeleteService: AdminCommunityDeleteService
+    private val adminCommunityService: AdminCommunityService
 ) {
     @Operation(summary = "게시글 삭제 처리", description = "게시글의 삭제 상태를 변경합니다. (ADMIN 전용)")
     @ApiResponses(
@@ -33,6 +33,6 @@ class AdminCommunityController(
         @Parameter(description = "게시글 ID", example = "1")
         @PathVariable("community-id") id: Long
     ) {
-        adminCommunityDeleteService.execute(id)
+        adminCommunityService.deleteCommunity(id)
     }
 }

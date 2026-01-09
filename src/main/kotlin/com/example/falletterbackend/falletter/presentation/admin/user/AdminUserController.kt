@@ -3,8 +3,7 @@ package com.example.falletterbackend.falletter.presentation.admin.user
 import com.example.falletterbackend.falletter.dto.admin.user.response.AdminUserListResponse
 import com.example.falletterbackend.falletter.dto.admin.user.response.AdminUserProfileResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.admin.user.AdminUserListService
-import com.example.falletterbackend.falletter.service.admin.user.AdminUserProfileService
+import com.example.falletterbackend.falletter.service.admin.user.AdminUserService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -20,8 +19,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/admin")
 class AdminUserController(
-    private val adminUserListService: AdminUserListService,
-    private val adminUserProfileService: AdminUserProfileService
+    private val adminUserService: AdminUserService
 ) {
     @Operation(summary = "학생 전체 목록 조회", description = "전체 학생 목록을 페이징하여 조회합니다. (ADMIN 전용)")
     @ApiResponses(
@@ -33,7 +31,7 @@ class AdminUserController(
     fun getUserList(
         @PageableDefault(size = 20) pageable: Pageable
     ): Page<AdminUserListResponse> {
-        return adminUserListService.execute(pageable)
+        return adminUserService.getUserList(pageable)
     }
 
     @Operation(summary = "학생 프로필 조회", description = "학생 상세 정보 및 제재 내역을 조회합니다. (ADMIN 전용)")
@@ -48,6 +46,6 @@ class AdminUserController(
         @Parameter(description = "학생 ID", example = "1")
         @PathVariable("user-id") id: Long
     ): AdminUserProfileResponse {
-        return adminUserProfileService.execute(id)
+        return adminUserService.getUserProfile(id)
     }
 }

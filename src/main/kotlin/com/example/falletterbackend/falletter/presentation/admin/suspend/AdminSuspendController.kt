@@ -2,8 +2,7 @@ package com.example.falletterbackend.falletter.presentation.admin.suspend
 
 import com.example.falletterbackend.falletter.dto.admin.user.request.AdminUserSuspendRequest
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.admin.suspend.AdminSuspendCreateService
-import com.example.falletterbackend.falletter.service.admin.suspend.AdminWarningCreateService
+import com.example.falletterbackend.falletter.service.admin.suspend.AdminSuspendService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -16,8 +15,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/admin")
 class AdminSuspendController(
-    private val adminWarningCreateService: AdminWarningCreateService,
-    private val adminSuspendCreateService: AdminSuspendCreateService
+    private val adminSuspendService: AdminSuspendService
 ) {
     @Operation(summary = "경고 부여", description = "학생에게 경고를 부여합니다. (ADMIN 전용)")
     @ApiResponses(
@@ -31,7 +29,7 @@ class AdminSuspendController(
         @Parameter(description = "학생 ID", example = "1")
         @PathVariable("user-id") id: Long
     ) {
-        adminWarningCreateService.execute(id)
+        adminSuspendService.createWarning(id)
     }
 
     @Operation(summary = "정지 부여", description = "학생에게 정지를 부여합니다. (ADMIN 전용)")
@@ -47,6 +45,6 @@ class AdminSuspendController(
         @PathVariable("user-id") id: Long,
         @RequestBody request: AdminUserSuspendRequest
     ) {
-        adminSuspendCreateService.execute(id, request)
+        adminSuspendService.createBlock(id, request)
     }
 }

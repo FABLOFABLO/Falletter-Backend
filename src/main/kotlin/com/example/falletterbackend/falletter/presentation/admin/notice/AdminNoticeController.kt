@@ -4,10 +4,7 @@ import com.example.falletterbackend.falletter.dto.admin.notice.request.NoticeCre
 import com.example.falletterbackend.falletter.dto.admin.notice.response.NoticeDetailsResponse
 import com.example.falletterbackend.falletter.dto.admin.notice.response.NoticeListResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.admin.notice.AdminNoticeCreateService
-import com.example.falletterbackend.falletter.service.admin.notice.AdminNoticeDeleteService
-import com.example.falletterbackend.falletter.service.admin.notice.AdminNoticeGetAllService
-import com.example.falletterbackend.falletter.service.admin.notice.AdminNoticeGetDetailService
+import com.example.falletterbackend.falletter.service.admin.notice.AdminNoticeService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -27,10 +24,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/admin")
 class AdminNoticeController(
-    private val AdminnoticeCreateService: AdminNoticeCreateService,
-    private val AdminnoticeGetAllService: AdminNoticeGetAllService,
-    private val AdminnoticeGetDetailService: AdminNoticeGetDetailService,
-    private val AdminnoticeDeleteService: AdminNoticeDeleteService
+    private val adminNoticeService: AdminNoticeService
 ) {
     @Operation(summary = "공지사항 등록", description = "새로운 공지사항을 등록합니다. (ADMIN 전용)")
     @ApiResponses(
@@ -40,7 +34,7 @@ class AdminNoticeController(
     @PostMapping(RestApiSpec.NOTICE_CREATE)
     @ResponseStatus(HttpStatus.CREATED)
     fun createNotice(@RequestBody request: NoticeCreateRequest) {
-        AdminnoticeCreateService.execute(request)
+        adminNoticeService.createNotice(request)
     }
 
     @Operation(summary = "공지사항 목록 조회", description = "전체 공지사항 목록을 조회합니다.")
@@ -49,7 +43,9 @@ class AdminNoticeController(
     )
     @GetMapping(RestApiSpec.NOTICE_LIST)
     @ResponseStatus(HttpStatus.OK)
-    fun getAllNotices(): List<NoticeListResponse> { return AdminnoticeGetAllService.execute() }
+    fun getAllNotices(): List<NoticeListResponse> {
+        return adminNoticeService.getAllNotices()
+    }
 
     @Operation(summary = "공지사항 상세 조회", description = "공지사항 상세 내용을 조회합니다.")
     @ApiResponses(
@@ -62,7 +58,7 @@ class AdminNoticeController(
         @Parameter(description = "공지사항 ID", example = "1")
         @PathVariable("notice-id") id: Long
     ): NoticeDetailsResponse {
-        return AdminnoticeGetDetailService.execute(id)
+        return adminNoticeService.getNoticeDetail(id)
     }
 
     @Operation(summary = "공지사항 삭제", description = "공지사항을 삭제합니다. (ADMIN 전용)")
@@ -77,6 +73,6 @@ class AdminNoticeController(
         @Parameter(description = "공지사항 ID", example = "1")
         @PathVariable("notice-id") id: Long
     ) {
-        AdminnoticeDeleteService.execute(id)
+        adminNoticeService.deleteNotice(id)
     }
 }
