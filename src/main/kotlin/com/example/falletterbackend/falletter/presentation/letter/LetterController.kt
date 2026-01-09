@@ -3,8 +3,7 @@ package com.example.falletterbackend.falletter.presentation.letter
 import com.example.falletterbackend.falletter.dto.letter.request.LetterSentRequest
 import com.example.falletterbackend.falletter.dto.letter.response.*
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.letter.LetterSendByUserService
-import com.example.falletterbackend.falletter.service.letter.*
+import com.example.falletterbackend.falletter.service.letter.LetterService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -24,11 +23,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/letter")
 class LetterController(
-    private val letterSendByUserService: LetterSendByUserService,
-    private val letterSentDetailsService: LetterSentDetailsService,
-    private val letterSentListService: LetterSentListService,
-    private val letterReceivedDetailsService: LetterReceivedDetailsService,
-    private val letterReceivedListService: LetterReceivedListService,
+    private val letterService: LetterService
 ) {
     @Operation(summary = "편지 발송", description = "새로운 편지를 발송합니다.")
     @ApiResponses(
@@ -39,7 +34,7 @@ class LetterController(
     @PostMapping(RestApiSpec.LETTER_BOX_SENT)
     @ResponseStatus(HttpStatus.CREATED)
     fun sendLetter(@RequestBody @Valid request: LetterSentRequest) {
-        letterSendByUserService.execute(request)
+        letterService.sendLetter(request)
     }
 
     @Operation(summary = "보낸 편지 상세 조회", description = "보낸 편지의 상세 내용을 조회합니다.")
@@ -53,7 +48,7 @@ class LetterController(
         @Parameter(description = "편지 ID", example = "1")
         @PathVariable("letter-id") id: Long
     ): LetterSentDetailsResponse {
-        return letterSentDetailsService.execute(id)
+        return letterService.getSentDetails(id)
     }
 
     @Operation(summary = "보낸 편지 목록 조회", description = "보낸 편지 목록을 조회합니다.")
@@ -62,7 +57,7 @@ class LetterController(
     )
     @GetMapping(RestApiSpec.LETTER_BOX_SENT_ALL)
     @ResponseStatus(HttpStatus.OK)
-    fun sentAll(): List<LetterSentListResponse> { return letterSentListService.execute() }
+    fun sentAll(): List<LetterSentListResponse> { return letterService.getSentList() }
 
     @Operation(summary = "받은 편지 상세 조회", description = "받은 편지의 상세 내용을 조회합니다.")
     @ApiResponses(
@@ -75,7 +70,7 @@ class LetterController(
         @Parameter(description = "편지 ID", example = "1")
         @PathVariable("letter-id") id: Long
     ): LetterReceivedDetailsResponse {
-        return letterReceivedDetailsService.execute(id)
+        return letterService.getReceivedDetails(id)
     }
 
     @Operation(summary = "받은 편지 목록 조회", description = "받은 편지 목록을 조회합니다.")
@@ -85,6 +80,6 @@ class LetterController(
     @GetMapping(RestApiSpec.LETTER_BOX_RECEIVED_ALL)
     @ResponseStatus(HttpStatus.OK)
     fun receivedAll(): List<LetterReceivedListResponse> {
-        return letterReceivedListService.execute()
+        return letterService.getReceivedList()
     }
 }
