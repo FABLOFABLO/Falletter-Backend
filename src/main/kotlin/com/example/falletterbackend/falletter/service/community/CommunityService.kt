@@ -1,7 +1,6 @@
 package com.example.falletterbackend.falletter.service.community
 
 import com.example.falletterbackend.falletter.dto.community.request.CommunityPostsRequest
-import com.example.falletterbackend.falletter.dto.community.response.CommunityListUserResponse
 import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsListResponse
 import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsResponse
 import com.example.falletterbackend.falletter.entity.community.Community
@@ -32,17 +31,7 @@ class CommunityService(
     fun getAllPosts(): List<CommunityPostsListResponse> {
         val communities = communityFacade.getAllCommunitiesWithAuthor()
 
-        return communities.map {
-            CommunityPostsListResponse(
-                id = it.id,
-                title = it.title,
-                content = it.content,
-                author = CommunityListUserResponse(it.author.id, it.author.name),
-                isDeleted = it.isDeleted,
-                createdAt = it.createdAt,
-                updatedAt = it.updatedAt,
-            )
-        }
+        return communities.map { CommunityPostsListResponse.from(it) }
     }
 
     @Transactional(readOnly = true)

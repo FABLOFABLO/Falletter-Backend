@@ -1,5 +1,6 @@
 package com.example.falletterbackend.falletter.dto.community.response
 
+import com.example.falletterbackend.falletter.entity.community.Community
 import io.swagger.v3.oas.annotations.media.Schema
 import java.time.LocalDateTime
 
@@ -25,4 +26,16 @@ data class CommunityPostsListResponse(
 
     @Schema(description = "수정일시", example = "2024-12-30T10:00:00")
     val updatedAt: LocalDateTime
-)
+) {
+    companion object {
+        fun from(entity: Community) = CommunityPostsListResponse(
+            id = entity.id,
+            title = entity.title,
+            content = entity.content,
+            author = CommunityListUserResponse.from(entity.author),
+            isDeleted = entity.isDeleted,
+            createdAt = entity.createdAt,
+            updatedAt = entity.updatedAt
+        )
+    }
+}
