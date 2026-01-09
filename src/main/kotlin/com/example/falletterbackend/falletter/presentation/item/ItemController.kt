@@ -5,10 +5,7 @@ import com.example.falletterbackend.falletter.dto.item.request.ItemLetterItemUpd
 import com.example.falletterbackend.falletter.dto.item.response.ItemBrickGetCountResponse
 import com.example.falletterbackend.falletter.dto.item.response.ItemLetterGetCountResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.item.ItemBrickGetCountService
-import com.example.falletterbackend.falletter.service.item.ItemBrickUpdateService
-import com.example.falletterbackend.falletter.service.item.ItemLetterGetCountService
-import com.example.falletterbackend.falletter.service.item.ItemLetterUpdateService
+import com.example.falletterbackend.falletter.service.item.ItemService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
@@ -21,10 +18,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/item")
 class ItemController(
-    private val itemBrickGetCountService: ItemBrickGetCountService,
-    private val itemBrickItemUpdateService: ItemBrickUpdateService,
-    private val itemLetterGetCountService: ItemLetterGetCountService,
-    private val itemLetterUpdateService: ItemLetterUpdateService
+    private val itemService: ItemService
 ) {
     @Operation(summary = "벽돌 수량 조회", description = "현재 보유한 벽돌 수량을 조회합니다.")
     @ApiResponses(
@@ -32,7 +26,7 @@ class ItemController(
     )
     @GetMapping(RestApiSpec.ITEM_BRICK_GET_COUNT)
     @ResponseStatus(HttpStatus.OK)
-    fun getCountBrick(): ItemBrickGetCountResponse { return itemBrickGetCountService.execute() }
+    fun getCountBrick(): ItemBrickGetCountResponse { return itemService.getBrickCount() }
 
     @Operation(summary = "벽돌 수량 변경", description = "벽돌 수량을 변경합니다.")
     @ApiResponses(
@@ -40,7 +34,7 @@ class ItemController(
     )
     @PatchMapping(RestApiSpec.ITEM_BRICK_PATCH_COUNT)
     @ResponseStatus(HttpStatus.OK)
-    fun brickItemUpdate(@RequestBody @Valid request: ItemBrickItemUpdateRequest) { itemBrickItemUpdateService.execute(request) }
+    fun brickItemUpdate(@RequestBody @Valid request: ItemBrickItemUpdateRequest) { itemService.updateBrickCount(request) }
 
     @Operation(summary = "편지 수량 조회", description = "현재 보유한 편지 수량을 조회합니다.")
     @ApiResponses(
@@ -48,7 +42,7 @@ class ItemController(
     )
     @GetMapping(RestApiSpec.ITEM_LETTER_GET_COUNT)
     @ResponseStatus(HttpStatus.OK)
-    fun getCountLetter(): ItemLetterGetCountResponse { return itemLetterGetCountService.execute() }
+    fun getCountLetter(): ItemLetterGetCountResponse { return itemService.getLetterCount() }
 
     @Operation(summary = "편지 수량 변경", description = "편지 수량을 변경합니다.")
     @ApiResponses(
@@ -56,5 +50,5 @@ class ItemController(
     )
     @PatchMapping(RestApiSpec.ITEM_LETTER_PATCH_COUNT)
     @ResponseStatus(HttpStatus.OK)
-    fun letterItemUpdate(@RequestBody @Valid request: ItemLetterItemUpdateRequest) { itemLetterUpdateService.execute(request) }
+    fun letterItemUpdate(@RequestBody @Valid request: ItemLetterItemUpdateRequest) { itemService.updateLetterCount(request) }
 }
