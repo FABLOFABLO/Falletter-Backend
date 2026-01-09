@@ -11,8 +11,7 @@ class AdminNoticeGetAllService(
 ) {
     @Transactional(readOnly = true)
     fun execute(): List<NoticeListResponse> {
-        return noticeRepository.findAll()
-            .sortedByDescending { it.createdAt }
+        return noticeRepository.findAllWithAuthor()
             .map {
                 NoticeListResponse(
                     id = it.id,
