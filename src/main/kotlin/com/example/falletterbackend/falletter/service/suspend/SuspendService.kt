@@ -20,15 +20,7 @@ class SuspendService(
         val user = userFacade.getCurrentUser()
         val suspends = suspendFacade.getSuspendsByUser(user)
 
-        return suspends.map { suspend ->
-            UserSuspendHistoryResponse(
-                id = suspend.id,
-                type = suspend.type,
-                days = suspend.days,
-                startDate = suspend.startDate,
-                endDate = suspend.endDate
-            )
-        }
+        return suspends.map { UserSuspendHistoryResponse.from(it) }
     }
 
     @Transactional(readOnly = true)
@@ -41,9 +33,6 @@ class SuspendService(
             throw SuspendNotFoundException
         }
 
-        return UserSuspendReasonResponse(
-            id = suspend.id,
-            reason = suspend.blockReason
-        )
+        return UserSuspendReasonResponse.from(suspend)
     }
 }
