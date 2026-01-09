@@ -3,8 +3,7 @@ package com.example.falletterbackend.falletter.presentation.suspend
 import com.example.falletterbackend.falletter.dto.user.response.UserSuspendHistoryResponse
 import com.example.falletterbackend.falletter.dto.user.response.UserSuspendReasonResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.user.UserSuspendHistoryService
-import com.example.falletterbackend.falletter.service.user.UserSuspendReasonService
+import com.example.falletterbackend.falletter.service.suspend.SuspendService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
@@ -16,8 +15,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/suspend")
 class SuspendController(
-    private val userSuspendHistoryService: UserSuspendHistoryService,
-    private val userSuspendReasonService: UserSuspendReasonService
+    private val suspendService: SuspendService
 ) {
     @Operation(summary = "내 경고/정지 내역 조회", description = "자신의 경고 및 정지 내역을 조회합니다.")
     @ApiResponses(
@@ -26,7 +24,7 @@ class SuspendController(
     @GetMapping(RestApiSpec.SUSPEND_ALL)
     @ResponseStatus(HttpStatus.OK)
     fun getSuspendHistory(): List<UserSuspendHistoryResponse> {
-        return userSuspendHistoryService.execute()
+        return suspendService.getSuspendHistory()
     }
 
     @Operation(summary = "정지 사유 조회", description = "특정 정지의 사유를 조회합니다.")
@@ -37,6 +35,6 @@ class SuspendController(
     @GetMapping(RestApiSpec.SUSPEND_DETAIL)
     @ResponseStatus(HttpStatus.OK)
     fun getSuspendReason(@PathVariable("suspend-id") id: Long): UserSuspendReasonResponse {
-        return userSuspendReasonService.execute(id)
+        return suspendService.getSuspendReason(id)
     }
 }
