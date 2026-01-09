@@ -2,8 +2,7 @@ package com.example.falletterbackend.falletter.presentation.notice
 
 import com.example.falletterbackend.falletter.dto.admin.notice.response.NoticeDetailsResponse
 import com.example.falletterbackend.falletter.dto.admin.notice.response.NoticeListResponse
-import com.example.falletterbackend.falletter.service.notice.NoticeGetAllService
-import com.example.falletterbackend.falletter.service.notice.NoticeGetDetailService
+import com.example.falletterbackend.falletter.service.notice.NoticeService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -20,8 +19,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/notice")
 class NoticeController(
-    private val noticeGetAllService: NoticeGetAllService,
-    private val noticeGetDetailService: NoticeGetDetailService
+    private val noticeService: NoticeService
 ) {
     @Operation(summary = "공지사항 목록 조회", description = "전체 공지사항 목록을 조회합니다.")
     @ApiResponses(
@@ -30,7 +28,7 @@ class NoticeController(
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     fun getAllNotices(): List<NoticeListResponse> {
-        return noticeGetAllService.execute()
+        return noticeService.getAllNotices()
     }
 
     @Operation(summary = "공지사항 상세 조회", description = "공지사항 상세 내용을 조회합니다.")
@@ -44,6 +42,6 @@ class NoticeController(
         @Parameter(description = "공지사항 ID", example = "1")
         @PathVariable("notice-id") id: Long
     ): NoticeDetailsResponse {
-        return noticeGetDetailService.execute(id)
+        return noticeService.getNoticeDetail(id)
     }
 }
