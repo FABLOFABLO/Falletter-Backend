@@ -4,7 +4,7 @@ import com.example.falletterbackend.falletter.dto.community.request.CommunityPos
 import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsListResponse
 import com.example.falletterbackend.falletter.dto.community.response.CommunityPostsResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.community.*
+import com.example.falletterbackend.falletter.service.community.CommunityService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -26,11 +26,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/community")
 class CommunityController(
-    private val communityCreatePostService: CommunityCreatePostService,
-    private val communityGetAllPostService: CommunityGetAllPostService,
-    private val communityGetPostService: CommunityGetPostService,
-    private val communityUpdatePostService: CommunityUpdatePostService,
-    private val communityDeletePostService: CommunityDeletePostService
+    private val communityService: CommunityService
 ) {
     @Operation(summary = "게시글 작성", description = "새로운 게시글을 작성합니다.")
     @ApiResponses(
@@ -38,7 +34,7 @@ class CommunityController(
     )
     @PostMapping(RestApiSpec.COMMUNITY_CREATE_POST)
     @ResponseStatus(HttpStatus.CREATED)
-    fun createPost(@RequestBody @Valid request: CommunityPostsRequest) { communityCreatePostService.execute(request) }
+    fun createPost(@RequestBody @Valid request: CommunityPostsRequest) { communityService.createPost(request) }
 
     @Operation(summary = "게시글 목록 조회", description = "전체 게시글 목록을 조회합니다.")
     @ApiResponses(
@@ -46,7 +42,7 @@ class CommunityController(
     )
     @GetMapping(RestApiSpec.COMMUNITY_LIST_READ_POST)
     @ResponseStatus(HttpStatus.OK)
-    fun getListPost(): List<CommunityPostsListResponse> { return communityGetAllPostService.execute() }
+    fun getListPost(): List<CommunityPostsListResponse> { return communityService.getAllPosts() }
 
     @Operation(summary = "게시글 상세 조회", description = "게시글 상세 내용을 조회합니다.")
     @ApiResponses(
@@ -58,7 +54,7 @@ class CommunityController(
     fun getPost(
         @Parameter(description = "게시글 ID", example = "1")
         @PathVariable("post-id") id: Long
-    ): CommunityPostsResponse { return communityGetPostService.execute(id) }
+    ): CommunityPostsResponse { return communityService.getPost(id) }
 
     @Operation(summary = "게시글 수정", description = "게시글을 수정합니다.")
     @ApiResponses(
@@ -72,7 +68,7 @@ class CommunityController(
         @PathVariable("post-id") id: Long,
         @RequestBody @Valid request: CommunityPostsRequest
     ) {
-        communityUpdatePostService.execute(id, request)
+        communityService.updatePost(id, request)
     }
 
     @Operation(summary = "게시글 삭제", description = "게시글을 삭제합니다.")
@@ -85,5 +81,5 @@ class CommunityController(
     fun deletePost(
         @Parameter(description = "게시글 ID", example = "1")
         @PathVariable("post-id") id: Long
-    ) { communityDeletePostService.execute(id) }
+    ) { communityService.deletePost(id) }
 }
