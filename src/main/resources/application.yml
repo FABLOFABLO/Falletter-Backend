@@ -94,6 +94,7 @@ cloud:
       auto: false
     s3:
       bucket: ${AWS_S3_BUCKET}
+      profile-path: falletter/profile
     stack:
       auto: false
       default:
