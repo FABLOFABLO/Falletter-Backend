@@ -17,6 +17,7 @@ class AnswerService(
     private val questionRepository: QuestionRepository,
     private val answerRepository: AnswerRepository
 ) {
+    @Transactional
     fun saveAnswer(request: AnswerUserSaveRequest) {
         val user = userFacade.getCurrentUser()
         val question = questionRepository.findByIdOrNull(request.questionId)
