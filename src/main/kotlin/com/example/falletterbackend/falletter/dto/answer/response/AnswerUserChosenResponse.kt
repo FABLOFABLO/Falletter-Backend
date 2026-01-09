@@ -1,5 +1,6 @@
 package com.example.falletterbackend.falletter.dto.answer.response
 
+import com.example.falletterbackend.falletter.entity.answer.Answer
 import com.example.falletterbackend.falletter.entity.user.enums.Gender
 import io.swagger.v3.oas.annotations.media.Schema
 import java.time.LocalDateTime
@@ -35,4 +36,19 @@ data class AnswerUserChosenResponse(
 
     @Schema(description = "생성일시", example = "2024-12-30T10:00:00")
     val createdAt: LocalDateTime
-)
+) {
+    companion object {
+        fun from(entity: Answer) = AnswerUserChosenResponse(
+            id = entity.id,
+            questionId = entity.question.id,
+            question = entity.question.question,
+            emoji = entity.question.emoji,
+            targetUserId = entity.targetUserId.id,
+            writerUserId = entity.writerId.id,
+            gender = entity.writerId.gender,
+            schoolNumber = entity.writerId.schoolNumber,
+            name = entity.writerId.name,
+            createdAt = entity.createdAt
+        )
+    }
+}

@@ -37,19 +37,6 @@ class AnswerService(
         val user = userFacade.getCurrentUser()
         val answers = answerRepository.findAllByTargetUserIdWithRelations(user)
 
-        return answers.map {
-            AnswerUserChosenResponse(
-                id = it.id,
-                questionId = it.question.id,
-                question = it.question.question,
-                emoji = it.question.emoji,
-                targetUserId = it.targetUserId.id,
-                writerUserId = it.writerId.id,
-                gender = it.writerId.gender,
-                schoolNumber = it.writerId.schoolNumber,
-                name = it.writerId.name,
-                createdAt = it.createdAt
-            )
-        }
+        return answers.map { AnswerUserChosenResponse.from(it) }
     }
 }
