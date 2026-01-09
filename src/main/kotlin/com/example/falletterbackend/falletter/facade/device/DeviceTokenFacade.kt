@@ -9,10 +9,6 @@ import org.springframework.stereotype.Component
 class DeviceTokenFacade(
     private val deviceTokenRepository: DeviceTokenRepository
 ) {
-    fun getAllByUser(user: User): List<DeviceToken> {
-        return deviceTokenRepository.findAllByUser(user)
-    }
-
     fun getTokensByUser(user: User): List<String> {
         return deviceTokenRepository.findAllByUser(user).map { it.token }
     }

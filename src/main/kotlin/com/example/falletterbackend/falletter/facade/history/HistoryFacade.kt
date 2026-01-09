@@ -10,14 +10,6 @@ import org.springframework.stereotype.Component
 class HistoryFacade(
     private val historyRepository: HistoryRepository
 ) {
-    fun getHistoriesByWriter(writer: User): List<History> {
-        val histories = historyRepository.findAllByWriterUserId(writer)
-        if (histories.isEmpty()) {
-            throw HistoryNotFoundException
-        }
-        return histories
-    }
-
     fun getHistoriesByWriterWithRelations(writer: User): List<History> {
         val histories = historyRepository.findAllByWriterUserIdWithRelations(writer)
         if (histories.isEmpty()) {

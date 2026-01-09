@@ -33,10 +33,6 @@ class UserFacade(
         return userRepository.findByEmail(email) ?: throw UserNotFoundException
     }
 
-    fun getAllUsers(): List<User> {
-        return userRepository.findAll()
-    }
-
     fun getAllUsers(pageable: Pageable): Page<User> {
         return userRepository.findAll(pageable)
     }
