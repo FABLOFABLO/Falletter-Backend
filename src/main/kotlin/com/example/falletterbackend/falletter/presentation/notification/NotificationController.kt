@@ -3,8 +3,7 @@ package com.example.falletterbackend.falletter.presentation.notification
 import com.example.falletterbackend.falletter.dto.notification.request.NotificationUpdateRequest
 import com.example.falletterbackend.falletter.dto.notification.response.NotificationResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.notification.NotificationGetService
-import com.example.falletterbackend.falletter.service.notification.NotificationUpdateService
+import com.example.falletterbackend.falletter.service.notification.NotificationService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
@@ -17,8 +16,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/notification")
 class NotificationController(
-    private val notificationGetService: NotificationGetService,
-    private val notificationUpdateService: NotificationUpdateService
+    private val notificationService: NotificationService
 ) {
     @Operation(summary = "알림 설정 조회", description = "현재 사용자의 알림 설정을 조회합니다.")
     @ApiResponses(
@@ -27,7 +25,7 @@ class NotificationController(
     @GetMapping(RestApiSpec.NOTIFICATION_GET)
     @ResponseStatus(HttpStatus.OK)
     fun getNotification(): NotificationResponse {
-        return notificationGetService.execute()
+        return notificationService.getNotification()
     }
 
     @Operation(summary = "알림 설정 수정", description = "현재 사용자의 알림 설정을 수정합니다.")
@@ -37,6 +35,6 @@ class NotificationController(
     @PatchMapping(RestApiSpec.NOTIFICATION_UPDATE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun updateNotification(@RequestBody @Valid request: NotificationUpdateRequest) {
-        notificationUpdateService.execute(request)
+        notificationService.updateNotification(request)
     }
 }
