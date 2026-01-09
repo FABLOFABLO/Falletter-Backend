@@ -6,7 +6,7 @@ import com.example.falletterbackend.falletter.dto.user.request.UserSignUpRequest
 import com.example.falletterbackend.falletter.dto.user.response.UserGetAllStudentResponse
 import com.example.falletterbackend.falletter.dto.user.response.UserInfoResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.user.*
+import com.example.falletterbackend.falletter.service.user.UserService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
@@ -25,11 +25,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/user")
 class UserController(
-    private val userSignUpService: UserSignUpService,
-    private val userSignInService: UserSignInService,
-    private val userLogoutService: UserLogoutService,
-    private val userInfoService: UserInfoService,
-    private val userGetAllStudentService: UserGetAllStudentService
+    private val userService: UserService
 ) {
     @Operation(summary = "회원가입", description = "새로운 사용자를 등록합니다.")
     @ApiResponses(
@@ -38,7 +34,7 @@ class UserController(
     )
     @PostMapping(RestApiSpec.USER_SIGN_UP)
     @ResponseStatus(HttpStatus.CREATED)
-    fun signUp(@RequestBody @Valid request: UserSignUpRequest) { userSignUpService.execute(request) }
+    fun signUp(@RequestBody @Valid request: UserSignUpRequest) { userService.signUp(request) }
 
     @Operation(summary = "로그인", description = "이메일과 비밀번호로 로그인합니다.")
     @ApiResponses(
@@ -49,7 +45,7 @@ class UserController(
     @PostMapping(RestApiSpec.USER_SIGN_IN)
     @ResponseStatus(HttpStatus.OK)
     fun signIn(@RequestBody @Valid request: UserSignInRequest): AuthTokenResponse {
-        return userSignInService.execute(request)
+        return userService.signIn(request)
     }
 
     @Operation(summary = "로그아웃", description = "현재 사용자를 로그아웃합니다.")
@@ -58,7 +54,7 @@ class UserController(
     )
     @DeleteMapping(RestApiSpec.USER_LOG_OUT)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun logout() { userLogoutService.execute() }
+    fun logout() { userService.logout() }
 
     @Operation(summary = "내 정보 조회", description = "현재 로그인한 사용자의 정보를 조회합니다.")
     @ApiResponses(
@@ -66,7 +62,7 @@ class UserController(
     )
     @GetMapping(RestApiSpec.USER_USERS)
     @ResponseStatus(HttpStatus.OK)
-    fun userInfo(): UserInfoResponse { return userInfoService.execute() }
+    fun userInfo(): UserInfoResponse { return userService.getInfo() }
 
     @Operation(summary = "전체 학생 목록 조회", description = "전체 학생 목록을 조회합니다.")
     @ApiResponses(
@@ -75,6 +71,6 @@ class UserController(
     @GetMapping(RestApiSpec.USER_ALL_STUDENT)
     @ResponseStatus(HttpStatus.OK)
     fun getAllStudent(): List<UserGetAllStudentResponse> {
-        return userGetAllStudentService.execute()
+        return userService.getAllStudents()
     }
 }

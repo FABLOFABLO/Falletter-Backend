@@ -1,20 +1,30 @@
 package com.example.falletterbackend.falletter.service.user
 
+import com.example.falletterbackend.common.security.TokenProvider
+import com.example.falletterbackend.falletter.dto.auth.response.AuthTokenResponse
+import com.example.falletterbackend.falletter.dto.user.request.UserSignInRequest
 import com.example.falletterbackend.falletter.dto.user.request.UserSignUpRequest
+import com.example.falletterbackend.falletter.dto.user.response.UserGetAllStudentResponse
+import com.example.falletterbackend.falletter.dto.user.response.UserInfoResponse
+import com.example.falletterbackend.falletter.entity.auth.repository.RefreshTokenRepository
 import com.example.falletterbackend.falletter.entity.item.Item
 import com.example.falletterbackend.falletter.entity.user.User
+import com.example.falletterbackend.falletter.exception.user.IncorrectPasswordException
 import com.example.falletterbackend.falletter.facade.item.ItemFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class UserSignUpService(
+class UserService(
     private val userFacade: UserFacade,
     private val itemFacade: ItemFacade,
     private val passwordEncoder: PasswordEncoder,
+    private val tokenProvider: TokenProvider,
+    private val refreshTokenRepository: RefreshTokenRepository,
     @Value("\${cloud.aws.stack.default.image.address}")
     private val defaultImageAddress: String,
     @Value("\${falletter.item.default-brick-count}")
@@ -22,9 +32,8 @@ class UserSignUpService(
     @Value("\${falletter.item.default-letter-count}")
     private val defaultLetterCount: Long
 ) {
-
     @Transactional
-    fun execute(request: UserSignUpRequest) {
+    fun signUp(request: UserSignUpRequest) {
         userFacade.validateSchoolNumberNotExists(request.schoolNumber)
         userFacade.validateEmailNotExists(request.email)
 
@@ -55,5 +64,38 @@ class UserSignUpService(
         )
 
         itemFacade.save(item)
+    }
+
+    @Transactional
+    fun signIn(request: UserSignInRequest): AuthTokenResponse {
+        val user = userFacade.getByAccountId(request.email)
+        if (!passwordEncoder.matches(request.password, user.password)) {
+            throw IncorrectPasswordException
+        }
+        return tokenProvider.generateToken(request.email)
+    }
+
+    fun logout() {
+        val currentUser = userFacade.getCurrentUser()
+        refreshTokenRepository.deleteById(currentUser.email)
+    }
+
+    fun getInfo(): UserInfoResponse {
+        val user = userFacade.getCurrentUser()
+
+        return UserInfoResponse(
+            email = user.email,
+            schoolNumber = user.schoolNumber,
+            name = user.name,
+            gender = user.gender,
+            theme = user.theme,
+            profileImage = user.profileImage,
+            id = user.id
+        )
+    }
+
+    @Cacheable(value = ["students"], key = "'all'")
+    fun getAllStudents(): List<UserGetAllStudentResponse> {
+        return userFacade.getAllStudents()
     }
 }
