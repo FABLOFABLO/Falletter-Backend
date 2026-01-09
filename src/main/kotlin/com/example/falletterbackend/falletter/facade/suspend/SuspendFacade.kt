@@ -19,6 +19,10 @@ class SuspendFacade(
         return suspendRepository.countByUserAndType(user, SuspendType.WARNING)
     }
 
+    fun getWarningCountsByUserIds(userIds: List<Long>): Map<Long, Long> {
+        return suspendRepository.countWarningsByUserIds(userIds, SuspendType.WARNING)
+    }
+
     fun getActiveSuspend(user: User): Suspend? {
         return suspendRepository.findByUserAndEndDateAfter(user, LocalDateTime.now())
     }

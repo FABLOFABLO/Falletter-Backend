@@ -15,14 +15,18 @@ class AdminUserListService(
 ) {
     @Transactional(readOnly = true)
     fun execute(pageable: Pageable): Page<AdminUserListResponse> {
-        return userFacade.getAllUsers(pageable).map { user ->
+        val users = userFacade.getAllUsers(pageable)
+        val userIds = users.content.map { it.id }
+        val warningCounts = suspendFacade.getWarningCountsByUserIds(userIds)
+
+        return users.map { user ->
             AdminUserListResponse(
                 id = user.id,
                 schoolNumber = user.schoolNumber,
                 name = user.name,
                 profileImage = user.profileImage,
                 gender = user.gender,
-                warningCount = suspendFacade.getWarningCountByUser(user)
+                warningCount = warningCounts[user.id] ?: 0L
             )
         }
     }
