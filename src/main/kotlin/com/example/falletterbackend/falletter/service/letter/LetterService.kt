@@ -44,7 +44,7 @@ class LetterService(
         val user = userFacade.getCurrentUser()
         val letters = letterFacade.getReceivedPassedLettersWithSender(user.id)
 
-        return letters.map { it.toReceivedListResponse() }
+        return letters.map { LetterReceivedListResponse.from(it) }
     }
 
     @Transactional(readOnly = true)
@@ -68,7 +68,7 @@ class LetterService(
         val user = userFacade.getCurrentUser()
         val letters = letterFacade.getSentPassedLettersWithReception(user)
 
-        return letters.map { it.toSentListResponse() }
+        return letters.map { LetterSentListResponse.from(it) }
     }
 
     @Transactional(readOnly = true)

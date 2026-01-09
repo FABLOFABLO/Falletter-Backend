@@ -1,5 +1,6 @@
 package com.example.falletterbackend.falletter.dto.letter.response
 
+import com.example.falletterbackend.falletter.entity.letter.Letter
 import io.swagger.v3.oas.annotations.media.Schema
 import java.time.LocalDateTime
 
@@ -25,4 +26,16 @@ data class LetterSentListResponse(
 
     @Schema(description = "생성일시", example = "2024-12-30T10:00:00")
     val createdAt: LocalDateTime
-)
+) {
+    companion object {
+        fun from(entity: Letter) = LetterSentListResponse(
+            id = entity.id,
+            content = entity.content,
+            receptionId = entity.reception.id,
+            senderId = entity.sender.id,
+            isDelivered = entity.isDelivered,
+            isPassed = entity.isPassed,
+            createdAt = entity.createdAt
+        )
+    }
+}
