@@ -2,8 +2,7 @@ package com.example.falletterbackend.falletter.presentation.comment
 
 import com.example.falletterbackend.falletter.dto.comment.request.CommentRequest
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.comment.CommentDeleteService
-import com.example.falletterbackend.falletter.service.comment.CommentWriterService
+import com.example.falletterbackend.falletter.service.comment.CommentService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -23,8 +22,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/comment")
 class CommentController(
-    private val commentWriterService: CommentWriterService,
-    private val commentDeleteService: CommentDeleteService
+    private val commentService: CommentService
 ) {
     @Operation(summary = "댓글 작성", description = "게시글에 댓글을 작성합니다.")
     @ApiResponses(
@@ -38,7 +36,7 @@ class CommentController(
         @PathVariable("post-id") id: Long,
         @RequestBody @Valid request: CommentRequest
     ) {
-        commentWriterService.execute(id, request)
+        commentService.writeComment(id, request)
     }
 
     @Operation(summary = "댓글 삭제", description = "댓글을 삭제합니다.")
@@ -51,5 +49,5 @@ class CommentController(
     fun commentDelete(
         @Parameter(description = "댓글 ID", example = "1")
         @PathVariable("comment-id") id: Long
-    ) { commentDeleteService.execute(id) }
+    ) { commentService.deleteComment(id) }
 }
