@@ -1,5 +1,6 @@
 package com.example.falletterbackend.falletter.dto.admin.user.response
 
+import com.example.falletterbackend.falletter.entity.user.User
 import com.example.falletterbackend.falletter.entity.user.enums.Gender
 import io.swagger.v3.oas.annotations.media.Schema
 
@@ -25,4 +26,16 @@ data class AdminUserProfileResponse(
 
     @Schema(description = "경고/정지 이력 목록")
     val suspends: List<AdminUserSuspendResponse>
-)
+) {
+    companion object {
+        fun from(entity: User, warningCount: Long, suspends: List<AdminUserSuspendResponse>) = AdminUserProfileResponse(
+            id = entity.id,
+            schoolNumber = entity.schoolNumber,
+            name = entity.name,
+            profileImage = entity.profileImage,
+            gender = entity.gender,
+            warningCount = warningCount,
+            suspends = suspends
+        )
+    }
+}

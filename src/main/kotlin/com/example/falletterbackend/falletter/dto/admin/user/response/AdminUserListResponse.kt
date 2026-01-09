@@ -1,5 +1,6 @@
 package com.example.falletterbackend.falletter.dto.admin.user.response
 
+import com.example.falletterbackend.falletter.entity.user.User
 import com.example.falletterbackend.falletter.entity.user.enums.Gender
 import io.swagger.v3.oas.annotations.media.Schema
 
@@ -22,4 +23,15 @@ data class AdminUserListResponse(
 
     @Schema(description = "경고 횟수", example = "2")
     val warningCount: Long
-)
+) {
+    companion object {
+        fun from(entity: User, warningCount: Long) = AdminUserListResponse(
+            id = entity.id,
+            schoolNumber = entity.schoolNumber,
+            name = entity.name,
+            profileImage = entity.profileImage,
+            gender = entity.gender,
+            warningCount = warningCount
+        )
+    }
+}

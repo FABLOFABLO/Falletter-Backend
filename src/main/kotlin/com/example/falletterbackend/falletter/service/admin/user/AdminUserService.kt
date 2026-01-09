@@ -22,43 +22,16 @@ class AdminUserService(
         val warningCounts = suspendFacade.getWarningCountsByUserIds(userIds)
 
         return users.map { user ->
-            AdminUserListResponse(
-                id = user.id,
-                schoolNumber = user.schoolNumber,
-                name = user.name,
-                profileImage = user.profileImage,
-                gender = user.gender,
-                warningCount = warningCounts[user.id] ?: 0L
-            )
+            AdminUserListResponse.from(user, warningCounts[user.id] ?: 0L)
         }
     }
 
     @Transactional(readOnly = true)
     fun getUserProfile(userId: Long): AdminUserProfileResponse {
         val user = userFacade.getUserById(userId)
-
-        val suspends = suspendFacade.getSuspendsByUser(user).map { suspend ->
-            AdminUserSuspendResponse(
-                id = suspend.id,
-                type = suspend.type,
-                days = suspend.days,
-                reason = suspend.blockReason,
-                startDate = suspend.startDate,
-                endDate = suspend.endDate,
-                createdAt = suspend.createdAt
-            )
-        }
-
+        val suspends = suspendFacade.getSuspendsByUser(user).map { AdminUserSuspendResponse.from(it) }
         val warningCount = suspendFacade.getWarningCountByUser(user)
 
-        return AdminUserProfileResponse(
-            id = user.id,
-            schoolNumber = user.schoolNumber,
-            name = user.name,
-            profileImage = user.profileImage,
-            gender = user.gender,
-            warningCount = warningCount,
-            suspends = suspends
-        )
+        return AdminUserProfileResponse.from(user, warningCount, suspends)
     }
 }

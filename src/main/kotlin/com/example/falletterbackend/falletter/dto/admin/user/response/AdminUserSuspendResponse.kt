@@ -1,5 +1,6 @@
 package com.example.falletterbackend.falletter.dto.admin.user.response
 
+import com.example.falletterbackend.falletter.entity.suspend.Suspend
 import com.example.falletterbackend.falletter.entity.suspend.enums.SuspendType
 import io.swagger.v3.oas.annotations.media.Schema
 import java.time.LocalDateTime
@@ -26,4 +27,16 @@ data class AdminUserSuspendResponse(
 
     @Schema(description = "생성일시", example = "2024-12-30T10:00:00")
     val createdAt: LocalDateTime
-)
+) {
+    companion object {
+        fun from(entity: Suspend) = AdminUserSuspendResponse(
+            id = entity.id,
+            type = entity.type,
+            days = entity.days,
+            reason = entity.blockReason,
+            startDate = entity.startDate,
+            endDate = entity.endDate,
+            createdAt = entity.createdAt
+        )
+    }
+}
