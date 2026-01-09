@@ -3,8 +3,7 @@ package com.example.falletterbackend.falletter.presentation.answer
 import com.example.falletterbackend.falletter.dto.answer.request.AnswerUserSaveRequest
 import com.example.falletterbackend.falletter.dto.answer.response.AnswerUserChosenResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
-import com.example.falletterbackend.falletter.service.answer.AnswerUserChosenService
-import com.example.falletterbackend.falletter.service.answer.AnswerUserSaveService
+import com.example.falletterbackend.falletter.service.answer.AnswerService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
@@ -22,8 +21,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/answer")
 class AnswerUserController(
-    private val answerUserService: AnswerUserSaveService,
-    private val answerUserChosenService: AnswerUserChosenService
+    private val answerService: AnswerService
 ) {
     @Operation(summary = "답변 저장", description = "사용자의 답변을 저장합니다.")
     @ApiResponses(
@@ -31,7 +29,7 @@ class AnswerUserController(
     )
     @PostMapping(RestApiSpec.ANSWER_POST)
     @ResponseStatus(HttpStatus.CREATED)
-    fun answerPost(@RequestBody @Valid request: AnswerUserSaveRequest) { answerUserService.execute(request) }
+    fun answerPost(@RequestBody @Valid request: AnswerUserSaveRequest) { answerService.saveAnswer(request) }
 
     @Operation(summary = "선택한 답변 조회", description = "사용자가 선택한 답변 목록을 조회합니다.")
     @ApiResponses(
@@ -39,5 +37,5 @@ class AnswerUserController(
     )
     @GetMapping(RestApiSpec.ANSWER_PICK)
     @ResponseStatus(HttpStatus.OK)
-    fun answerPicked(): List<AnswerUserChosenResponse> { return answerUserChosenService.execute() }
+    fun answerPicked(): List<AnswerUserChosenResponse> { return answerService.getChosenAnswers() }
 }
