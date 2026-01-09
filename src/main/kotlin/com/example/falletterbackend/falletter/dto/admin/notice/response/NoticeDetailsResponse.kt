@@ -1,5 +1,6 @@
 package com.example.falletterbackend.falletter.dto.admin.notice.response
 
+import com.example.falletterbackend.falletter.entity.notice.Notice
 import io.swagger.v3.oas.annotations.media.Schema
 import java.time.LocalDateTime
 
@@ -19,4 +20,14 @@ data class NoticeDetailsResponse(
 
     @Schema(description = "작성일시", example = "2025-12-30T14:00:00")
     val createdAt: LocalDateTime
-)
+) {
+    companion object {
+        fun from(entity: Notice) = NoticeDetailsResponse(
+            id = entity.id,
+            title = entity.title,
+            content = entity.content,
+            authorName = entity.author.name,
+            createdAt = entity.createdAt
+        )
+    }
+}

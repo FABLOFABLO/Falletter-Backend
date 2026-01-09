@@ -16,26 +16,12 @@ class NoticeService(
     fun getAllNotices(): List<NoticeListResponse> {
         return noticeFacade.getAllNotices()
             .sortedByDescending { it.createdAt }
-            .map {
-                NoticeListResponse(
-                    id = it.id,
-                    title = it.title,
-                    authorName = it.author.name,
-                    createdAt = it.createdAt
-                )
-            }
+            .map { NoticeListResponse.from(it) }
     }
 
     @Transactional(readOnly = true)
     fun getNoticeDetail(id: Long): NoticeDetailsResponse {
         val notice = noticeFacade.getNoticeById(id)
-
-        return NoticeDetailsResponse(
-            id = notice.id,
-            title = notice.title,
-            content = notice.content,
-            authorName = notice.author.name,
-            createdAt = notice.createdAt
-        )
+        return NoticeDetailsResponse.from(notice)
     }
 }
