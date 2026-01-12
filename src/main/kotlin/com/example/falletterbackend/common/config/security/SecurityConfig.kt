@@ -47,7 +47,10 @@ class SecurityConfig(
                         "/swagger-resources/**",
                         "/webjars/**"
                     ).permitAll()
-                    
+
+                    // fcm test (개발용)
+                    .requestMatchers("/test/**").permitAll()
+
                     // auth
                     .requestMatchers(HttpMethod.POST, "/auth/email/verify").permitAll()
                     .requestMatchers(HttpMethod.POST, "/auth/email/match").permitAll()
