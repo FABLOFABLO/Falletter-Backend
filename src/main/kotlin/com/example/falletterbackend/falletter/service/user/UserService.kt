@@ -75,11 +75,13 @@ class UserService(
         return tokenProvider.generateToken(request.email)
     }
 
+    @Transactional
     fun logout() {
         val currentUser = userFacade.getCurrentUser()
         refreshTokenRepository.deleteById(currentUser.email)
     }
 
+    @Transactional(readOnly = true)
     fun getInfo(): UserInfoResponse {
         val user = userFacade.getCurrentUser()
 
@@ -94,6 +96,7 @@ class UserService(
         )
     }
 
+    @Transactional(readOnly = true)
     @Cacheable(value = ["students"], key = "'all'")
     fun getAllStudents(): List<UserGetAllStudentResponse> {
         return userFacade.getAllStudents()

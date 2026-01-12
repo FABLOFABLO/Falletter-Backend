@@ -36,6 +36,7 @@ class HintService(
         )
     }
 
+    @Transactional(readOnly = true)
     fun getHintDetail(answerId: Long): HintResponse {
         val user = userFacade.getCurrentUser()
         return hintRepository.findByIdAndUser(answerId, user)
