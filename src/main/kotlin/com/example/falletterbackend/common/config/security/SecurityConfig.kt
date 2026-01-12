@@ -47,7 +47,7 @@ class SecurityConfig(
                         "/swagger-resources/**",
                         "/webjars/**"
                     ).permitAll()
-
+                    
                     // fcm
                     .requestMatchers(HttpMethod.POST, "/fcm/send").hasAnyRole("USER", "ADMIN")
                     
