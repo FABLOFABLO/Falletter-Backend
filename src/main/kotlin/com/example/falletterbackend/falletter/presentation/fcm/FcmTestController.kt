@@ -2,7 +2,6 @@ package com.example.falletterbackend.falletter.presentation.fcm
 
 import com.example.falletterbackend.falletter.dto.fcm.request.FcmTestRequest
 import com.example.falletterbackend.falletter.dto.fcm.request.FcmTestType
-import com.example.falletterbackend.falletter.facade.notice.NoticeFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import com.example.falletterbackend.falletter.service.fcm.FcmService
 import io.swagger.v3.oas.annotations.Operation
@@ -10,13 +9,12 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
-@Tag(name = "fcm_test", description = "FCM 테스트 API (개발용)")
+@Tag(name = "fcm_send", description = "FCM 디바이스 API")
 @RestController
-@RequestMapping("/test/fcm")
+@RequestMapping("/fcm")
 class FcmTestController(
     private val fcmService: FcmService,
-    private val userFacade: UserFacade,
-    private val noticeFacade: NoticeFacade
+    private val userFacade: UserFacade
 ) {
     @Operation(
         summary = "FCM 푸시 알림 테스트",
@@ -51,8 +49,7 @@ class FcmTestController(
             FcmTestType.LETTER -> fcmService.sendLetterNotification(user)
             FcmTestType.LETTER_SENT -> fcmService.sendLetterSentNotification(user)
             FcmTestType.ADMIN_NOTICE -> {
-                val notice = noticeFacade.getNoticeById(request.noticeId!!)
-                fcmService.sendAdminNoticeNotification(user, notice.title)
+                fcmService.sendAdminNoticeNotification(user, request.noticeId!!)
             }
         }
 
