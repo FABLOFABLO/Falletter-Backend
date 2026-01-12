@@ -51,6 +51,14 @@ class SecurityConfig(
                     // fcm test (개발용)
                     .requestMatchers("/test/**").permitAll()
 
+                    // fcm
+                    .requestMatchers(HttpMethod.POST, "/fcm/send").hasAnyRole("USER", "ADMIN")
+
+
+                    // device token
+                    .requestMatchers(HttpMethod.POST, "/device/token").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.DELETE, "/device/token/{device-id}").hasAnyRole("USER", "ADMIN")
+
                     // auth
                     .requestMatchers(HttpMethod.POST, "/auth/email/verify").permitAll()
                     .requestMatchers(HttpMethod.POST, "/auth/email/match").permitAll()
