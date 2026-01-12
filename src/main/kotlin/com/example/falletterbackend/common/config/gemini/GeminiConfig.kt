@@ -46,21 +46,8 @@ class GeminiConfig(
         val entity = HttpEntity(requestBody, headers)
 
         return try {
-            val response = restTemplate.exchange(url, HttpMethod.POST, entity, Map::class.java)
-
-            val text = (response.body?.get("candidates") as? List<Map<String, Any>>)
-                ?.firstOrNull()
-                ?.get("content")
-                ?.let { contentMap ->
-                    val parts = (contentMap as Map<*, *>)["parts"] as? List<Map<String, Any>>
-                    parts?.firstOrNull()?.get("text")?.toString()
-                }
-                ?.trim()
-                ?.split("\\s+".toRegex())
-                ?.firstOrNull()
-                ?.lowercase() ?: "false"
-
-            text == "true"
+            val response = restTemplate.exchange(url, HttpMethod.POST, entity, GeminiResponse::class.java)
+            response.body?.extractText() == "true"
         } catch (e: Exception) {
             log.error("Gemini API 호출 실패", e)
             false
