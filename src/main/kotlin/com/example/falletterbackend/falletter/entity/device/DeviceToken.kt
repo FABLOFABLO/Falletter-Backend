@@ -5,7 +5,12 @@ import com.example.falletterbackend.falletter.entity.user.User
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "tbl_device_token")
+@Table(
+    name = "tbl_device_token",
+    uniqueConstraints = [
+        UniqueConstraint(columnNames = ["user_id", "device_id"])
+    ]
+)
 class DeviceToken(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)

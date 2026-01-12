@@ -16,6 +16,14 @@ class FcmService(
     private val deviceTokenFacade: DeviceTokenFacade
 ) {
     private val log = LoggerFactory.getLogger(FcmService::class.java)
+
+    companion object {
+        private val INVALID_TOKEN_ERROR_CODES = setOf(
+            "UNREGISTERED",
+            "INVALID_ARGUMENT"
+        )
+    }
+
     fun sendWarningNotification(user: User) {
         val notification = notificationFacade.getOrCreateByUser(user)
         if (notification.pushEnabled) {
@@ -101,6 +109,11 @@ class FcmService(
             log.info("FCM 전송 성공 - response: {}", response)
         } catch (e: FirebaseMessagingException) {
             log.warn("FCM 전송 실패 - token: {}, error: {}", fcmToken, e.message)
+
+            if (e.messagingErrorCode?.name in INVALID_TOKEN_ERROR_CODES) {
+                log.info("무효 토큰 삭제 - token: {}", fcmToken)
+                deviceTokenFacade.deleteByToken(fcmToken)
+            }
         }
     }
 }

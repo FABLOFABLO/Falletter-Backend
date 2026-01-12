@@ -2,13 +2,13 @@ package com.example.falletterbackend.falletter.service.fcm
 
 object FcmMessage {
     object Warning {
-        const val TITLE = "경고 알림"
-        const val BODY = "계정에 경고가 부여되었습니다. 자세한 내용은 앱에서 확인해주세요."
+        const val TITLE = "정책 위반 행위 경고 안내"
+        const val BODY = "회원님 계정에 경고가 부여되었습니다. 자세한 내용은 앱에서 확인해주세요."
     }
 
     object Block {
-        const val TITLE = "정지 알림"
-        fun body(days: Int) = "계정이 ${days}일간 정지되었습니다. 자세한 내용은 앱에서 확인해주세요."
+        const val TITLE = "계정 이용 일시 정지 안내"
+        fun body(days: Int) = "회원님 계정이 ${days}일간 정지되었습니다. 자세한 내용은 앱에서 확인해주세요."
     }
 
     object Comment {
@@ -17,7 +17,7 @@ object FcmMessage {
     }
 
     object BrickActivation {
-        const val TITLE = "브릭 활성화"
+        const val TITLE = "브릭 활성화 안내"
         const val BODY = "브릭 타이머가 활성화되었습니다."
     }
 
