@@ -14,4 +14,6 @@ interface DeviceTokenRepository : JpaRepository<DeviceToken, Long> {
     fun deleteByUserAndDeviceId(user: User, deviceId: String)
 
     fun deleteAllByUser(user: User)
+
+    fun deleteByToken(token: String)
 }
