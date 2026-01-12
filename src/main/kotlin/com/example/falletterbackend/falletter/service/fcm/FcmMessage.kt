@@ -12,13 +12,13 @@ object FcmMessage {
     }
 
     object Comment {
-        const val TITLE = "새 댓글"
+        const val TITLE = "익명 회원이 댓글이 달렸어요!"
         const val BODY = "회원님의 게시글에 새 댓글이 달렸습니다."
     }
 
     object BrickActivation {
-        const val TITLE = "브릭 활성화 안내"
-        const val BODY = "브릭 타이머가 활성화되었습니다."
+        const val TITLE = "브릭 타이머가 활성화가 되었어요!"
+        const val BODY = "지금 바로 질문을 선택해보세요,"
     }
 
     object Brick {
