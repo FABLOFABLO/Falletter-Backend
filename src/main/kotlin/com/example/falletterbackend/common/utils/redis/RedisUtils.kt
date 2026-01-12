@@ -23,14 +23,14 @@ class RedisUtils(private val redisTemplate: RedisTemplate<String, String>) {
     }
 
     fun deleteValues(key: String): Boolean {
-        return redisTemplate.delete(key)
+        return redisTemplate.delete(key) ?: false
     }
 
     fun getTtl(key: String): Long {
-        return redisTemplate.getExpire(key)
+        return redisTemplate.getExpire(key) ?: -1L
     }
 
     fun hasKey(key: String): Boolean {
-        return redisTemplate.hasKey(key)
+        return redisTemplate.hasKey(key) ?: false
     }
 }
