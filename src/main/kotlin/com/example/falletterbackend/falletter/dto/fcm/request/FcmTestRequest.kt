@@ -4,7 +4,7 @@ data class FcmTestRequest(
     val userId: Long,
     val type: FcmTestType,
     val days: Int? = null,
-    val noticeTitle: String? = null
+    val noticeId: Long? = null
 )
 
 enum class FcmTestType {
