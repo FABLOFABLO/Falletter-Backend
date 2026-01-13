@@ -16,7 +16,7 @@ class NoticeFacade(
     }
 
     fun getAllNotices(): List<Notice> {
-        return noticeRepository.findAll()
+        return noticeRepository.findAllWithAuthor()
     }
 
     fun save(notice: Notice): Notice {
