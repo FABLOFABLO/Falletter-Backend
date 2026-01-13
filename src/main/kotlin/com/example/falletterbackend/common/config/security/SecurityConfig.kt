@@ -47,9 +47,13 @@ class SecurityConfig(
                         "/swagger-resources/**",
                         "/webjars/**"
                     ).permitAll()
+                    
+                    // fcm
+                    .requestMatchers(HttpMethod.POST, "/fcm/send").hasAnyRole("USER", "ADMIN")
 
-                    // fcm test (개발용)
-                    .requestMatchers("/test/**").permitAll()
+                    // device token
+                    .requestMatchers(HttpMethod.POST, "/device/token").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.DELETE, "/device/token/{device-id}").hasAnyRole("USER", "ADMIN")
 
                     // auth
                     .requestMatchers(HttpMethod.POST, "/auth/email/verify").permitAll()

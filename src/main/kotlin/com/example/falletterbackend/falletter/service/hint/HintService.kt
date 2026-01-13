@@ -40,6 +40,7 @@ class HintService(
     fun getHintDetail(answerId: Long): HintResponse {
         val user = userFacade.getCurrentUser()
         return hintRepository.findByIdAndUser(answerId, user)
+            ?: throw HintNotFoundException
     }
 
     @Transactional

@@ -38,7 +38,7 @@ class UserFacade(
     }
 
     fun getAllStudents(): List<UserGetAllStudentResponse> {
-        return userRepository.findAllBy()
+        return userRepository.findAllStudents()
     }
 
     fun validateSchoolNumberNotExists(schoolNumber: String) {

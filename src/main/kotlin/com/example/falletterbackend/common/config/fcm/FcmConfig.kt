@@ -19,13 +19,15 @@ class FcmConfig(
 
     @Bean
     fun firebaseApp(): FirebaseApp {
-        val options = FirebaseOptions.builder()
-            .setCredentials(
-                GoogleCredentials.fromStream(FileInputStream(firebaseKeyPath))
-            )
-            .build()
-
-        return FirebaseApp.initializeApp(options)
+        return FirebaseApp.getApps().firstOrNull()
+            ?: run {
+                val options = FirebaseOptions.builder()
+                    .setCredentials(
+                        GoogleCredentials.fromStream(FileInputStream(firebaseKeyPath))
+                    )
+                    .build()
+                FirebaseApp.initializeApp(options)
+            }
     }
 
     @Bean
