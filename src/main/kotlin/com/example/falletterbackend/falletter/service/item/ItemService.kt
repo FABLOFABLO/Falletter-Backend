@@ -5,6 +5,7 @@ import com.example.falletterbackend.falletter.dto.item.request.ItemLetterItemUpd
 import com.example.falletterbackend.falletter.dto.item.response.ItemBrickGetCountResponse
 import com.example.falletterbackend.falletter.dto.item.response.ItemLetterGetCountResponse
 import com.example.falletterbackend.falletter.entity.item.repository.ItemRepository
+import com.example.falletterbackend.falletter.exception.item.ItemNotFoundException
 import com.example.falletterbackend.falletter.facade.item.ItemFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.stereotype.Service
@@ -20,6 +21,7 @@ class ItemService(
     fun getBrickCount(): ItemBrickGetCountResponse {
         val user = userFacade.getCurrentUser()
         return itemRepository.findBrickCountByUser(user)
+            ?: throw ItemNotFoundException
     }
 
     @Transactional
@@ -33,6 +35,7 @@ class ItemService(
     fun getLetterCount(): ItemLetterGetCountResponse {
         val user = userFacade.getCurrentUser()
         return itemRepository.findLetterCountByUser(user)
+            ?: throw ItemNotFoundException
     }
 
     @Transactional
