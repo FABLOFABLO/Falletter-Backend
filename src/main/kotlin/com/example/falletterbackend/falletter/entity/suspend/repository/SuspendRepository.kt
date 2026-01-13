@@ -8,7 +8,8 @@ import java.time.LocalDateTime
 
 interface SuspendRepository : JpaRepository<Suspend, Long>, SuspendRepositoryCustom {
     fun findAllByUser(user: User): List<Suspend>
+
     fun findByUserAndEndDateAfter(user: User, now: LocalDateTime): Suspend?
+
     fun countByUserAndType(user: User, type: SuspendType): Long
-    fun findAllByUserAndType(user: User, type: SuspendType): List<Suspend>
 }
