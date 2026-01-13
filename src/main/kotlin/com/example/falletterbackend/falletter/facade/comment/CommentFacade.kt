@@ -23,4 +23,12 @@ class CommentFacade(
         }
         return comment
     }
+
+    fun save(comment: Comment): Comment {
+        return commentRepository.save(comment)
+    }
+
+    fun delete(comment: Comment) {
+        commentRepository.delete(comment)
+    }
 }
