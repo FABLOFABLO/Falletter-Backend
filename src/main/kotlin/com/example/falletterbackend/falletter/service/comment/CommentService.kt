@@ -2,7 +2,6 @@ package com.example.falletterbackend.falletter.service.comment
 
 import com.example.falletterbackend.falletter.dto.comment.request.CommentRequest
 import com.example.falletterbackend.falletter.entity.comment.Comment
-import com.example.falletterbackend.falletter.entity.comment.repository.CommentRepository
 import com.example.falletterbackend.falletter.facade.comment.CommentFacade
 import com.example.falletterbackend.falletter.facade.community.CommunityFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
@@ -13,15 +12,14 @@ import org.springframework.transaction.annotation.Transactional
 class CommentService(
     private val userFacade: UserFacade,
     private val communityFacade: CommunityFacade,
-    private val commentFacade: CommentFacade,
-    private val commentRepository: CommentRepository
+    private val commentFacade: CommentFacade
 ) {
     @Transactional
     fun writeComment(postId: Long, request: CommentRequest) {
         val user = userFacade.getCurrentUser()
         val community = communityFacade.getCurrentCommunity(postId)
 
-        commentRepository.save(
+        commentFacade.save(
             Comment(
                 comment = request.comment,
                 community = community,
@@ -33,8 +31,8 @@ class CommentService(
     @Transactional
     fun deleteComment(commentId: Long) {
         val user = userFacade.getCurrentUser()
-        commentFacade.getCommentByIdWithOwnerCheck(commentId, user.id)
+        val comment = commentFacade.getCommentByIdWithOwnerCheck(commentId, user.id)
 
-        commentRepository.deleteById(commentId)
+        commentFacade.delete(comment)
     }
 }

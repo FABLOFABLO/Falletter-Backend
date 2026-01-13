@@ -26,6 +26,17 @@ class SecurityConfig(
     private val tokenProvider: TokenProvider,
     private val accessDeniedHandler: CustomAccessDeniedHandler
 ) {
+    companion object {
+        private val SWAGGER_WHITELIST = arrayOf(
+            "/swagger-ui/**",
+            "/swagger-ui.html",
+            "/v3/api-docs/**",
+            "/v3/api-docs",
+            "/swagger-resources/**",
+            "/webjars/**"
+        )
+    }
+
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
@@ -39,14 +50,7 @@ class SecurityConfig(
             .authorizeHttpRequests { authorize ->
                 authorize
                     // swagger
-                    .requestMatchers(
-                        "/swagger-ui/**",
-                        "/swagger-ui.html",
-                        "/v3/api-docs/**",
-                        "/v3/api-docs",
-                        "/swagger-resources/**",
-                        "/webjars/**"
-                    ).permitAll()
+                    .requestMatchers(*SWAGGER_WHITELIST).permitAll()
                     
                     // fcm
                     .requestMatchers(HttpMethod.POST, "/fcm/send").hasAnyRole("USER", "ADMIN")
@@ -158,14 +162,7 @@ class SecurityConfig(
     @Bean
     fun webSecurityCustomizer(): WebSecurityCustomizer {
         return WebSecurityCustomizer { web ->
-            web.ignoring().requestMatchers(
-                "/swagger-ui/**",
-                "/swagger-ui.html",
-                "/v3/api-docs/**",
-                "/v3/api-docs",
-                "/swagger-resources/**",
-                "/webjars/**"
-            )
+            web.ignoring().requestMatchers(*SWAGGER_WHITELIST)
         }
     }
 

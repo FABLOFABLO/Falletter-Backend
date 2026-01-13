@@ -5,18 +5,14 @@ import com.example.falletterbackend.falletter.dto.admin.notice.request.NoticeCre
 import com.example.falletterbackend.falletter.dto.admin.notice.response.NoticeDetailsResponse
 import com.example.falletterbackend.falletter.dto.admin.notice.response.NoticeListResponse
 import com.example.falletterbackend.falletter.entity.notice.Notice
-import com.example.falletterbackend.falletter.entity.notice.repository.NoticeRepository
-import com.example.falletterbackend.falletter.exception.notice.NoticeNotFoundException
 import com.example.falletterbackend.falletter.facade.notice.NoticeFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.cache.annotation.CacheEvict
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class AdminNoticeService(
-    private val noticeRepository: NoticeRepository,
     private val noticeFacade: NoticeFacade,
     private val userFacade: UserFacade
 ) {
@@ -37,14 +33,13 @@ class AdminNoticeService(
 
     @Transactional(readOnly = true)
     fun getAllNotices(): List<NoticeListResponse> {
-        return noticeRepository.findAllWithAuthor()
+        return noticeFacade.getAllNotices()
             .map { NoticeListResponse.from(it) }
     }
 
     @Transactional(readOnly = true)
     fun getNoticeDetail(id: Long): NoticeDetailsResponse {
-        val notice = noticeRepository.findByIdOrNull(id)
-            ?: throw NoticeNotFoundException
+        val notice = noticeFacade.getNoticeById(id)
         return NoticeDetailsResponse.from(notice)
     }
 
