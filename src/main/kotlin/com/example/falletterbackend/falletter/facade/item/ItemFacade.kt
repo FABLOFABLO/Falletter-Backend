@@ -1,5 +1,7 @@
 package com.example.falletterbackend.falletter.facade.item
 
+import com.example.falletterbackend.falletter.dto.item.response.ItemBrickGetCountResponse
+import com.example.falletterbackend.falletter.dto.item.response.ItemLetterGetCountResponse
 import com.example.falletterbackend.falletter.entity.item.Item
 import com.example.falletterbackend.falletter.entity.item.repository.ItemRepository
 import com.example.falletterbackend.falletter.entity.user.User
@@ -24,5 +26,15 @@ class ItemFacade(
 
     fun save(item: Item): Item {
         return itemRepository.save(item)
+    }
+
+    fun findBrickCountByUser(user: User): ItemBrickGetCountResponse {
+        return itemRepository.findBrickCountByUser(user)
+            ?: throw ItemNotFoundException
+    }
+
+    fun findLetterCountByUser(user: User): ItemLetterGetCountResponse {
+        return itemRepository.findLetterCountByUser(user)
+            ?: throw ItemNotFoundException
     }
 }
