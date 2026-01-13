@@ -6,10 +6,10 @@ import com.example.falletterbackend.falletter.dto.user.request.UserSignInRequest
 import com.example.falletterbackend.falletter.dto.user.request.UserSignUpRequest
 import com.example.falletterbackend.falletter.dto.user.response.UserGetAllStudentResponse
 import com.example.falletterbackend.falletter.dto.user.response.UserInfoResponse
-import com.example.falletterbackend.falletter.entity.auth.repository.RefreshTokenRepository
 import com.example.falletterbackend.falletter.entity.item.Item
 import com.example.falletterbackend.falletter.entity.user.User
 import com.example.falletterbackend.falletter.exception.user.IncorrectPasswordException
+import com.example.falletterbackend.falletter.facade.auth.AuthFacade
 import com.example.falletterbackend.falletter.facade.item.ItemFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.beans.factory.annotation.Value
@@ -22,9 +22,9 @@ import org.springframework.transaction.annotation.Transactional
 class UserService(
     private val userFacade: UserFacade,
     private val itemFacade: ItemFacade,
+    private val authFacade: AuthFacade,
     private val passwordEncoder: PasswordEncoder,
     private val tokenProvider: TokenProvider,
-    private val refreshTokenRepository: RefreshTokenRepository,
     @Value("\${cloud.aws.stack.default.image.address}")
     private val defaultImageAddress: String,
     @Value("\${falletter.item.default-brick-count}")
@@ -78,7 +78,7 @@ class UserService(
     @Transactional
     fun logout() {
         val currentUser = userFacade.getCurrentUser()
-        refreshTokenRepository.deleteById(currentUser.email)
+        authFacade.deleteRefreshTokenByEmail(currentUser.email)
     }
 
     @Transactional(readOnly = true)
