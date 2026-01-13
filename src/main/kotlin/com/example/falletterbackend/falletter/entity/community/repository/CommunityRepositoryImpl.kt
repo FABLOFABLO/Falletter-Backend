@@ -17,4 +17,12 @@ class CommunityRepositoryImpl(
             .orderBy(community.id.desc())
             .fetch()
     }
+
+    override fun findByIdWithAuthor(id: Long): Community? {
+        return queryFactory
+            .selectFrom(community)
+            .join(community.author).fetchJoin()
+            .where(community.id.eq(id))
+            .fetchOne()
+    }
 }

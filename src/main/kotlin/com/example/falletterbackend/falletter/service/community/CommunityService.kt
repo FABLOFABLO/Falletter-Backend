@@ -29,7 +29,7 @@ class CommunityService(
 
     @Transactional(readOnly = true)
     fun getAllPosts(): List<CommunityPostsListResponse> {
-        val communities = communityFacade.getAllCommunitiesWithAuthor()
+        val communities = communityFacade.getAllCommunities()
 
         return communities.map { CommunityPostsListResponse.from(it) }
     }

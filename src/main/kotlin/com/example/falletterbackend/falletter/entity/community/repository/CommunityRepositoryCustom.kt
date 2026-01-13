@@ -4,4 +4,6 @@ import com.example.falletterbackend.falletter.entity.community.Community
 
 interface CommunityRepositoryCustom {
     fun findAllWithAuthorOrderByIdDesc(): List<Community>
+    
+    fun findByIdWithAuthor(id: Long): Community?
 }

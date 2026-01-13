@@ -12,7 +12,7 @@ class CommunityFacade(
     private val communityRepository: CommunityRepository
 ) {
     fun getCurrentCommunity(id: Long): Community {
-        return communityRepository.findByIdOrNull(id) ?: throw CommunityNotFoundException
+        return communityRepository.findByIdWithAuthor(id) ?: throw CommunityNotFoundException
     }
 
     fun getCommunityWithOwnerCheck(id: Long, userId: Long): Community {
@@ -24,10 +24,6 @@ class CommunityFacade(
     }
 
     fun getAllCommunities(): List<Community> {
-        return communityRepository.findAll()
-    }
-
-    fun getAllCommunitiesWithAuthor(): List<Community> {
         return communityRepository.findAllWithAuthorOrderByIdDesc()
     }
 
