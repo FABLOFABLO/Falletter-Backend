@@ -59,6 +59,12 @@ enum class ErrorCode(
     // suspend
     SUSPEND_NOT_FOUND(404, "Suspend Not Found"),
 
+    // admin
+    ADMIN_NOT_FOUND(404, "Admin Not Found"),
+    ALREADY_ADMIN_EMAIL(409, "Already Exist Admin Email"),
+    ADMIN_NOT_APPROVED(403, "Admin Not Approved"),
+    ADMIN_ALREADY_PROCESSED(409, "Admin Already Processed"),
+
     // notification
     NOTIFICATION_NOT_FOUND(404, "Notification Not Found"),
 
