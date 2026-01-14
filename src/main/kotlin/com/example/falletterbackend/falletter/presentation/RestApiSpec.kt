@@ -82,6 +82,5 @@ object RestApiSpec {
     const val SUPER_ADMIN_REQUESTS = "/requests"
     const val SUPER_ADMIN_APPROVE = "/approve/{admin-id}"
     const val SUPER_ADMIN_REJECT = "/reject/{admin-id}"
-    const val SUPER_ADMIN_GENDER = "/gender/{admin-id}"
     const val SUPER_ADMIN_ADMINS = "/admins"
 }
