@@ -1,6 +1,7 @@
 package com.example.falletterbackend.falletter.dto.admin.superadmin.response
 
 import com.example.falletterbackend.falletter.entity.admin.Admin
+import com.example.falletterbackend.falletter.entity.admin.enums.AdminStatus
 import com.example.falletterbackend.falletter.entity.user.enums.Gender
 import io.swagger.v3.oas.annotations.media.Schema
 import java.time.LocalDateTime
@@ -19,6 +20,9 @@ data class AdminRequestListResponse(
     @Schema(description = "성별", example = "MALE")
     val gender: Gender,
 
+    @Schema(description = "상태", example = "PENDING")
+    val status: AdminStatus,
+
     @Schema(description = "신청 일시")
     val createdAt: LocalDateTime
 ) {
@@ -28,6 +32,7 @@ data class AdminRequestListResponse(
             email = admin.email,
             name = admin.name,
             gender = admin.gender,
+            status = admin.status,
             createdAt = admin.createdAt
         )
     }
