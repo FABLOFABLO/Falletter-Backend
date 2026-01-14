@@ -51,104 +51,115 @@ class SecurityConfig(
                 authorize
                     // swagger
                     .requestMatchers(*SWAGGER_WHITELIST).permitAll()
-                    
+
                     // fcm
-                    .requestMatchers(HttpMethod.POST, "/fcm/send").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/fcm/send").hasRole("USER")
 
                     // device token
-                    .requestMatchers(HttpMethod.POST, "/device/token").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.DELETE, "/device/token/{device-id}").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/device/token").hasRole("USER")
+                    .requestMatchers(HttpMethod.DELETE, "/device/token/{device-id}").hasRole("USER")
 
                     // auth
                     .requestMatchers(HttpMethod.POST, "/auth/email/verify").permitAll()
                     .requestMatchers(HttpMethod.POST, "/auth/email/match").permitAll()
 
-                    //user
+                    // user
                     .requestMatchers(HttpMethod.POST, "/user/signup").permitAll()
                     .requestMatchers(HttpMethod.POST, "/user/signin").permitAll()
-                    .requestMatchers(HttpMethod.DELETE, "/user/logout").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/user/users").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/user/student").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.DELETE, "/user/logout").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/user/users").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/user/student").hasRole("USER")
 
                     // community
-                    .requestMatchers(HttpMethod.POST, "/community/posts").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/community/posts").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/community/posts/{post-id}").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.PATCH, "/community/posts/{post-id}").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.DELETE, "/community/posts/{post-id}").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/community/posts").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/community/posts").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/community/posts/{post-id}").hasRole("USER")
+                    .requestMatchers(HttpMethod.PATCH, "/community/posts/{post-id}").hasRole("USER")
+                    .requestMatchers(HttpMethod.DELETE, "/community/posts/{post-id}").hasRole("USER")
 
                     // comment
-                    .requestMatchers(HttpMethod.POST, "/comment/{post-id}").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.DELETE, "/comment/{comment-id}").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/comment/{post-id}").hasRole("USER")
+                    .requestMatchers(HttpMethod.DELETE, "/comment/{comment-id}").hasRole("USER")
 
                     // item
-                    .requestMatchers(HttpMethod.GET, "/item/letter/count").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.PATCH, "/item/letter/update").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/item/brick/count").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.PATCH, "/item/brick/update").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/item/letter/count").hasRole("USER")
+                    .requestMatchers(HttpMethod.PATCH, "/item/letter/update").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/item/brick/count").hasRole("USER")
+                    .requestMatchers(HttpMethod.PATCH, "/item/brick/update").hasRole("USER")
 
                     // history
-                    .requestMatchers(HttpMethod.POST, "/history/brick/save").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/history/brick/used").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/history/brick/save").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/history/brick/used").hasRole("USER")
 
                     // answer
-                    .requestMatchers(HttpMethod.POST, "/answer/choose").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/answer/chosen").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/answer/choose").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/answer/chosen").hasRole("USER")
 
                     // letter
-                    .requestMatchers(HttpMethod.POST, "/letter/sent").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/letter/sent/{letter-id}").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/letter/sent/all").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/letter/received/{letter-id}").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/letter/received/all").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/letter/sent").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/letter/sent/{letter-id}").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/letter/sent/all").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/letter/received/{letter-id}").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/letter/received/all").hasRole("USER")
 
                     // question
-                    .requestMatchers(HttpMethod.GET, "/question/all").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/question/all").hasRole("USER")
 
                     // hint
-                    .requestMatchers(HttpMethod.POST, "/hint/save").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/hint/{answer-id}").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.PATCH, "/hint/update").hasAnyRole("USER", "ADMIN")
-
-                    // notice
-                    .requestMatchers(HttpMethod.GET, "/notice").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/notice/{notice-id}").hasAnyRole("USER", "ADMIN")
-
-                    // admin letter
-                    .requestMatchers(HttpMethod.GET, "/admin/letter/unpassed").hasAnyRole("ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/admin/letter/unpassed/{letter-id}").hasAnyRole("ADMIN")
-
-                    // admin notice
-                    .requestMatchers(HttpMethod.POST, "/admin/notice").hasRole("ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/admin/notice").hasAnyRole("ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/admin/notice/{notice-id}").hasAnyRole("ADMIN")
-                    .requestMatchers(HttpMethod.DELETE, "/admin/notice/{notice-id}").hasRole("ADMIN")
-
-                    // admin community
-                    .requestMatchers(HttpMethod.PATCH, "/admin/community/{community-id}").hasRole("ADMIN")
-
-                    // admin user
-                    .requestMatchers(HttpMethod.GET, "/admin/user/all").hasRole("ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/admin/user/{user-id}").hasRole("ADMIN")
-
-                    // admin suspend
-                    .requestMatchers(HttpMethod.POST, "/admin/warning/{user-id}").hasRole("ADMIN")
-                    .requestMatchers(HttpMethod.POST, "/admin/block/{user-id}").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/hint/save").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/hint/{answer-id}").hasRole("USER")
+                    .requestMatchers(HttpMethod.PATCH, "/hint/update").hasRole("USER")
 
                     // timer
-                    .requestMatchers(HttpMethod.POST, "/timer/brick").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/timer/brick").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.POST, "/timer/roulette").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/timer/roulette").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/timer/brick").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/timer/brick").hasRole("USER")
+                    .requestMatchers(HttpMethod.POST, "/timer/roulette").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/timer/roulette").hasRole("USER")
 
                     // suspend
-                    .requestMatchers(HttpMethod.GET, "/suspend/all").hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(HttpMethod.GET, "/suspend/{suspend-id}").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/suspend/all").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/suspend/{suspend-id}").hasRole("USER")
 
                     // image
-                    .requestMatchers(HttpMethod.POST, "/image/upload").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/image/upload").hasRole("USER")
 
-                    .anyRequest().hasAnyRole("USER", "ADMIN")
+                    // notice (User도 조회 가능)
+                    .requestMatchers(HttpMethod.GET, "/notice").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/notice/{notice-id}").authenticated()
+
+                    // admin letter
+                    .requestMatchers(HttpMethod.GET, "/admin/letter/unpassed").hasAnyRole("ADMIN", "SUPER_ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/admin/letter/unpassed/{letter-id}").hasAnyRole("ADMIN", "SUPER_ADMIN")
+
+                    // admin notice
+                    .requestMatchers(HttpMethod.POST, "/admin/notice").hasAnyRole("ADMIN", "SUPER_ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/admin/notice").hasAnyRole("ADMIN", "SUPER_ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/admin/notice/{notice-id}").hasAnyRole("ADMIN", "SUPER_ADMIN")
+                    .requestMatchers(HttpMethod.DELETE, "/admin/notice/{notice-id}").hasAnyRole("ADMIN", "SUPER_ADMIN")
+
+                    // admin community
+                    .requestMatchers(HttpMethod.PATCH, "/admin/community/{community-id}").hasAnyRole("ADMIN", "SUPER_ADMIN")
+
+                    // admin user
+                    .requestMatchers(HttpMethod.GET, "/admin/user/all").hasAnyRole("ADMIN", "SUPER_ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/admin/user/{user-id}").hasAnyRole("ADMIN", "SUPER_ADMIN")
+
+                    // admin suspend
+                    .requestMatchers(HttpMethod.POST, "/admin/warning/{user-id}").hasAnyRole("ADMIN", "SUPER_ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/admin/block/{user-id}").hasAnyRole("ADMIN", "SUPER_ADMIN")
+
+                    // admin auth
+                    .requestMatchers(HttpMethod.POST, "/admin/auth/signup").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/admin/auth/signin").permitAll()
+
+                    // super admin
+                    .requestMatchers(HttpMethod.GET, "/super-admin/requests").hasRole("SUPER_ADMIN")
+                    .requestMatchers(HttpMethod.PATCH, "/super-admin/approve/{admin-id}").hasRole("SUPER_ADMIN")
+                    .requestMatchers(HttpMethod.PATCH, "/super-admin/reject/{admin-id}").hasRole("SUPER_ADMIN")
+                    .requestMatchers(HttpMethod.PATCH, "/super-admin/gender/{admin-id}").hasRole("SUPER_ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/super-admin/admins").hasRole("SUPER_ADMIN")
+
+                    .anyRequest().authenticated()
             }
 
         http.with(FilterConfig(tokenProvider, objectMapper)) {}
