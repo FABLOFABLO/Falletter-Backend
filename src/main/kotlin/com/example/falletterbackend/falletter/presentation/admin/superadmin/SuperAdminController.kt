@@ -1,6 +1,5 @@
 package com.example.falletterbackend.falletter.presentation.admin.superadmin
 
-import com.example.falletterbackend.falletter.dto.admin.superadmin.request.AdminGenderUpdateRequest
 import com.example.falletterbackend.falletter.dto.admin.superadmin.response.AdminListResponse
 import com.example.falletterbackend.falletter.dto.admin.superadmin.response.AdminRequestListResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
@@ -9,12 +8,10 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.tags.Tag
-import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
@@ -57,20 +54,6 @@ class SuperAdminController(
     @ResponseStatus(HttpStatus.OK)
     fun rejectAdmin(@PathVariable("admin-id") adminId: Long) {
         superAdminService.rejectAdmin(adminId)
-    }
-
-    @Operation(summary = "성별 수정", description = "어드민의 성별을 수정합니다.")
-    @ApiResponses(
-        ApiResponse(responseCode = "200", description = "수정 성공"),
-        ApiResponse(responseCode = "404", description = "어드민을 찾을 수 없음")
-    )
-    @PatchMapping(RestApiSpec.SUPER_ADMIN_GENDER)
-    @ResponseStatus(HttpStatus.OK)
-    fun updateGender(
-        @PathVariable("admin-id") adminId: Long,
-        @RequestBody @Valid request: AdminGenderUpdateRequest
-    ) {
-        superAdminService.updateGender(adminId, request)
     }
 
     @Operation(summary = "승인된 관리자 목록 조회", description = "승인된 관리자 목록을 조회합니다.")
