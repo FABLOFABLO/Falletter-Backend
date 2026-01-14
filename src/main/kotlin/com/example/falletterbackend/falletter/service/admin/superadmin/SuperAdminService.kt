@@ -1,6 +1,5 @@
 package com.example.falletterbackend.falletter.service.admin.superadmin
 
-import com.example.falletterbackend.falletter.dto.admin.superadmin.request.AdminGenderUpdateRequest
 import com.example.falletterbackend.falletter.dto.admin.superadmin.response.AdminListResponse
 import com.example.falletterbackend.falletter.dto.admin.superadmin.response.AdminRequestListResponse
 import com.example.falletterbackend.falletter.entity.admin.enums.AdminStatus
@@ -16,7 +15,7 @@ class SuperAdminService(
 ) {
     @Transactional(readOnly = true)
     fun getAdminRequests(): List<AdminRequestListResponse> {
-        return adminFacade.findAllByStatus(AdminStatus.PENDING)
+        return adminFacade.findAll()
             .map { AdminRequestListResponse.from(it) }
     }
 
@@ -49,13 +48,6 @@ class SuperAdminService(
         admin.approvedBy = currentAdmin
         admin.processedAt = LocalDateTime.now()
 
-        adminFacade.save(admin)
-    }
-
-    @Transactional
-    fun updateGender(adminId: Long, request: AdminGenderUpdateRequest) {
-        val admin = adminFacade.getById(adminId)
-        admin.gender = request.gender
         adminFacade.save(admin)
     }
 
