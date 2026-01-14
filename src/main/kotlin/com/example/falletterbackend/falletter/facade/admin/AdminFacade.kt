@@ -43,4 +43,8 @@ class AdminFacade(
     fun findAllByStatus(status: AdminStatus): List<Admin> {
         return adminRepository.findAllByStatus(status)
     }
+
+    fun findAll(): List<Admin> {
+        return adminRepository.findAll()
+    }
 }
