@@ -156,7 +156,6 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.GET, "/super-admin/requests").hasRole("SUPER_ADMIN")
                     .requestMatchers(HttpMethod.PATCH, "/super-admin/approve/{admin-id}").hasRole("SUPER_ADMIN")
                     .requestMatchers(HttpMethod.PATCH, "/super-admin/reject/{admin-id}").hasRole("SUPER_ADMIN")
-                    .requestMatchers(HttpMethod.PATCH, "/super-admin/gender/{admin-id}").hasRole("SUPER_ADMIN")
                     .requestMatchers(HttpMethod.GET, "/super-admin/admins").hasRole("SUPER_ADMIN")
 
                     .anyRequest().authenticated()
@@ -183,7 +182,8 @@ class SecurityConfig(
 
         configuration.allowedOrigins = listOf(
             "https://falletter.co.kr",
-            "http://falletter.co.kr"
+            "http://falletter.co.kr",
+            "http://localhost:5173"
         )
 
         configuration.allowedMethods = listOf(
