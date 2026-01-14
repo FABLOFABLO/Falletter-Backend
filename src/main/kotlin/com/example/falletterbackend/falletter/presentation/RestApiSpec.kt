@@ -73,4 +73,14 @@ object RestApiSpec {
     const val DEVICE_TOKEN_DELETE = "/token/{device-id}"
 
     const val IMAGE_UPLOAD = "/upload"
+
+    // Admin Auth
+    const val ADMIN_SIGN_UP = "/signup"
+    const val ADMIN_SIGN_IN = "/signin"
+
+    // Super Admin
+    const val SUPER_ADMIN_REQUESTS = "/requests"
+    const val SUPER_ADMIN_APPROVE = "/approve/{admin-id}"
+    const val SUPER_ADMIN_REJECT = "/reject/{admin-id}"
+    const val SUPER_ADMIN_ADMINS = "/admins"
 }

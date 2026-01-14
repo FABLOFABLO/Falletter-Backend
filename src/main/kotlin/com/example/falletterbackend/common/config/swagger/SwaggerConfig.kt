@@ -74,10 +74,13 @@ class SwaggerConfig(
         "suspend",
         "notice",
         "notification",
+        "Admin Auth",
         "Admin User",
         "Admin Community",
         "Admin Letter",
         "Admin Notice",
+        "Admin Suspend",
+        "Super Admin",
     )
 
     @Bean
@@ -101,10 +104,13 @@ class SwaggerConfig(
                 "suspend" to "경고/정지 내역 API",
                 "notice" to "공지사항 API",
                 "notification" to "알림 설정 API",
+                "Admin Auth" to "관리자 인증 API",
                 "Admin User" to "관리자 학생 관리 API",
                 "Admin Community" to "관리자 커뮤니티 관리 API",
                 "Admin Letter" to "관리자 편지 관리 API",
                 "Admin Notice" to "관리자 공지사항 API",
+                "Admin Suspend" to "관리자 경고/정지 관리 API",
+                "Super Admin" to "슈퍼 어드민 API",
             )
 
             val sortedTags = tagOrder.map { name ->

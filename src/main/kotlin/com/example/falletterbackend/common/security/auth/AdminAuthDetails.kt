@@ -1,19 +1,19 @@
 package com.example.falletterbackend.common.security.auth
 
-import com.example.falletterbackend.falletter.entity.user.User
+import com.example.falletterbackend.falletter.entity.admin.Admin
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
-class AuthDetails(
-    private val user: User
+class AdminAuthDetails(
+    private val admin: Admin
 ) : UserDetails {
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> =
-        mutableListOf(SimpleGrantedAuthority("ROLE_USER"))
+        mutableListOf(SimpleGrantedAuthority(admin.role.key))
 
     override fun getPassword(): String? = null
 
-    override fun getUsername(): String = user.email
+    override fun getUsername(): String = admin.email
 
     override fun isAccountNonExpired(): Boolean = true
 
@@ -22,4 +22,6 @@ class AuthDetails(
     override fun isCredentialsNonExpired(): Boolean = true
 
     override fun isEnabled(): Boolean = true
+
+    fun getAdmin(): Admin = admin
 }

@@ -1,9 +1,9 @@
 package com.example.falletterbackend.common.aop
 
 import com.example.falletterbackend.common.annotation.AdminOnly
-import com.example.falletterbackend.falletter.entity.user.enums.Role
+import com.example.falletterbackend.falletter.entity.admin.enums.AdminStatus
 import com.example.falletterbackend.falletter.exception.auth.AccessDeniedException
-import com.example.falletterbackend.falletter.facade.user.UserFacade
+import com.example.falletterbackend.falletter.facade.admin.AdminFacade
 import org.aspectj.lang.annotation.Aspect
 import org.aspectj.lang.annotation.Before
 import org.springframework.stereotype.Component
@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component
 @Aspect
 @Component
 class AdminOnlyAspect(
-    private val userFacade: UserFacade
+    private val adminFacade: AdminFacade
 ) {
     @Before("@annotation(adminOnly)")
     fun checkAdminRole(adminOnly: AdminOnly) {
-        val user = userFacade.getCurrentUser()
-        if (user.role != Role.ADMIN) {
+        val admin = adminFacade.getCurrentAdmin()
+        if (admin.status != AdminStatus.APPROVED) {
             throw AccessDeniedException
         }
     }

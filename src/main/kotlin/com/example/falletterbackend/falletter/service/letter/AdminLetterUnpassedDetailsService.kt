@@ -1,6 +1,6 @@
 package com.example.falletterbackend.falletter.service.letter
 
-import com.example.falletterbackend.falletter.dto.letter.response.AdminLetterUnpassedDetailsResponse
+import com.example.falletterbackend.falletter.dto.admin.letter.response.AdminLetterUnpassedDetailsResponse
 import com.example.falletterbackend.falletter.facade.letter.LetterFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

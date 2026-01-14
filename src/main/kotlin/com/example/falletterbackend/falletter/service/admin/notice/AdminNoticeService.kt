@@ -5,8 +5,8 @@ import com.example.falletterbackend.falletter.dto.admin.notice.request.NoticeCre
 import com.example.falletterbackend.falletter.dto.admin.notice.response.NoticeDetailsResponse
 import com.example.falletterbackend.falletter.dto.admin.notice.response.NoticeListResponse
 import com.example.falletterbackend.falletter.entity.notice.Notice
+import com.example.falletterbackend.falletter.facade.admin.AdminFacade
 import com.example.falletterbackend.falletter.facade.notice.NoticeFacade
-import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.cache.annotation.CacheEvict
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -14,18 +14,18 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class AdminNoticeService(
     private val noticeFacade: NoticeFacade,
-    private val userFacade: UserFacade
+    private val adminFacade: AdminFacade
 ) {
     @AdminOnly
     @CacheEvict(value = ["notices"], allEntries = true)
     @Transactional
     fun createNotice(request: NoticeCreateRequest) {
-        val user = userFacade.getCurrentUser()
+        val admin = adminFacade.getCurrentAdmin()
 
         val notice = Notice(
             title = request.title,
             content = request.content,
-            author = user
+            author = admin
         )
 
         noticeFacade.save(notice)
