@@ -7,6 +7,8 @@ import com.example.falletterbackend.falletter.dto.user.request.UserSignUpRequest
 import com.example.falletterbackend.falletter.dto.user.response.UserGetAllStudentResponse
 import com.example.falletterbackend.falletter.dto.user.response.UserInfoResponse
 import com.example.falletterbackend.falletter.entity.item.Item
+import com.example.falletterbackend.falletter.entity.terms.Terms
+import com.example.falletterbackend.falletter.entity.terms.repository.TermsRepository
 import com.example.falletterbackend.falletter.entity.user.User
 import com.example.falletterbackend.falletter.exception.user.IncorrectPasswordException
 import com.example.falletterbackend.falletter.facade.auth.AuthFacade
@@ -23,6 +25,7 @@ class UserService(
     private val userFacade: UserFacade,
     private val itemFacade: ItemFacade,
     private val authFacade: AuthFacade,
+    private val termsRepository: TermsRepository,
     private val passwordEncoder: PasswordEncoder,
     private val tokenProvider: TokenProvider,
     @Value("\${cloud.aws.stack.default.image.address}")
@@ -64,6 +67,16 @@ class UserService(
         )
 
         itemFacade.save(item)
+
+        val terms = Terms(
+            user = userReference,
+            serviceTerms = request.serviceTerms,
+            privacyPolicy = request.privacyPolicy,
+            communityTerms = request.communityTerms,
+            pushNotification = request.pushNotification
+        )
+
+        termsRepository.save(terms)
     }
 
     @Transactional
