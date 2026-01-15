@@ -43,56 +43,13 @@ class UserService(
         userFacade.validateSchoolNumberNotExists(request.schoolNumber)
         userFacade.validateEmailNotExists(request.email)
 
-        val imageUrl = if (request.profileImage.isNullOrEmpty()) {
-            defaultImageAddress
-        } else {
-            request.profileImage
-        }
-
-        val newUser = User(
-            email = request.email,
-            password = passwordEncoder.encode(request.password),
-            schoolNumber = request.schoolNumber,
-            name = request.name,
-            gender = request.gender,
-            theme = request.theme,
-            profileImage = imageUrl
-        )
-
+        val newUser = createUser(request)
         userFacade.saveUser(newUser)
 
         val userReference = userFacade.getUserReference(newUser.id)
-
-        val item = Item(
-            brickCount = defaultBrickCount,
-            letterCount = defaultLetterCount,
-            user = userReference
-        )
-
-        itemFacade.save(item)
-
-        val terms = Terms(
-            user = userReference,
-            serviceTerms = request.serviceTerms,
-            privacyPolicy = request.privacyPolicy,
-            communityTerms = request.communityTerms,
-            pushNotification = request.pushNotification
-        )
-
-        termsRepository.save(terms)
-
-        val notification = Notification(
-            user = userReference,
-            pushEnabled = request.pushNotification,
-            commentEnabled = request.pushNotification,
-            brickActivationEnabled = request.pushNotification,
-            brickEnabled = request.pushNotification,
-            letterEnabled = request.pushNotification,
-            letterSentEnabled = request.pushNotification,
-            adminNoticeEnabled = request.pushNotification
-        )
-
-        notificationFacade.save(notification)
+        createItem(userReference)
+        createTerms(userReference, request)
+        createNotification(userReference, request.pushNotification)
     }
 
     @Transactional
@@ -113,7 +70,6 @@ class UserService(
     @Transactional(readOnly = true)
     fun getInfo(): UserInfoResponse {
         val user = userFacade.getCurrentUser()
-
         return UserInfoResponse(
             email = user.email,
             schoolNumber = user.schoolNumber,
@@ -129,5 +85,51 @@ class UserService(
     @Cacheable(value = ["students"], key = "'all'")
     fun getAllStudents(): List<UserGetAllStudentResponse> {
         return userFacade.getAllStudents()
+    }
+
+    private fun createUser(request: UserSignUpRequest): User {
+        return User(
+            email = request.email,
+            password = passwordEncoder.encode(request.password),
+            schoolNumber = request.schoolNumber,
+            name = request.name,
+            gender = request.gender,
+            theme = request.theme,
+            profileImage = request.profileImage?.takeIf { it.isNotEmpty() } ?: defaultImageAddress
+        )
+    }
+
+    private fun createItem(user: User) {
+        val item = Item(
+            brickCount = defaultBrickCount,
+            letterCount = defaultLetterCount,
+            user = user
+        )
+        itemFacade.save(item)
+    }
+
+    private fun createTerms(user: User, request: UserSignUpRequest) {
+        val terms = Terms(
+            user = user,
+            serviceTerms = request.serviceTerms,
+            privacyPolicy = request.privacyPolicy,
+            communityTerms = request.communityTerms,
+            pushNotification = request.pushNotification
+        )
+        termsRepository.save(terms)
+    }
+
+    private fun createNotification(user: User, pushEnabled: Boolean) {
+        val notification = Notification(
+            user = user,
+            pushEnabled = pushEnabled,
+            commentEnabled = pushEnabled,
+            brickActivationEnabled = pushEnabled,
+            brickEnabled = pushEnabled,
+            letterEnabled = pushEnabled,
+            letterSentEnabled = pushEnabled,
+            adminNoticeEnabled = pushEnabled
+        )
+        notificationFacade.save(notification)
     }
 }
