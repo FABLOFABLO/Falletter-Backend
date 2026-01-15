@@ -158,7 +158,15 @@ class SecurityConfig(
                     .requestMatchers(HttpMethod.PATCH, "/super-admin/reject/{admin-id}").hasRole("SUPER_ADMIN")
                     .requestMatchers(HttpMethod.GET, "/super-admin/admins").hasRole("SUPER_ADMIN")
 
+
+                    // notification
+                    .requestMatchers(HttpMethod.GET, "/notification/setting").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.PATCH, "/notification/setting").hasAnyRole("USER", "ADMIN")
+
+                    .anyRequest().hasAnyRole("USER", "ADMIN")
+
                     .anyRequest().authenticated()
+
             }
 
         http.with(FilterConfig(tokenProvider, objectMapper)) {}
