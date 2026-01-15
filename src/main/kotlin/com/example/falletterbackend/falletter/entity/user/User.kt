@@ -3,6 +3,7 @@ package com.example.falletterbackend.falletter.entity.user
 import com.example.falletterbackend.common.entity.EntityBase
 import com.example.falletterbackend.falletter.entity.item.Item
 import com.example.falletterbackend.falletter.entity.letter.Letter
+import com.example.falletterbackend.falletter.entity.terms.Terms
 import com.example.falletterbackend.falletter.entity.user.enums.Gender
 import com.example.falletterbackend.falletter.entity.user.enums.Role
 import com.example.falletterbackend.falletter.entity.user.enums.Theme
@@ -42,5 +43,8 @@ class User(
     val items: List<Item> = mutableListOf(),
 
     @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY, cascade = [CascadeType.ALL], orphanRemoval = true)
-    val letters: List<Letter> = mutableListOf()
+    val letters: List<Letter> = mutableListOf(),
+
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = [CascadeType.ALL], orphanRemoval = true)
+    val terms: Terms? = null
 ) : EntityBase()

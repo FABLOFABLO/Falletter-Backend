@@ -25,5 +25,17 @@ data class UserSignUpRequest(
     val theme: Theme,
 
     @Schema(description = "프로필 이미지 URL", example = "https://example.com/profile.jpg")
-    val profileImage: String?
+    val profileImage: String?,
+
+    @Schema(description = "팔레터 이용약관 동의", example = "true")
+    val serviceTerms: Boolean,
+
+    @Schema(description = "개인정보 수집 이용 동의", example = "true")
+    val privacyPolicy: Boolean,
+
+    @Schema(description = "커뮤니티 이용약관 동의", example = "true")
+    val communityTerms: Boolean,
+
+    @Schema(description = "푸시알림 동의", example = "false")
+    val pushNotification: Boolean
 )
