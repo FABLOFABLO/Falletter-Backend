@@ -148,6 +148,10 @@ class SecurityConfig(
                     // image
                     .requestMatchers(HttpMethod.POST, "/image/upload").hasAnyRole("USER", "ADMIN")
 
+                    // notification
+                    .requestMatchers(HttpMethod.GET, "/notification/setting").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.PATCH, "/notification/setting").hasAnyRole("USER", "ADMIN")
+
                     .anyRequest().hasAnyRole("USER", "ADMIN")
             }
 
