@@ -7,12 +7,14 @@ import com.example.falletterbackend.falletter.dto.user.request.UserSignUpRequest
 import com.example.falletterbackend.falletter.dto.user.response.UserGetAllStudentResponse
 import com.example.falletterbackend.falletter.dto.user.response.UserInfoResponse
 import com.example.falletterbackend.falletter.entity.item.Item
+import com.example.falletterbackend.falletter.entity.notification.Notification
 import com.example.falletterbackend.falletter.entity.terms.Terms
 import com.example.falletterbackend.falletter.entity.terms.repository.TermsRepository
 import com.example.falletterbackend.falletter.entity.user.User
 import com.example.falletterbackend.falletter.exception.user.IncorrectPasswordException
 import com.example.falletterbackend.falletter.facade.auth.AuthFacade
 import com.example.falletterbackend.falletter.facade.item.ItemFacade
+import com.example.falletterbackend.falletter.facade.notification.NotificationFacade
 import com.example.falletterbackend.falletter.facade.user.UserFacade
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.cache.annotation.Cacheable
@@ -26,6 +28,7 @@ class UserService(
     private val itemFacade: ItemFacade,
     private val authFacade: AuthFacade,
     private val termsRepository: TermsRepository,
+    private val notificationFacade: NotificationFacade,
     private val passwordEncoder: PasswordEncoder,
     private val tokenProvider: TokenProvider,
     @Value("\${cloud.aws.stack.default.image.address}")
@@ -77,6 +80,19 @@ class UserService(
         )
 
         termsRepository.save(terms)
+
+        val notification = Notification(
+            user = userReference,
+            pushEnabled = request.pushNotification,
+            commentEnabled = request.pushNotification,
+            brickActivationEnabled = request.pushNotification,
+            brickEnabled = request.pushNotification,
+            letterEnabled = request.pushNotification,
+            letterSentEnabled = request.pushNotification,
+            adminNoticeEnabled = request.pushNotification
+        )
+
+        notificationFacade.save(notification)
     }
 
     @Transactional
