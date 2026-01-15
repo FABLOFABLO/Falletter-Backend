@@ -1,7 +1,7 @@
 package com.example.falletterbackend.falletter.entity.notice
 
 import com.example.falletterbackend.common.entity.EntityBase
-import com.example.falletterbackend.falletter.entity.user.User
+import com.example.falletterbackend.falletter.entity.admin.Admin
 import jakarta.persistence.*
 
 @Entity
@@ -15,5 +15,5 @@ class Notice(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id", nullable = false)
-    val author: User
+    val author: Admin
 ) : EntityBase()

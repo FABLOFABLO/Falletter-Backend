@@ -1,7 +1,7 @@
 package com.example.falletterbackend.falletter.presentation.admin.letter
 
-import com.example.falletterbackend.falletter.dto.letter.response.AdminLetterUnpassedDetailsResponse
-import com.example.falletterbackend.falletter.dto.letter.response.AdminLetterUnpassedListResponse
+import com.example.falletterbackend.falletter.dto.admin.letter.response.AdminLetterUnpassedDetailsResponse
+import com.example.falletterbackend.falletter.dto.admin.letter.response.AdminLetterUnpassedListResponse
 import com.example.falletterbackend.falletter.presentation.RestApiSpec
 import com.example.falletterbackend.falletter.service.letter.AdminLetterUnpassedDetailsService
 import com.example.falletterbackend.falletter.service.letter.AdminLetterUnpassedListService
